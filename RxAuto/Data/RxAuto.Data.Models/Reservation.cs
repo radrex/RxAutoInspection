@@ -11,6 +11,7 @@
         public string VehicleModel { get; set; }
         public string LicenseNumber { get; set; }
         public string PhoneNumber { get; set; }
+        public DateTime ReservationDateTime { get; set; }
 
         //------------ Service [FK] -----------
         public int ServiceId { get; set; }
