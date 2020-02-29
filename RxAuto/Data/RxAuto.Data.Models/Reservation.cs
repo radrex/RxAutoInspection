@@ -5,20 +5,19 @@
     public class Reservation
     {
         //-------------- PROPERTIES ---------------
-        public int Id { get; set; }
-        public DateTime Date { get; set; }
+        public string Id { get; set; } = Guid.NewGuid().ToString();
+        public bool IsActive { get; set; }
+        public string VehicleMake { get; set; }
+        public string VehicleModel { get; set; }
+        public string LicenseNumber { get; set; }
         public string PhoneNumber { get; set; }
-
-        //------------ Town [FK] -----------
-        public int TownId { get; set; }
-        public Town Town { get; set; }
-
-        //------------ Vehicle [FK] -----------
-        public int VehicleId { get; set; }
-        public Vehicle Vehicle { get; set; }
 
         //------------ Service [FK] -----------
         public int ServiceId { get; set; }
         public Service Service { get; set; }
+
+        //------------ User [FK] -----------
+        //public string UserId { get; set; }
+        //public User User { get; set; }
     }
 }

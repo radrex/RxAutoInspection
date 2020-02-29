@@ -1,6 +1,6 @@
 ﻿namespace RxAuto.Data.Models.Enums
 {
-    public enum VehicleCategoryType
+    public enum VehicleCategory
     {
         АМ = 1,
         А1 = 2,

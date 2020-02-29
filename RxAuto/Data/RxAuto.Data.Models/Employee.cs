@@ -1,24 +1,30 @@
 ﻿namespace RxAuto.Data.Models
 {
-    using RxAuto.Data.Models.Enums;
+    using System;
+    using System.Collections.Generic;
+
     public class Employee
     {
         //-------------- PROPERTIES ---------------
-        public int Id { get; set; }
+        public string Id { get; set; } = Guid.NewGuid().ToString();
         public string FirstName { get; set; }
+        public string MiddleName { get; set; }
         public string LastName { get; set; }
+        public string PhoneNumber { get; set; }
+        public string Email { get; set; }
+        public string Town { get; set; }
+        public string Address { get; set; }
+        public string ImageUrl { get; set; }
+
+        //------------ JobPosition [FK] -----------
+        public int JobPositionId { get; set; }
         public JobPosition JobPosition { get; set; }
 
+        //------------ OperatingLocation [FK] -----------
+        public int OperatingLocationId { get; set; }
+        public OperatingLocation OperatingLocation { get; set; }
 
-
-        //TODO: do we include -> byte[] Image / URL link to image ?
-
-        //------------ Town [FK] -----------
-        public int TownId { get; set; }
-        public Town WorkingTown { get; set; }
-
-
-        //------------ ??? [FK] MAPPING TABLE -----------
-        //TODO: Qualifications collection
+        //------------ EmployeeQualification [FK] MAPPING TABLE -----------
+        public ICollection<EmployeeQualification> Qualifications { get; set; } = new HashSet<EmployeeQualification>();
     }
 }
