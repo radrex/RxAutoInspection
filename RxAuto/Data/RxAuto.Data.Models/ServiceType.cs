@@ -11,6 +11,6 @@
         public string Description { get; set; }
 
         //------------ Service [FK] -----------
-        public ICollection<Service> Services { get; set; } = new HashSet<Service>();
+        public virtual ICollection<Service> Services { get; set; } = new HashSet<Service>();
     }
 }

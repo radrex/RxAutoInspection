@@ -4,10 +4,10 @@
     {
         //------------ Service [FK] -----------
         public int ServiceId { get; set; }
-        public Service Service { get; set; }
+        public virtual Service Service { get; set; }
 
         //------------ OperatingLocation [FK] -----------
         public int OperatingLocationId { get; set; }
-        public OperatingLocation OperatingLocation { get; set; }
+        public virtual OperatingLocation OperatingLocation { get; set; }
     }
 }

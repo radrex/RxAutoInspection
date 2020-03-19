@@ -9,9 +9,9 @@
         public string Name { get; set; }
 
         //------------ Employee [FK] -----------
-        public ICollection<Employee> Employees { get; set; } = new HashSet<Employee>();
+        public virtual ICollection<Employee> Employees { get; set; } = new HashSet<Employee>();
 
         //------------ JobPositionQualification [FK] MAPPING TABLE -----------
-        public ICollection<JobPositionQualification> Qualifications { get; set; } = new HashSet<JobPositionQualification>();
+        public virtual ICollection<JobPositionQualification> Qualifications { get; set; } = new HashSet<JobPositionQualification>();
     }
 }

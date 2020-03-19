@@ -11,18 +11,18 @@
 
         //------------ ServiceType [FK] -----------
         public int ServiceTypeId { get; set; }
-        public ServiceType ServiceType { get; set; }
+        public virtual ServiceType ServiceType { get; set; }
 
         //------------ Reservation [FK] -----------
-        public ICollection<Reservation> Reservations { get; set; } = new HashSet<Reservation>();
+        public virtual ICollection<Reservation> Reservations { get; set; } = new HashSet<Reservation>();
 
         //------------ ServiceOperatingLocation [FK] MAPPING TABLE -----------
-        public ICollection<ServiceOperatingLocation> OperatingLocations { get; set; } = new HashSet<ServiceOperatingLocation>();
+        public virtual ICollection<ServiceOperatingLocation> OperatingLocations { get; set; } = new HashSet<ServiceOperatingLocation>();
 
         //------------ ServiceVehicleType [FK] MAPPING TABLE -----------
-        public ICollection<ServiceVehicleType> VehicleTypes { get; set; } = new HashSet<ServiceVehicleType>();
+        public virtual ICollection<ServiceVehicleType> VehicleTypes { get; set; } = new HashSet<ServiceVehicleType>();
 
         //------------ ServiceDocument [FK] MAPPING TABLE -----------
-        public ICollection<ServiceDocument> Documents { get; set; } = new HashSet<ServiceDocument>();
+        public virtual ICollection<ServiceDocument> Documents { get; set; } = new HashSet<ServiceDocument>();
     }
 }

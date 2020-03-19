@@ -18,13 +18,13 @@
 
         //------------ JobPosition [FK] -----------
         public int JobPositionId { get; set; }
-        public JobPosition JobPosition { get; set; }
+        public virtual JobPosition JobPosition { get; set; }
 
         //------------ OperatingLocation [FK] -----------
         public int OperatingLocationId { get; set; }
         public OperatingLocation OperatingLocation { get; set; }
 
         //------------ EmployeeQualification [FK] MAPPING TABLE -----------
-        public ICollection<EmployeeQualification> Qualifications { get; set; } = new HashSet<EmployeeQualification>();
+        public virtual ICollection<EmployeeQualification> Qualifications { get; set; } = new HashSet<EmployeeQualification>();
     }
 }

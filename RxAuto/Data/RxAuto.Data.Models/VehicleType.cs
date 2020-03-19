@@ -1,6 +1,7 @@
 ﻿namespace RxAuto.Data.Models
 {
     using RxAuto.Data.Models.Enums;
+
     using System.Collections.Generic;
 
     public class VehicleType
@@ -12,6 +13,6 @@
         public string Description { get; set; }
 
         //------------ ServiceVehicleType [FK] MAPPING TABLE -----------
-        public ICollection<ServiceVehicleType> Services { get; set; } = new HashSet<ServiceVehicleType>();
+        public virtual ICollection<ServiceVehicleType> Services { get; set; } = new HashSet<ServiceVehicleType>();
     }
 }
