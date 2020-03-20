@@ -1,7 +1,8 @@
 ﻿namespace RxAuto.Data
 {
+    using Configurations;
+
     using RxAuto.Data.Models;
-    using RxAuto.Data.Configurations;
 
     using Microsoft.EntityFrameworkCore;
     using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
@@ -9,14 +10,13 @@
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser, ApplicationRole, string>
     {
         //------------- CONSTRUCTORS --------------
-        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
+        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) 
+            : base(options)
         {
 
         }
 
         //-------------- PROPERTIES ---------------
-        public DbSet<ApplicationRole> ApplicationRoles { get; set; }
-        public DbSet<ApplicationUser> ApplicationUsers { get; set; }
         public DbSet<Contact> Contacts { get; set; }
         public DbSet<Document> Documents { get; set; }
         public DbSet<Employee> Employees { get; set; }
@@ -41,6 +41,7 @@
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
+            base.OnModelCreating(builder);
             builder.ApplyConfiguration(new ApplicationUserConfiguration());
             builder.ApplyConfiguration(new ContactConfiguration());
             builder.ApplyConfiguration(new DocumentConfiguration());

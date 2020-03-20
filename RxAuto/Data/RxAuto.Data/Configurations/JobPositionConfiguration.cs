@@ -9,6 +9,9 @@
     {
         public void Configure(EntityTypeBuilder<JobPosition> jobPos)
         {
+            jobPos.Property(jp => jp.Id)
+                  .UseIdentityColumn(101, 1);
+
             jobPos.HasMany(jp => jp.Qualifications)
                   .WithOne(q => q.JobPosition)
                   .HasForeignKey(q => q.JobPositionId)

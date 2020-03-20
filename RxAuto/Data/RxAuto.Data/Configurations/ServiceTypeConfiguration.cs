@@ -9,6 +9,9 @@
     {
         public void Configure(EntityTypeBuilder<ServiceType> sType)
         {
+            sType.Property(st => st.Id)
+                 .UseIdentityColumn(10, 10);
+
             sType.HasMany(st => st.Services)
                  .WithOne(s => s.ServiceType)
                  .HasForeignKey(s => s.ServiceTypeId)

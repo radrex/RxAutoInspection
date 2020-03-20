@@ -17,4 +17,8 @@
     </PackageReference>
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\RxAuto.Data.Models\RxAuto.Data.Models.csproj" />
+  </ItemGroup>
+
 </Project>

@@ -9,6 +9,9 @@
     {
         public void Configure(EntityTypeBuilder<Document> doc)
         {
+            doc.Property(d => d.Id)
+               .UseIdentityColumn(10, 1);
+
             doc.HasMany(d => d.Services)
                .WithOne(s => s.Document)
                .HasForeignKey(s => s.DocumentId)
