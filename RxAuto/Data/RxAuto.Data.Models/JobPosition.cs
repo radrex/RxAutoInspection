@@ -1,11 +1,15 @@
 ﻿namespace RxAuto.Data.Models
 {
     using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
 
     public class JobPosition
     {
         //-------------- PROPERTIES ---------------
         public int Id { get; set; }
+
+        [Required]
+        [MaxLength(150)]
         public string Name { get; set; }
 
         //------------ Employee [FK] -----------

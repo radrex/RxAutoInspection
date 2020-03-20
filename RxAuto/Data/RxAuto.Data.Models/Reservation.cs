@@ -1,16 +1,32 @@
 ﻿namespace RxAuto.Data.Models
 {
+    using static DataValidation.DataValidation.VehicleInfo;
+    using static DataValidation.DataValidation.ContactInfo;
+
     using System;
+    using System.ComponentModel.DataAnnotations;
 
     public class Reservation
     {
         //-------------- PROPERTIES ---------------
         public string Id { get; set; } = Guid.NewGuid().ToString();
+
         public bool IsActive { get; set; }
+
+        [MaxLength(VehicleMakeMaxLength)]
         public string VehicleMake { get; set; }
+
+        [MaxLength(VehicleModelMaxLength)]
         public string VehicleModel { get; set; }
+
+        [Required]
+        [MaxLength(LicenseNumberMaxLength)]
         public string LicenseNumber { get; set; }
+
+        [Required]
+        [MaxLength(PhoneNumberMaxLength)]
         public string PhoneNumber { get; set; }
+
         public DateTime ReservationDateTime { get; set; }
 
         //------------ Service [FK] -----------
