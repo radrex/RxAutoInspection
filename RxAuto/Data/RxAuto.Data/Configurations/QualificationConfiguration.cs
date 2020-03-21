@@ -16,11 +16,6 @@
                          .WithOne(jp => jp.Qualification)
                          .HasForeignKey(jp => jp.QualificationId)
                          .OnDelete(DeleteBehavior.Restrict);
-
-            qualification.HasMany(q => q.Employees)
-                         .WithOne(e => e.Qualification)
-                         .HasForeignKey(e => e.QualificationId)
-                         .OnDelete(DeleteBehavior.Restrict);
         }
     }
 }

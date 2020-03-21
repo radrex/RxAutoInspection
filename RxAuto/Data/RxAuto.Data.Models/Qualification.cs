@@ -19,8 +19,5 @@
 
         //------------ JobPositionQualification [FK] MAPPING TABLE -----------
         public virtual ICollection<JobPositionQualification> JobPositions { get; set; } = new HashSet<JobPositionQualification>();
-
-        //------------ EmployeeQualification [FK] MAPPING TABLE -----------
-        public virtual ICollection<EmployeeQualification> Employees { get; set; } = new HashSet<EmployeeQualification>();
     }
 }

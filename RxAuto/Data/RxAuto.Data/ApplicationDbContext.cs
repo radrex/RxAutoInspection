@@ -20,7 +20,6 @@
         public DbSet<Contact> Contacts { get; set; }
         public DbSet<Document> Documents { get; set; }
         public DbSet<Employee> Employees { get; set; }
-        public DbSet<EmployeeQualification> EmployeeQualifications { get; set; }
         public DbSet<JobPosition> JobPositions { get; set; }
         public DbSet<JobPositionQualification> JobPositionQualifications { get; set; }
         public DbSet<OperatingLocation> OperatingLocations { get; set; }
@@ -46,7 +45,6 @@
             builder.ApplyConfiguration(new ContactConfiguration());
             builder.ApplyConfiguration(new DocumentConfiguration());
             builder.ApplyConfiguration(new EmployeeConfiguration());
-            builder.ApplyConfiguration(new EmployeeQualificationConfiguration());
             builder.ApplyConfiguration(new JobPositionConfiguration());
             builder.ApplyConfiguration(new JobPositionQualificationConfiguration());
             builder.ApplyConfiguration(new OperatingLocationConfiguration());

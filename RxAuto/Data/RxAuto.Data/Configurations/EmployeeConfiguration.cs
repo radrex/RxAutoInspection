@@ -18,11 +18,6 @@
                .WithMany(ol => ol.Employees)
                .HasForeignKey(e => e.OperatingLocationId)
                .OnDelete(DeleteBehavior.Restrict);
-
-            emp.HasMany(e => e.Qualifications)
-               .WithOne(q => q.Employee)
-               .HasForeignKey(q => q.EmployeeId)
-               .OnDelete(DeleteBehavior.Restrict);
         }
     }
 }
