@@ -19,8 +19,13 @@
             this.Reservations = new HashSet<Reservation>();
         }
 
+        public ApplicationUser(string username) : this()
+        {
+            this.UserName = username;
+        }
+
         //-------------- PROPERTIES ---------------
-        public DateTime CreatedOn { get; set; }
+        public DateTime CreatedOn { get; set; } = DateTime.UtcNow;
         public DateTime? ModifiedOn { get; set; }
         public bool IsDeleted { get; set; }
         public DateTime? DeletedOn { get; set; }
