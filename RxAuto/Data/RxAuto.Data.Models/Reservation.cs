@@ -11,7 +11,7 @@
         //-------------- PROPERTIES ---------------
         public string Id { get; set; } = Guid.NewGuid().ToString();
 
-        public bool IsActive { get; set; }
+        public bool IsActive { get; set; } = true;
 
         [MaxLength(VehicleMakeMaxLength)]
         public string VehicleMake { get; set; }
