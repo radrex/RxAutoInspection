@@ -2,6 +2,7 @@ namespace RxAuto.Web
 {
     using RxAuto.Data;
     using RxAuto.Data.Models;
+    using RxAuto.Data.Seeding;
 
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Hosting;
@@ -51,7 +52,7 @@ namespace RxAuto.Web
                     dbContext.Database.Migrate();
                 }
 
-                // ApplicationDbContextSeeder...
+                new ApplicationDbContextSeeder().SeedAsync(dbContext, serviceScope.ServiceProvider).GetAwaiter().GetResult();
             }
 
             if (env.IsDevelopment())

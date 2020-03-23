@@ -5,7 +5,15 @@ VisualStudioVersion = 16.0.29728.190
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Data", "Data", "{FC1C0E05-6E5F-49D3-846B-E32E9FBCFF3C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RxAuto.Data.Models", "Data\RxAuto.Data.Models\RxAuto.Data.Models.csproj", "{6791FB9F-79FC-4037-A729-06816A805929}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RxAuto.Data.Models", "Data\RxAuto.Data.Models\RxAuto.Data.Models.csproj", "{6791FB9F-79FC-4037-A729-06816A805929}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Web", "Web", "{883293B8-12C6-4FE2-AE39-6FFD07761B12}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RxAuto.Web", "Web\RxAuto.Web\RxAuto.Web.csproj", "{FE0EEBA5-73DF-4371-BBED-0389AFFC7EA9}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RxAuto.Data.Common", "Data\RxAuto.Data.Common\RxAuto.Data.Common.csproj", "{E0054118-7C62-4052-AFAB-1779F5AD26B7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RxAuto.Data", "Data\RxAuto.Data\RxAuto.Data.csproj", "{648E0810-6068-4D8A-B9F1-5C04A752F42E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,12 +25,27 @@ Global
 		{6791FB9F-79FC-4037-A729-06816A805929}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6791FB9F-79FC-4037-A729-06816A805929}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6791FB9F-79FC-4037-A729-06816A805929}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FE0EEBA5-73DF-4371-BBED-0389AFFC7EA9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FE0EEBA5-73DF-4371-BBED-0389AFFC7EA9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FE0EEBA5-73DF-4371-BBED-0389AFFC7EA9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FE0EEBA5-73DF-4371-BBED-0389AFFC7EA9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E0054118-7C62-4052-AFAB-1779F5AD26B7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E0054118-7C62-4052-AFAB-1779F5AD26B7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E0054118-7C62-4052-AFAB-1779F5AD26B7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E0054118-7C62-4052-AFAB-1779F5AD26B7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{648E0810-6068-4D8A-B9F1-5C04A752F42E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{648E0810-6068-4D8A-B9F1-5C04A752F42E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{648E0810-6068-4D8A-B9F1-5C04A752F42E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{648E0810-6068-4D8A-B9F1-5C04A752F42E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{6791FB9F-79FC-4037-A729-06816A805929} = {FC1C0E05-6E5F-49D3-846B-E32E9FBCFF3C}
+		{FE0EEBA5-73DF-4371-BBED-0389AFFC7EA9} = {883293B8-12C6-4FE2-AE39-6FFD07761B12}
+		{E0054118-7C62-4052-AFAB-1779F5AD26B7} = {FC1C0E05-6E5F-49D3-846B-E32E9FBCFF3C}
+		{648E0810-6068-4D8A-B9F1-5C04A752F42E} = {FC1C0E05-6E5F-49D3-846B-E32E9FBCFF3C}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {B78C6A92-3E67-4DFE-B6C4-46D935CA6CB5}
