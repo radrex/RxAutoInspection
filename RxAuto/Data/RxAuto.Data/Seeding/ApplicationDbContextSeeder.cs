@@ -7,6 +7,9 @@
     using System.Threading.Tasks;
     using System.Collections.Generic;
 
+    /// <summary>
+    /// Base class responsible for managing database connections, providing seeding methods for initial database seeding. 
+    /// </summary>
     public class ApplicationDbContextSeeder : ISeeder
     {
         public async Task SeedAsync(ApplicationDbContext dbContext, IServiceProvider serviceProvider)

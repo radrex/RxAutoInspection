@@ -5,6 +5,11 @@
     using Microsoft.EntityFrameworkCore;
     using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
+    /// <summary>
+    /// Applies configuration for <see cref="Reservation"/> entity.
+    /// <para>Each <see cref="Reservation"/> has one <see cref="ApplicationUser"/>.</para>
+    /// <para>Each <see cref="Reservation"/> has one <see cref="Service"/>.</para>
+    /// </summary>
     public class ReservationConfiguration : IEntityTypeConfiguration<Reservation>
     {
         public void Configure(EntityTypeBuilder<Reservation> res)

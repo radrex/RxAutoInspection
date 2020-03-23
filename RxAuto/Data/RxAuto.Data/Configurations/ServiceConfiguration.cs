@@ -5,6 +5,14 @@
     using Microsoft.EntityFrameworkCore;
     using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
+    /// <summary>
+    /// Applies configuration for <see cref="Service"/> entity.
+    /// <para>Each <see cref="Service"/> has one <see cref="ServiceType"/>.</para>
+    /// <para>Each <see cref="Service"/> has many <see cref="OperatingLocation"/>s.</para>
+    /// <para>Each <see cref="Service"/> has many <see cref="VehicleType"/>s.</para>
+    /// <para>Each <see cref="Service"/> has many <see cref="Document"/>s.</para>
+    /// <para>Each <see cref="Service"/> has many <see cref="Reservation"/>s.</para>
+    /// </summary>
     public class ServiceConfiguration : IEntityTypeConfiguration<Service>
     {
         public void Configure(EntityTypeBuilder<Service> service)

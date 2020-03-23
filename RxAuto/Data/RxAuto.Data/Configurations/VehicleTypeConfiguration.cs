@@ -5,6 +5,10 @@
     using Microsoft.EntityFrameworkCore;
     using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
+    /// <summary>
+    /// Applies configuration for <see cref="VehicleType"/> entity.
+    /// <para>Each <see cref="VehicleType"/> has many <see cref="Service"/>s.</para>
+    /// </summary>
     public class VehicleTypeConfiguration : IEntityTypeConfiguration<VehicleType>
     {
         public void Configure(EntityTypeBuilder<VehicleType> vType)

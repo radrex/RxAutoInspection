@@ -5,6 +5,11 @@
     using Microsoft.EntityFrameworkCore;
     using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
+    /// <summary>
+    /// Applies configuration for <see cref="ServiceDocument"/> many-to-many mapping entity.
+    /// <para>Each <see cref="ServiceDocument"/> has one <see cref="Service"/> with many <see cref="Document"/>s.</para>
+    /// <para>Each <see cref="ServiceDocument"/> has one <see cref="Document"/> with many <see cref="Service"/>s.</para>
+    /// </summary>
     public class ServiceDocumentConfiguration : IEntityTypeConfiguration<ServiceDocument>
     {
         public void Configure(EntityTypeBuilder<ServiceDocument> builder)

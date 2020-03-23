@@ -5,6 +5,10 @@
     using Microsoft.EntityFrameworkCore;
     using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
+    /// <summary>
+    /// Applies configuration for <see cref="Document"/> entity.
+    /// <para>Each <see cref="Document"/> has many <see cref="Service"/>s.</para>
+    /// </summary>
     public class DocumentConfiguration : IEntityTypeConfiguration<Document>
     {
         public void Configure(EntityTypeBuilder<Document> doc)

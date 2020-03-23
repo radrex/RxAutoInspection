@@ -5,6 +5,10 @@
     using Microsoft.EntityFrameworkCore;
     using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
+    /// <summary>
+    /// Applies configuration for <see cref="ServiceType"/> entity.
+    /// <para>Each <see cref="ServiceType"/> has many <see cref="Service"/>s.</para>
+    /// </summary>
     public class ServiceTypeConfiguration : IEntityTypeConfiguration<ServiceType>
     {
         public void Configure(EntityTypeBuilder<ServiceType> sType)

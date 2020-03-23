@@ -5,6 +5,11 @@
     using Microsoft.EntityFrameworkCore;
     using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
+    /// <summary>
+    /// Applies configuration for <see cref="JobPositionQualification"/> many-to-many mapping entity.
+    /// <para>Each <see cref="JobPositionQualification"/> has one <see cref="JobPosition"/> with many <see cref="Qualification"/>s.</para>
+    /// <para>Each <see cref="JobPositionQualification"/> has one <see cref="Qualification"/> with many <see cref="JobPosition"/>s.</para>
+    /// </summary>
     public class JobPositionQualificationConfiguration : IEntityTypeConfiguration<JobPositionQualification>
     {
         public void Configure(EntityTypeBuilder<JobPositionQualification> builder)

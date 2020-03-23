@@ -5,6 +5,10 @@
     using Microsoft.EntityFrameworkCore;
     using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
+    /// <summary>
+    /// Applies configuration for <see cref="Contact"/> entity.
+    /// <para>Each <see cref="Contact"/> has one <see cref="OperatingLocation"/>.</para>
+    /// </summary>
     class ContactConfiguration : IEntityTypeConfiguration<Contact>
     {
         public void Configure(EntityTypeBuilder<Contact> contact)

@@ -7,6 +7,9 @@
     using Microsoft.EntityFrameworkCore;
     using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 
+    /// <summary>
+    /// Base class responsible for managing database connections, providing all sorts of DB related functionality like data access methods to interact with Database. 
+    /// </summary>
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser, ApplicationRole, string>
     {
         //------------- CONSTRUCTORS --------------

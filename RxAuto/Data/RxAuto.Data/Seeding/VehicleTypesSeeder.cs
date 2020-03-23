@@ -8,6 +8,9 @@
     using System.Threading.Tasks;
     using System.Collections.Generic;
 
+    /// <summary>
+    /// Seeds <c>vehicle types</c> to <see cref="VehicleType"/> entity in database using <see cref="ApplicationDbContext"/>.
+    /// </summary>
     public class VehicleTypesSeeder : ISeeder
     {
         public async Task SeedAsync(ApplicationDbContext dbContext, IServiceProvider serviceProvider)

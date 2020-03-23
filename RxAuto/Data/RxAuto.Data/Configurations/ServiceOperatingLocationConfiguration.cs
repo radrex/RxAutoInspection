@@ -5,6 +5,11 @@
     using Microsoft.EntityFrameworkCore;
     using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
+    /// <summary>
+    /// Applies configuration for <see cref="ServiceOperatingLocation"/> many-to-many mapping entity.
+    /// <para>Each <see cref="ServiceOperatingLocation"/> has one <see cref="Service"/> with many <see cref="OperatingLocation"/>s.</para>
+    /// <para>Each <see cref="ServiceOperatingLocation"/> has one <see cref="OperatingLocation"/> with many <see cref="Service"/>s.</para>
+    /// </summary>
     public class ServiceOperatingLocationConfiguration : IEntityTypeConfiguration<ServiceOperatingLocation>
     {
         public void Configure(EntityTypeBuilder<ServiceOperatingLocation> builder)

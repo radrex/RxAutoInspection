@@ -5,6 +5,12 @@
     using Microsoft.EntityFrameworkCore;
     using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
+
+    /// <summary>
+    /// Applies configuration for <see cref="JobPosition"/> entity.
+    /// <para>Each <see cref="JobPosition"/> has many <see cref="Qualification"/>s.</para>
+    /// <para>Each <see cref="JobPosition"/> has many <see cref="Employee"/>s.</para>
+    /// </summary>
     public class JobPositionConfiguration : IEntityTypeConfiguration<JobPosition>
     {
         public void Configure(EntityTypeBuilder<JobPosition> jobPos)
