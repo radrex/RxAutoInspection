@@ -20,7 +20,7 @@
                 return;
             }
 
-            var services = new List<(string Name, decimal Price, string ServiceTypeName, List<(string Town, string Address)> Locations, List<string> DocumentNames, List<VehicleCategory> VehicleCategories)>
+            var services = new List<(string Name, decimal Price, string ServiceTypeName, List<(string Town, string Address)> Locations, List<string> DocumentNames, List<VehicleCategory> VehicleCategories, bool IsShownInMenu)>
             {
                 ("M1 - Лек автомобил", 35.0M, "ГТП", new List<(string Town, string Address)>
                                                      {
@@ -37,7 +37,8 @@
                                                      new List<VehicleCategory>
                                                      {
                                                          VehicleCategory.M1,
-                                                     }
+                                                     },
+                                                     true
                 ),
                 ("M2 - Автобус", 60.0M, "ГТП", new List<(string Town, string Address)>
                                                {
@@ -54,7 +55,8 @@
                                                new List<VehicleCategory>
                                                {
                                                    VehicleCategory.M2,
-                                               }
+                                               },
+                                               true
                 ),
                 ("M3 - Автобус", 60.0M, "ГТП", new List<(string Town, string Address)>
                                                {
@@ -71,7 +73,8 @@
                                                new List<VehicleCategory>
                                                {
                                                    VehicleCategory.M3,
-                                               }
+                                               },
+                                               true
                 ),
                 ("N1 - Товарен автомобил", 40.0M, "ГТП", new List<(string Town, string Address)>
                                                          {
@@ -87,7 +90,8 @@
                                                          new List<VehicleCategory>
                                                          {
                                                              VehicleCategory.N1,
-                                                         }
+                                                         },
+                                                         true
                 ),
                 ("N2 - Товарен автомобил", 55.0M, "ГТП", new List<(string Town, string Address)>
                                                          {
@@ -103,7 +107,8 @@
                                                          new List<VehicleCategory>
                                                          {
                                                              VehicleCategory.N2,
-                                                         }
+                                                         },
+                                                         true
                 ),
             };
 
@@ -116,6 +121,7 @@
                     Name = serviceInfo.Name,
                     Price = serviceInfo.Price,
                     ServiceType = serviceType,
+                    IsShownInMenu = serviceInfo.IsShownInMenu,
                 };
                 await dbContext.Services.AddAsync(service);
 

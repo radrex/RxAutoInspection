@@ -1,5 +1,7 @@
 ﻿namespace RxAuto.Data.Models
 {
+    using static DataValidation.DataValidation.MediaInfo;
+
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
@@ -16,6 +18,11 @@
         [Required]
         [Column(TypeName = "decimal(8,2)")]
         public decimal Price { get; set; }
+
+        [MaxLength(DescriptionMaxLength)]
+        public string Description { get; set; }
+
+        public bool IsShownInMenu { get; set; }
 
         //------------ ServiceType [FK] -----------
         public int ServiceTypeId { get; set; }
