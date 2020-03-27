@@ -20,4 +20,9 @@
     <ProjectReference Include="..\..\Data\RxAuto.Data\RxAuto.Data.csproj" />
   </ItemGroup>
 
+
+  <ItemGroup>
+    <Folder Include="wwwroot\lib\bootstrap\" />
+  </ItemGroup>
+
 </Project>
