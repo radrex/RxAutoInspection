@@ -34,6 +34,7 @@
         public virtual Service Service { get; set; }
 
         //------------ User [FK] -----------
+        [Required]
         public string UserId { get; set; }
         public virtual ApplicationUser User { get; set; }
     }
