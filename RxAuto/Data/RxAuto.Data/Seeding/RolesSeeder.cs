@@ -14,9 +14,11 @@
     /// </summary>
     public class RolesSeeder : ISeeder
     {
+        private RoleManager<ApplicationRole> roleManager;
+
         public async Task SeedAsync(ApplicationDbContext dbContext, IServiceProvider serviceProvider)
         {
-            RoleManager<ApplicationRole> roleManager = serviceProvider.GetRequiredService<RoleManager<ApplicationRole>>();
+            this.roleManager = serviceProvider.GetRequiredService<RoleManager<ApplicationRole>>();
             await SeedRoleAsync(roleManager, "Administrator");
             await SeedRoleAsync(roleManager, "User");
             await SeedRoleAsync(roleManager, "Guest");

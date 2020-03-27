@@ -14,9 +14,11 @@
     /// </summary>
     public class UsersSeeder : ISeeder
     {
+        private UserManager<ApplicationUser> userManager;
+
         public async Task SeedAsync(ApplicationDbContext dbContext, IServiceProvider serviceProvider)
         {
-            UserManager<ApplicationUser> userManager = serviceProvider.GetRequiredService<UserManager<ApplicationUser>>();
+            this.userManager = serviceProvider.GetRequiredService<UserManager<ApplicationUser>>();
             await SeedUserAsync(userManager, "AdminUser", "123456", "admin@gmail.com", "Administrator");
             await SeedUserAsync(userManager, "GuestUser", "654321", "guest@gmail.com", "Guest");
             await SeedUserAsync(userManager, "NormalUser", "123456", "user@gmail.com", "User");
