@@ -34,6 +34,9 @@
                 IdentityResult roleResult = await userManager.AddToRoleAsync(user, roleName);
                 IdentityResult emailResult = await userManager.SetEmailAsync(user, email);
 
+                string emailConfirmationToken = await userManager.GenerateEmailConfirmationTokenAsync(user);
+                IdentityResult emailConfirmationResult = await userManager.ConfirmEmailAsync(user, emailConfirmationToken);
+
                 if (!createUserResult.Succeeded)
                 {
                     throw new Exception(string.Join(Environment.NewLine, createUserResult.Errors.Select(e => e.Description)));
@@ -47,6 +50,11 @@
                 if (!emailResult.Succeeded)
                 {
                     throw new Exception(string.Join(Environment.NewLine, emailResult.Errors.Select(e => e.Description)));
+                }
+
+                if (!emailConfirmationResult.Succeeded)
+                {
+                    throw new Exception(string.Join(Environment.NewLine, emailConfirmationResult.Errors.Select(e => e.Description)));
                 }
             }
         }
