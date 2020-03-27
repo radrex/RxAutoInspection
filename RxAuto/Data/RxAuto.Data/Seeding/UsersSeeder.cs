@@ -30,7 +30,7 @@
                 user = new ApplicationUser(username);
                 IdentityResult createUserResult = await userManager.CreateAsync(user, password);
                 IdentityResult roleResult = await userManager.AddToRoleAsync(user, roleName);
-                IdentityResult pwResult = await userManager.SetEmailAsync(user, email);
+                IdentityResult emailResult = await userManager.SetEmailAsync(user, email);
 
                 if (!createUserResult.Succeeded)
                 {
@@ -42,9 +42,9 @@
                     throw new Exception(string.Join(Environment.NewLine, roleResult.Errors.Select(e => e.Description)));
                 }
 
-                if (!pwResult.Succeeded)
+                if (!emailResult.Succeeded)
                 {
-                    throw new Exception(string.Join(Environment.NewLine, pwResult.Errors.Select(e => e.Description)));
+                    throw new Exception(string.Join(Environment.NewLine, emailResult.Errors.Select(e => e.Description)));
                 }
             }
         }

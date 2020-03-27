@@ -3,6 +3,14 @@
   "defaultProvider": "jsdelivr",
   "libraries": [
     {
+      "library": "reset-css@5.0.1",
+      "destination": "wwwroot/lib/reset-css/",
+      "files": [
+        "reset.css",
+        "reset.min.css"
+      ]
+    },
+    {
       "library": "bootstrap@4.4.1",
       "destination": "wwwroot/lib/bootstrap/",
       "files": [

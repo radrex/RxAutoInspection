@@ -6,6 +6,8 @@
     using System.Linq;
     using System.Threading.Tasks;
     using System.Collections.Generic;
+    using Microsoft.AspNetCore.Identity;
+    using Microsoft.Extensions.DependencyInjection;
 
     /// <summary>
     /// Seeds <c>reservations</c> to <see cref="Reservation"/> entity in database using <see cref="ApplicationDbContext"/>.
@@ -29,7 +31,9 @@
             foreach (var reservation in reservations)
             {
                 Service service = dbContext.Services.FirstOrDefault(s => s.Name == reservation.ServiceName);
-                ApplicationUser user = dbContext.Users.FirstOrDefault(u => u.UserName == reservation.Username);
+
+                UserManager<ApplicationUser> userManager = serviceProvider.GetRequiredService<UserManager<ApplicationUser>>();
+                ApplicationUser user = await userManager.FindByNameAsync(reservation.Username);
 
                 await dbContext.Reservations.AddAsync(new Reservation
                 {
