@@ -17,7 +17,27 @@
         "dist/css/bootstrap.css",
         "dist/css/bootstrap.min.css",
         "dist/js/bootstrap.js",
-        "dist/js/bootstrap.min.js"
+        "dist/js/bootstrap.min.js",
+        "dist/js/bootstrap.bundle.js",
+        "dist/js/bootstrap.bundle.min.js"
+      ]
+    },
+    {
+      "library": "bootstrap-select@1.13.12",
+      "destination": "wwwroot/lib/bootstrap/",
+      "files": [
+        "dist/css/bootstrap-select.css",
+        "dist/css/bootstrap-select.min.css",
+        "dist/js/bootstrap-select.js",
+        "dist/js/bootstrap-select.min.js"
+      ]
+    },
+    {
+      "library": "@popperjs/core@2.1.1",
+      "destination": "wwwroot/lib/popper/",
+      "files": [
+        "dist/umd/popper.js",
+        "dist/umd/popper.min.js"
       ]
     },
     {
@@ -26,6 +46,14 @@
       "files": [
         "dist/jquery.js",
         "dist/jquery.min.js"
+      ]
+    },
+    {
+      "library": "jquery-slim@3.0.0",
+      "destination": "wwwroot/lib/jquery-slim/",
+      "files": [
+        "dist/jquery.slim.js",
+        "dist/jquery.slim.min.js"
       ]
     },
     {
