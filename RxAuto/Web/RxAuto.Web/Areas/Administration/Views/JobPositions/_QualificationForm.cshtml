@@ -1,0 +1,18 @@
+﻿@model RxAuto.Web.ViewModels.JobPositions.InputModels.QualificationInputModel
+
+<form method="post" asp-controller="JobPositions" asp-action="CreateQualification">
+    <fieldset class="border p-3">
+        <legend class="w-auto">Add Qualification</legend>
+        <p class="form-group">
+            <label asp-for="QualificationName"></label>
+            <input asp-for="QualificationName" class="form-control" />
+            <span asp-validation-for="QualificationName" class="text-danger"></span>
+        </p>
+        <p class="form-group">
+            <label asp-for="Description"></label>
+            <textarea asp-for="Description" class="form-control"></textarea>
+            <span asp-validation-for="Description" class="text-danger"></span>
+        </p>
+        <button type="submit" class="btn btn-success float-right">Submit</button>
+    </fieldset>
+</form>

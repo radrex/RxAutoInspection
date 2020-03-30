@@ -1,0 +1,20 @@
+﻿@model RxAuto.Web.ViewModels.JobPositions.InputModels.UnifiedModel
+
+@{
+    ViewData["Title"] = "Job Position and Qualification Create Forms";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Job Positions and Qualifications Form</h1>
+</div>
+
+<div class="container">
+    <div class="row">
+        <div class="col-4">
+            <partial name="_JobPositionForm" model="Model.JobPositionInputModel" />
+        </div>
+        <div class="col">
+            <partial name="_QualificationForm" model="Model.QualificationInputModel" />
+        </div>
+    </div>
+</div>

@@ -1,0 +1,22 @@
+﻿@model RxAuto.Web.ViewModels.JobPositions.InputModels.JobPositionInputModel
+
+@{
+    var qualifications = Model.Qualifications.Select(x => new SelectListItem(x.Name, x.Id.ToString()));
+}
+
+<form method="post" asp-controller="JobPositions" asp-action="CreateJobPosition">
+    <fieldset class="border p-3">
+        <legend class="w-auto">Add Job Position</legend>
+        <p class="form-group">
+            <label asp-for="JobPositionName"></label>
+            <input asp-for="JobPositionName" class="form-control" />
+            <span asp-validation-for="JobPositionName" class="text-danger"></span>
+        </p>
+        <p class="form-group">
+            <label asp-for="QualificationIds"></label>
+            <select asp-for="QualificationIds" asp-items="qualifications" class="selectpicker" multiple data-actions-box="true" data-selected-text-format="count > 3"></select>
+            <span asp-validation-for="QualificationIds" class="text-danger"></span>
+        </p>
+        <button type="submit" class="btn btn-success float-right">Submit</button>
+    </fieldset>
+</form>
