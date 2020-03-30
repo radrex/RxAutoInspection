@@ -4,6 +4,9 @@ namespace RxAuto.Web
     using RxAuto.Data.Models;
     using RxAuto.Data.Seeding;
 
+    using RxAuto.Services.Data;
+    using RxAuto.Services.Data.Implementations;
+
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Hosting;
     using Microsoft.EntityFrameworkCore;
@@ -11,6 +14,7 @@ namespace RxAuto.Web
     using Microsoft.Extensions.DependencyInjection;
     using Microsoft.Extensions.Hosting;
     using Microsoft.AspNetCore.Http;
+    using Microsoft.AspNetCore.Mvc;
 
     public class Startup
     {
@@ -35,9 +39,18 @@ namespace RxAuto.Web
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
 
+            //services.AddControllersWithViews(options =>
+            //{
+            //    options.Filters.Add(new AutoValidateAntiforgeryTokenAttribute()); // CSRF
+            //});
+
             services.AddControllersWithViews();
             services.AddRazorPages();
             services.AddSingleton(this.configuration);
+
+            // Application services
+            services.AddTransient<IQualificationsService, QualificationsService>();
+            services.AddTransient<IJobPositionsService, JobPositionsService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
