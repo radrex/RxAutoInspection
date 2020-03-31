@@ -28,8 +28,8 @@
         //------------ Employee [FK] -----------
         public virtual ICollection<Employee> Employees { get; set; } = new HashSet<Employee>();
 
-        //------------ Employee [FK] -----------
-        public virtual ICollection<Contact> Contacts { get; set; } = new HashSet<Contact>();
+        //------------ Department [FK] -----------
+        public virtual ICollection<Department> Departments { get; set; } = new HashSet<Department>();
 
         //------------ ServiceOperatingLocation [FK] MAPPING TABLE -----------
         public virtual ICollection<ServiceOperatingLocation> Services { get; set; } = new HashSet<ServiceOperatingLocation>();

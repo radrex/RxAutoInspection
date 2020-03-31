@@ -2,9 +2,10 @@
 {
     using static DataValidation.DataValidation.ContactInfo;
 
+    using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
 
-    public class Contact
+    public class Phone
     {
         //-------------- PROPERTIES ---------------
         public int Id { get; set; }
@@ -13,12 +14,7 @@
         [MaxLength(PhoneNumberMaxLength)]
         public string PhoneNumber { get; set; }
 
-        [Required]
-        [MaxLength(EmailMaxLength)]
-        public string Email { get; set; }
-
-        //------------ OperatingLocation [FK] -----------
-        public int OperatingLocationId { get; set; }
-        public OperatingLocation OperatingLocation { get; set; }
+        //------------ DepartmentPhone [FK] MAPPING TABLE -----------
+        public virtual ICollection<DepartmentPhone> Departments { get; set; } = new HashSet<DepartmentPhone>();
     }
 }

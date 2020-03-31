@@ -20,7 +20,6 @@
         }
 
         //-------------- PROPERTIES ---------------
-        public DbSet<Contact> Contacts { get; set; }
         public DbSet<Document> Documents { get; set; }
         public DbSet<Employee> Employees { get; set; }
         public DbSet<JobPosition> JobPositions { get; set; }
@@ -34,6 +33,9 @@
         public DbSet<ServiceType> ServiceTypes { get; set; }
         public DbSet<ServiceVehicleType> ServiceVehicleTypes { get; set; }
         public DbSet<VehicleType> VehicleTypes { get; set; }
+        public DbSet<Phone> Phones { get; set; }
+        public DbSet<Department> Departments { get; set; }
+        public DbSet<DepartmentPhone> DepartmentPhones { get; set; }
 
         //--------------- METHODS -----------------
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -45,7 +47,6 @@
         {
             base.OnModelCreating(builder);
             builder.ApplyConfiguration(new ApplicationUserConfiguration());
-            builder.ApplyConfiguration(new ContactConfiguration());
             builder.ApplyConfiguration(new DocumentConfiguration());
             builder.ApplyConfiguration(new EmployeeConfiguration());
             builder.ApplyConfiguration(new JobPositionConfiguration());
@@ -59,6 +60,9 @@
             builder.ApplyConfiguration(new ServiceTypeConfiguration());
             builder.ApplyConfiguration(new ServiceVehicleTypeConfiguration());
             builder.ApplyConfiguration(new VehicleTypeConfiguration());
+            builder.ApplyConfiguration(new PhoneConfiguration());
+            builder.ApplyConfiguration(new DepartmentConfiguration());
+            builder.ApplyConfiguration(new DepartmentPhoneConfiguration());
         }
     }
 }

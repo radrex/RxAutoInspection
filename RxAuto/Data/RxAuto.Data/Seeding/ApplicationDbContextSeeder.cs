@@ -35,11 +35,12 @@
                                         new DocumentsSeeder(),
                                         new VehicleTypesSeeder(),
                                         new OperatingLocationsSeeder(),
-                                        new ContactsSeeder(),
                                         new EmployeesSeeder(),
                                         new ServiceTypesSeeder(),
                                         new ServicesSeeder(),
                                         new ReservationsSeeder(),
+                                        new PhonesSeeder(),
+                                        new DepartmentsSeeder(),
                                     };
 
             foreach (ISeeder seeder in seeders)
