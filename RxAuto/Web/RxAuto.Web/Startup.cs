@@ -51,6 +51,8 @@ namespace RxAuto.Web
             // Application services
             services.AddTransient<IQualificationsService, QualificationsService>();
             services.AddTransient<IJobPositionsService, JobPositionsService>();
+            services.AddTransient<IEmployeesService, EmployeesService>();
+            services.AddTransient<IOperatingLocationsService, OperatingLocationsService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

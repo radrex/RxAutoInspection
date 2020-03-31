@@ -1,6 +1,6 @@
 ﻿namespace RxAuto.Web.ViewModels.JobPositions.InputModels
 {
-    using RxAuto.Web.ViewModels.JobPositions.ViewModels;
+    using RxAuto.Web.ViewModels.Qualifications.ViewModels;
 
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;

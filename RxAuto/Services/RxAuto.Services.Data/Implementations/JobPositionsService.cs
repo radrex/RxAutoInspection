@@ -7,6 +7,7 @@
 
     using System.Linq;
     using System.Threading.Tasks;
+    using System.Collections.Generic;
 
     /// <summary>
     /// Contains method implementations for <see cref="JobPosition"/> entity and it's database relations.
@@ -35,7 +36,10 @@
         /// <returns>Job Position ID</returns>
         public async Task<int> CreateAsync(CreateJobPositionServiceModel model)
         {
-            int jobPositionId = this.dbContext.JobPositions.FirstOrDefault(x => x.Name == model.Name).Id;
+            int jobPositionId = this.dbContext.JobPositions.Where(x => x.Name == model.Name)
+                                                           .Select(x => x.Id)
+                                                           .FirstOrDefault();
+
             if (jobPositionId != 0)   // If jobPositionId is different than 0, jobPosition with such name already exists, so return it's id.
             {
                 return jobPositionId;
@@ -63,6 +67,19 @@
 
             await this.dbContext.SaveChangesAsync();
             return jobPosition.Id;
+        }
+
+        /// <summary>
+        /// Gets every <see cref="JobPosition"/>'s <c>Id</c> and <c>Name</c> from the database and returns it as a service model collection.
+        /// </summary>
+        /// <returns>IEnumerable<see cref="JobPositionsListingServiceModel"/></returns>
+        public IEnumerable<JobPositionsListingServiceModel> GetAll()
+        {
+            return this.dbContext.JobPositions.Select(jp => new JobPositionsListingServiceModel
+            {
+                Id = jp.Id,
+                Name = jp.Name,
+            }).ToList();
         }
     }
 }

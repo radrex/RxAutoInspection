@@ -1,4 +1,4 @@
-﻿namespace RxAuto.Web.ViewModels.JobPositions.InputModels
+﻿namespace RxAuto.Web.ViewModels.Qualifications.InputModels
 {
     using System.ComponentModel.DataAnnotations;
 

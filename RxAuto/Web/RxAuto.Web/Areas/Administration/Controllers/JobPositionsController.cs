@@ -4,8 +4,10 @@
     using RxAuto.Services.Models.JobPositions;
     using RxAuto.Services.Models.Qualifications;
 
-    using RxAuto.Web.ViewModels.JobPositions.ViewModels;
+    using RxAuto.Web.ViewModels.UnifiedModels;
     using RxAuto.Web.ViewModels.JobPositions.InputModels;
+    using RxAuto.Web.ViewModels.Qualifications.ViewModels;
+    using RxAuto.Web.ViewModels.Qualifications.InputModels;
 
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.AspNetCore.Authorization;
@@ -21,7 +23,7 @@
         //---------------- FIELDS -----------------
         private readonly IQualificationsService qualificationsService;
         private readonly IJobPositionsService jobPositionsService;
-        private UnifiedModel unifiedModel;
+        private JobPositionQualificationUnifiedModel unifiedModel;
 
         //------------- CONSTRUCTORS --------------
         public JobPositions(IQualificationsService qualificationsService, IJobPositionsService jobPositionsService)
@@ -38,14 +40,14 @@
         /// <summary>
         /// Controller GET Action Method.
         /// <para>Active Route --> /Administration/JobPositions/Create/</para>
-        /// <para>Initializes a <c>Unified Model</c> representing a collection of <see cref="JobPositionInputModel"/> and <see cref="QualificationInputModel"/> and passes it to the View.</para>
+        /// <para>Initializes a <see cref="JobPositionQualificationUnifiedModel"/> representing a collection of <see cref="JobPositionInputModel"/> and <see cref="QualificationInputModel"/> and passes it to the View.</para>
         /// <para>The View renders 2 Partial Views. The 1st gets <see cref="JobPositionInputModel"/> and the 2nd <see cref="QualificationInputModel"/>.</para>
         /// </summary>
         /// <returns>View</returns>
         [HttpGet]
         public IActionResult Create()
         {
-            InitializeAndFillUnifiedModel();
+            this.InitializeAndFillUnifiedModel();
             return this.View(this.unifiedModel);
         }
 
@@ -62,7 +64,7 @@
         [HttpPost]
         public async Task<IActionResult> CreateJobPosition(JobPositionInputModel model)
         {
-            InitializeAndFillUnifiedModel();
+            this.InitializeAndFillUnifiedModel();
 
             if (!this.ModelState.IsValid)
             {
@@ -104,7 +106,7 @@
         [HttpPost]
         public async Task<IActionResult> CreateQualification(QualificationInputModel model)
         {
-            InitializeAndFillUnifiedModel();
+            this.InitializeAndFillUnifiedModel();
             if (!this.ModelState.IsValid)
             {
                 return this.View("Create", this.unifiedModel);
@@ -125,7 +127,7 @@
         //-----------------------------------------------------------------------------------------------------//
         private void InitializeAndFillUnifiedModel()
         {
-            this.unifiedModel = new UnifiedModel()
+            this.unifiedModel = new JobPositionQualificationUnifiedModel()
             {
                 JobPositionInputModel = new JobPositionInputModel(),
                 QualificationInputModel = new QualificationInputModel(),

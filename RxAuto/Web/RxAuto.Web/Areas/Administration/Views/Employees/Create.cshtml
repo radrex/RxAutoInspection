@@ -1,0 +1,87 @@
+﻿@model RxAuto.Web.ViewModels.Employees.InputModels.EmployeeInputModel
+
+@{
+    ViewData["Title"] = "Employees Create Form";
+    var jobPositions = Model.JobPositions.Select(x => new SelectListItem(x.JobPositionName, x.Id.ToString()));
+    var operatingLocations = Model.OperatingLocations.Select(x => new SelectListItem(x.Town, x.Id.ToString()));
+}
+
+<div class="text-center">
+    <h1 class="display-4">Employees Form</h1>
+</div>
+
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <form method="post" asp-controller="Employees" asp-action="Create">
+                <fieldset class="border p-3">
+                    <legend class="w-auto">Add Employee</legend>
+                    <p class="form-group">
+                        <label asp-for="JobPositionId"></label>
+                        <select asp-for="JobPositionId" asp-items="jobPositions" class="selectpicker show-tick"></select>
+                        <button class="btn btn-info">Add new Job Position</button>
+                    </p>
+                    <p class="form-group">
+                        <label asp-for="OperatingLocationId"></label>
+                        <select asp-for="OperatingLocationId" class="selectpicker show-tick" data-size="5">
+                            @foreach (var item in Model.OperatingLocations)
+                            {
+                                <option value="@item.Id" data-subtext="@item.Address">@item.Town</option>
+                            }
+                        </select>
+                        <button class="btn btn-info">Add new Location</button>
+                    </p>
+                    <div class="form-row">
+                        <div class="form-group col-md-4">
+                            <label asp-for="FirstName"></label>
+                            <input asp-for="FirstName" class="form-control" />
+                            <span asp-validation-for="FirstName" class="text-danger"></span>
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label asp-for="MiddleName"></label>
+                            <input asp-for="MiddleName" class="form-control" />
+                            <span asp-validation-for="MiddleName" class="text-danger"></span>
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label asp-for="LastName"></label>
+                            <input asp-for="LastName" class="form-control" />
+                            <span asp-validation-for="LastName" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-4">
+                            <label asp-for="Phone"></label>
+                            <input asp-for="Phone" class="form-control" />
+                            <span asp-validation-for="Phone" class="text-danger"></span>
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label asp-for="Email"></label>
+                            <input asp-for="Email" class="form-control" />
+                            <!-- TODO: Add regex validation for email-->
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-4">
+                            <label asp-for="Town"></label>
+                            <input asp-for="Town" class="form-control" />
+                            <span asp-validation-for="Town" class="text-danger"></span>
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label asp-for="Address"></label>
+                            <input asp-for="Address" class="form-control" />
+                            <span asp-validation-for="Address" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-8">
+                            <label asp-for="ImageUrl"></label>
+                            <input asp-for="ImageUrl" class="form-control" />
+                            <span asp-validation-for="ImageUrl" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-success">Submit</button>
+                </fieldset>
+            </form>
+        </div>
+    </div>
+</div>

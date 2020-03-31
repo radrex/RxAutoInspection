@@ -36,7 +36,10 @@
         /// <returns>Qualification ID</returns>
         public async Task<int> CreateAsync(CreateQualificationServiceModel model)
         {
-            int qualificationId = this.dbContext.Qualifications.FirstOrDefault(x => x.Name == model.Name).Id;
+            int qualificationId = this.dbContext.Qualifications.Where(x => x.Name == model.Name)
+                                                               .Select(x => x.Id)
+                                                               .FirstOrDefault();
+
             if (qualificationId != 0)   // If qualificationId is different than 0, qualification with such name already exists, so return it's id.
             {
                 return qualificationId;

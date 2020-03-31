@@ -1,4 +1,4 @@
-﻿namespace RxAuto.Web.ViewModels.JobPositions.ViewModels
+﻿namespace RxAuto.Web.ViewModels.Qualifications.ViewModels
 {
     public class QualificationsListingViewModel
     {
