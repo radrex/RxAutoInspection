@@ -14,7 +14,7 @@
         </p>
         <p class="form-group">
             <label asp-for="QualificationIds"></label>
-            <select asp-for="QualificationIds" asp-items="qualifications" class="selectpicker" multiple data-actions-box="true" data-selected-text-format="count > 3"></select>
+            <select asp-for="QualificationIds" asp-items="qualifications" class="selectpicker" data-size="5" multiple data-actions-box="true" data-selected-text-format="count > 3"></select>
             <span asp-validation-for="QualificationIds" class="text-danger"></span>
         </p>
         <button type="submit" class="btn btn-success float-right">Submit</button>

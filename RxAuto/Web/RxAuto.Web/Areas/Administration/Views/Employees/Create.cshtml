@@ -3,7 +3,7 @@
 @{
     ViewData["Title"] = "Employees Create Form";
     var jobPositions = Model.JobPositions.Select(x => new SelectListItem(x.JobPositionName, x.Id.ToString()));
-    var operatingLocations = Model.OperatingLocations.Select(x => new SelectListItem(x.Town, x.Id.ToString()));
+    //var operatingLocations = Model.OperatingLocations.Select(x => new SelectListItem(x.Town, x.Id.ToString()));
 }
 
 <div class="text-center">
@@ -18,12 +18,13 @@
                     <legend class="w-auto">Add Employee</legend>
                     <p class="form-group">
                         <label asp-for="JobPositionId"></label>
-                        <select asp-for="JobPositionId" asp-items="jobPositions" class="selectpicker show-tick"></select>
+                        <select asp-for="JobPositionId" asp-items="jobPositions" class="selectpicker show-tick" data-size="5"></select>
                         <button class="btn btn-info">Add new Job Position</button>
                     </p>
                     <p class="form-group">
                         <label asp-for="OperatingLocationId"></label>
-                        <select asp-for="OperatingLocationId" class="selectpicker show-tick" data-size="5">
+                        @*<select asp-for="OperatingLocationId" class="selectpicker show-tick" data-size="5">*@
+                        <select asp-for="OperatingLocationId" class="selectpicker show-tick" data-show-subtext="true" data-live-search="true" data-size="5">
                             @foreach (var item in Model.OperatingLocations)
                             {
                                 <option value="@item.Id" data-subtext="@item.Address">@item.Town</option>
