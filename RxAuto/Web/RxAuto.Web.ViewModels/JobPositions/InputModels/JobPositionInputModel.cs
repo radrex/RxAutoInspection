@@ -16,6 +16,6 @@
         [Display(Name = "Qualifications")]
         public int[] QualificationIds { get; set; }
 
-        public IEnumerable<QualificationsListingViewModel> Qualifications { get; set; }
+        public IEnumerable<QualificationsDropdownViewModel> Qualifications { get; set; }
     }
 }

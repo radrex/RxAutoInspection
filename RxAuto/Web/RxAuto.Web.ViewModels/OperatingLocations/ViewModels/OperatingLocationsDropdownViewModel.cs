@@ -1,6 +1,6 @@
 ﻿namespace RxAuto.Web.ViewModels.OperatingLocations.ViewModels
 {
-    public class OperatingLocationsListingViewModel
+    public class OperatingLocationsDropdownViewModel
     {
         public int Id { get; set; }
         public string Town { get; set; }

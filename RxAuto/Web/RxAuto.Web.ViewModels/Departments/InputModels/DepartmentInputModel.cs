@@ -23,6 +23,6 @@
         [Display(Name = "Phone Numbers")]
         public int[] PhoneNumberIds { get; set; }
 
-        public IEnumerable<PhonesListingViewModel> PhoneNumbers { get; set; }
+        public IEnumerable<PhonesDropdownViewModel> PhoneNumbers { get; set; }
     }
 }

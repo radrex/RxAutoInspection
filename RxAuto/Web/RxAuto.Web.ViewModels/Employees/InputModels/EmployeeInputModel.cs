@@ -12,14 +12,14 @@
         [Required]
         [Range(100, int.MaxValue)]
         public int JobPositionId { get; set; }
-        public IEnumerable<JobPositionsListingViewModel> JobPositions { get; set; }
+        public IEnumerable<JobPositionsDropdownViewModel> JobPositions { get; set; }
 
 
         [Display(Name = "Operating Location")]
         [Required]
         [Range(10, int.MaxValue)]
         public int OperatingLocationId { get; set; }
-        public IEnumerable<OperatingLocationsListingViewModel> OperatingLocations { get; set; }
+        public IEnumerable<OperatingLocationsDropdownViewModel> OperatingLocations { get; set; }
 
 
         [Display(Name = "First Name")]
