@@ -29,18 +29,18 @@
                                                                             .ToList()), 
                     dbContext.OperatingLocations.FirstOrDefault(ol => ol.Town == "Благоевград").Id
                 ),
-                ("Support", "blg_info@gmail.com", new List<int>(dbContext.Phones
-                                                                         .Where(p => p.PhoneNumber == "0897571823" ||
-                                                                                     p.PhoneNumber == "0897391431")
-                                                                         .Select(p => p.Id)
-                                                                         .ToList()),
+                ("Information", "blg_info@gmail.com", new List<int>(dbContext.Phones
+                                                                             .Where(p => p.PhoneNumber == "0897571823" ||
+                                                                                         p.PhoneNumber == "0897391431")
+                                                                             .Select(p => p.Id)
+                                                                             .ToList()),
                     dbContext.OperatingLocations.FirstOrDefault(ol => ol.Town == "Благоевград").Id
                 ),
-                ("Support", "sofia_info@gmail.com", new List<int>(dbContext.Phones
-                                                                           .Where(p => p.PhoneNumber == "0898391953" ||
-                                                                                       p.PhoneNumber == "0897572942")
-                                                                           .Select(p => p.Id)
-                                                                           .ToList()),
+                ("Information", "sofia_info@gmail.com", new List<int>(dbContext.Phones
+                                                                               .Where(p => p.PhoneNumber == "0898391953" ||
+                                                                                           p.PhoneNumber == "0897572942")
+                                                                               .Select(p => p.Id)
+                                                                               .ToList()),
                     dbContext.OperatingLocations.FirstOrDefault(ol => ol.Town == "София").Id
                 )
             };

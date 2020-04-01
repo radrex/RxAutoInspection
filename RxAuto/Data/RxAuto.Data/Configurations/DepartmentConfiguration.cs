@@ -14,6 +14,9 @@
     {
         public void Configure(EntityTypeBuilder<Department> dep)
         {
+            dep.Property(d => d.OperatingLocationId)
+               .IsRequired(false);
+
             dep.HasOne(d => d.OperatingLocation)
                .WithMany(ol => ol.Departments)
                .HasForeignKey(d => d.OperatingLocationId)

@@ -23,7 +23,7 @@
         public string Description { get; set; }
 
         //------------ OperatingLocation [FK] -----------
-        public int OperatingLocationId { get; set; }
+        public int? OperatingLocationId { get; set; }
         public virtual OperatingLocation OperatingLocation { get; set; }
 
         //------------ DepartmentPhone [FK] MAPPING TABLE -----------

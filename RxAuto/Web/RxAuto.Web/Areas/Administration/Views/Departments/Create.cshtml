@@ -1,0 +1,20 @@
+﻿@model RxAuto.Web.ViewModels.UnifiedModels.DepartmentPhoneUnifiedModel
+
+@{
+    ViewData["Title"] = "Departments Create Form";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Departments and Phones Form</h1>
+</div>
+
+<div class="container">
+    <div class="row">
+        <div class="col-6">
+            <partial name="_DepartmentForm" model="Model.DepartmentInputModel" />
+        </div>
+        <div class="col-6">
+            <partial name="_PhoneForm" model="Model.PhoneInputModel" />
+        </div>
+    </div>
+</div>

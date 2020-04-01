@@ -52,7 +52,9 @@ namespace RxAuto.Web
             services.AddTransient<IQualificationsService, QualificationsService>();
             services.AddTransient<IJobPositionsService, JobPositionsService>();
             services.AddTransient<IEmployeesService, EmployeesService>();
+            services.AddTransient<IPhonesService, PhonesService>();
             services.AddTransient<IOperatingLocationsService, OperatingLocationsService>();
+            services.AddTransient<IDepartmentsService, DepartmentsService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

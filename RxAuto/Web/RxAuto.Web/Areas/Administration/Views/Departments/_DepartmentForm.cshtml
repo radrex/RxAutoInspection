@@ -1,0 +1,32 @@
+﻿@model RxAuto.Web.ViewModels.Departments.InputModels.DepartmentInputModel
+
+@{
+    var phoneNumbers = Model.PhoneNumbers.Select(x => new SelectListItem(x.PhoneNumber, x.Id.ToString()));
+}
+
+<form method="post" asp-controller="Departments" asp-action="Create">
+    <fieldset class="border p-3">
+        <legend class="w-auto">Add Department</legend>
+        <p class="form-group">
+            <label asp-for="Name"></label>
+            <input asp-for="Name" class="form-control" />
+            <span asp-validation-for="Name" class="text-danger"></span>
+        </p>
+        <p class="form-group">
+            <label asp-for="Email"></label>
+            <input asp-for="Email" class="form-control" />
+            <span asp-validation-for="Email" class="text-danger"></span>
+        </p>
+        <p class="form-group">
+            <label asp-for="Description"></label>
+            <textarea asp-for="Description" class="form-control"></textarea>
+            <span asp-validation-for="Description" class="text-danger"></span>
+        </p>
+        <p class="form-group">
+            <label asp-for="PhoneNumberIds"></label>
+            <select asp-for="PhoneNumberIds" asp-items="phoneNumbers" class="selectpicker" data-live-search="true" data-size="5" multiple data-actions-box="true" data-selected-text-format="count > 3"></select>
+            <span asp-validation-for="PhoneNumberIds" class="text-danger"></span>
+        </p>
+        <button type="submit" class="btn btn-success float-right">Submit</button>
+    </fieldset>
+</form>
