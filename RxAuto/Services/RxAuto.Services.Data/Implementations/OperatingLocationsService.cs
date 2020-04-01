@@ -29,10 +29,10 @@
         /// <summary>
         /// Gets every <see cref="OperatingLocation"/>'s <c>Id</c>, <c>Town</c> and <c>Address</c> from the database and returns it as a service model collection.
         /// </summary>
-        /// <returns>IEnumerable<see cref="OperatingLocationsListingServiceModel"/></returns>
-        public IEnumerable<OperatingLocationsListingServiceModel> GetAll()
+        /// <returns>IEnumerable<see cref="OperatingLocationsDropdownServiceModel"/></returns>
+        public IEnumerable<OperatingLocationsDropdownServiceModel> GetAll()
         {
-            return this.dbContext.OperatingLocations.Select(x => new OperatingLocationsListingServiceModel
+            return this.dbContext.OperatingLocations.Select(x => new OperatingLocationsDropdownServiceModel
             {
                 Id = x.Id,
                 Town = x.Town,

@@ -58,10 +58,10 @@
         /// <summary>
         /// Gets every <see cref="Phone"/>'s <c>Id</c> and <c>PhoneNumber</c> from the database and returns it as a service model collection.
         /// </summary>
-        /// <returns>IEnumerable<see cref="PhonesListingServiceModel"/></returns>
-        public IEnumerable<PhonesListingServiceModel> GetAll()
+        /// <returns>IEnumerable<see cref="PhonesDropdownServiceModel"/></returns>
+        public IEnumerable<PhonesDropdownServiceModel> GetAll()
         {
-            return this.dbContext.Phones.Select(p => new PhonesListingServiceModel
+            return this.dbContext.Phones.Select(p => new PhonesDropdownServiceModel
             {
                 Id = p.Id,
                 PhoneNumber = p.PhoneNumber,

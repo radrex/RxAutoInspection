@@ -3,7 +3,7 @@
     /// <summary>
     /// Service model for Listing a Qualification's <c>Id</c> and <c>Name</c> properties.
     /// </summary>
-    public class QualificationsListingServiceModel
+    public class QualificationsDropdownServiceModel
     {
         public int Id { get; set; }
         public string Name { get; set; }

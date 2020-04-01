@@ -10,6 +10,6 @@
     /// </summary>
     public interface IOperatingLocationsService
     {
-        IEnumerable<OperatingLocationsListingServiceModel> GetAll();
+        IEnumerable<OperatingLocationsDropdownServiceModel> GetAll();
     }
 }

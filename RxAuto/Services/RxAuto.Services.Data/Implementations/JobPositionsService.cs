@@ -32,7 +32,7 @@
         /// Creates a new <see cref="JobPosition"/> and adds it to the database if it doesn't already exist, then returns it's Id.
         /// <para> If such <see cref="JobPosition"/> already exists, returns it's Id.</para>
         /// </summary>
-        /// <param name="model">Service model with <c>Name</c> and a collection of <see cref="QualificationsListingServiceModel"/>.</param>
+        /// <param name="model">Service model with <c>Name</c> and a collection of <see cref="QualificationsDropdownServiceModel"/>.</param>
         /// <returns>Job Position ID</returns>
         public async Task<int> CreateAsync(CreateJobPositionServiceModel model)
         {
@@ -72,10 +72,10 @@
         /// <summary>
         /// Gets every <see cref="JobPosition"/>'s <c>Id</c> and <c>Name</c> from the database and returns it as a service model collection.
         /// </summary>
-        /// <returns>IEnumerable<see cref="JobPositionsListingServiceModel"/></returns>
-        public IEnumerable<JobPositionsListingServiceModel> GetAll()
+        /// <returns>IEnumerable<see cref="JobPositionsDropdownServiceModel"/></returns>
+        public IEnumerable<JobPositionsDropdownServiceModel> GetAll()
         {
-            return this.dbContext.JobPositions.Select(jp => new JobPositionsListingServiceModel
+            return this.dbContext.JobPositions.Select(jp => new JobPositionsDropdownServiceModel
             {
                 Id = jp.Id,
                 Name = jp.Name,

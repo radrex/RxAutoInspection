@@ -12,6 +12,6 @@
     public interface IPhonesService
     {
         Task<int> CreateAsync(CreatePhoneServiceModel model);
-        IEnumerable<PhonesListingServiceModel> GetAll();
+        IEnumerable<PhonesDropdownServiceModel> GetAll();
     }
 }

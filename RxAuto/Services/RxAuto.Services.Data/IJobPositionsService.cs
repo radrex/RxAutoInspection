@@ -12,6 +12,6 @@
     public interface IJobPositionsService
     {
         Task<int> CreateAsync(CreateJobPositionServiceModel model);
-        IEnumerable<JobPositionsListingServiceModel> GetAll();
+        IEnumerable<JobPositionsDropdownServiceModel> GetAll();
     }
 }

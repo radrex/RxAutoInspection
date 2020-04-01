@@ -60,10 +60,10 @@
         /// <summary>
         /// Gets every <see cref="Qualification"/>'s <c>Id</c> and <c>Name</c> from the database and returns it as a service model collection.
         /// </summary>
-        /// <returns>IEnumerable<see cref="QualificationsListingServiceModel"/></returns>
-        public IEnumerable<QualificationsListingServiceModel> GetAll()
+        /// <returns>IEnumerable<see cref="QualificationsDropdownServiceModel"/></returns>
+        public IEnumerable<QualificationsDropdownServiceModel> GetAll()
         {
-            return this.dbContext.Qualifications.Select(q => new QualificationsListingServiceModel
+            return this.dbContext.Qualifications.Select(q => new QualificationsDropdownServiceModel
                                                 {                                                
                                                     Id = q.Id,
                                                     Name = q.Name,
@@ -75,11 +75,11 @@
         /// <para> If there is no such <see cref="Qualification"/> in the database, returns the service model default value.</para>
         /// </summary>
         /// <param name="id"></param>
-        /// <returns><see cref="QualificationsListingServiceModel"/></returns>
-        public QualificationsListingServiceModel GetById(int id)
+        /// <returns><see cref="QualificationsDropdownServiceModel"/></returns>
+        public QualificationsDropdownServiceModel GetById(int id)
         {
             return this.dbContext.Qualifications.Where(q => q.Id == id)
-                                                .Select(q => new QualificationsListingServiceModel
+                                                .Select(q => new QualificationsDropdownServiceModel
                                                 {
                                                     Id = q.Id,
                                                     Name = q.Name,
@@ -91,11 +91,11 @@
         /// <para> If there is no such <see cref="Qualification"/> in the database, returns the service model default value.</para>
         /// </summary>
         /// <param name="name"></param>
-        /// <returns><see cref="QualificationsListingServiceModel"/></returns>
-        public QualificationsListingServiceModel GetByName(string name)
+        /// <returns><see cref="QualificationsDropdownServiceModel"/></returns>
+        public QualificationsDropdownServiceModel GetByName(string name)
         {
             return this.dbContext.Qualifications.Where(q => q.Name == name)
-                                                .Select(q => new QualificationsListingServiceModel
+                                                .Select(q => new QualificationsDropdownServiceModel
                                                 {
                                                     Id = q.Id,
                                                     Name = q.Name,

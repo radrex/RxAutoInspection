@@ -12,8 +12,8 @@
     public interface IQualificationsService
     {
         Task<int> CreateAsync(CreateQualificationServiceModel model);
-        IEnumerable<QualificationsListingServiceModel> GetAll();
-        QualificationsListingServiceModel GetById(int id);
-        QualificationsListingServiceModel GetByName(string name);
+        IEnumerable<QualificationsDropdownServiceModel> GetAll();
+        QualificationsDropdownServiceModel GetById(int id);
+        QualificationsDropdownServiceModel GetByName(string name);
     }
 }
