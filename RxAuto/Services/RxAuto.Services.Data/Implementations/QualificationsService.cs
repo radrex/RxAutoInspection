@@ -29,8 +29,9 @@
 
         //--------------- METHODS -----------------
         /// <summary>
-        /// Creates a new <see cref="Qualification"/> and adds it to the database if it doesn't already exist, then returns it's Id.
-        /// <para> If such <see cref="Qualification"/> already exists, returns it's Id.</para>
+        /// Creates a new <see cref="Qualification"/> using the <see cref="CreateQualificationServiceModel"/>.
+        /// If such <see cref="Qualification"/> already exists in the database, fetches it's (int)<c>Id</c> and returns it.
+        /// If such <see cref="Qualification"/> doesn't exist in the database, adds it and return it's (int)<c>Id</c>.
         /// </summary>
         /// <param name="model">Service model with <c>Name</c> and <c>Description</c></param>
         /// <returns>Qualification ID</returns>
@@ -40,7 +41,7 @@
                                                                .Select(x => x.Id)
                                                                .FirstOrDefault();
 
-            if (qualificationId != 0)   // If qualificationId is different than 0, qualification with such name already exists, so return it's id.
+            if (qualificationId != 0)   // If qualificationId is different than 0 (int default value), qualification with such name already exists, so return it's id.
             {
                 return qualificationId;
             }
@@ -60,7 +61,7 @@
         /// <summary>
         /// Gets every <see cref="Qualification"/>'s <c>Id</c> and <c>Name</c> from the database and returns it as a service model collection.
         /// </summary>
-        /// <returns>IEnumerable<see cref="QualificationsDropdownServiceModel"/></returns>
+        /// <returns>Collection of Qualifications</returns>
         public IEnumerable<QualificationsDropdownServiceModel> GetAll()
         {
             return this.dbContext.Qualifications.Select(q => new QualificationsDropdownServiceModel
@@ -71,11 +72,11 @@
         }
 
         /// <summary>
-        /// Gets the first <see cref="Qualification"/> by <c>Id</c> from the database and returns it's <c>Id</c> and <c>Name</c> as a service model.
+        /// Gets the first <see cref="Qualification"/> by (int)<c>Id</c> from the database and returns it's <c>Id</c> and <c>Name</c> as a service model.
         /// <para> If there is no such <see cref="Qualification"/> in the database, returns the service model default value.</para>
         /// </summary>
-        /// <param name="id"></param>
-        /// <returns><see cref="QualificationsDropdownServiceModel"/></returns>
+        /// <param name="id">Qualification ID</param>
+        /// <returns>A single Qualification</returns>
         public QualificationsDropdownServiceModel GetById(int id)
         {
             return this.dbContext.Qualifications.Where(q => q.Id == id)
@@ -90,8 +91,8 @@
         /// Gets the first <see cref="Qualification"/> by <c>Name</c> from the database and returns it's <c>Id</c> and <c>Name</c> as a service model.
         /// <para> If there is no such <see cref="Qualification"/> in the database, returns the service model default value.</para>
         /// </summary>
-        /// <param name="name"></param>
-        /// <returns><see cref="QualificationsDropdownServiceModel"/></returns>
+        /// <param name="name">Qualification Name</param>
+        /// <returns>A single Qualification</returns>
         public QualificationsDropdownServiceModel GetByName(string name)
         {
             return this.dbContext.Qualifications.Where(q => q.Name == name)

@@ -91,13 +91,13 @@
         //-----------------------------------------------------------------------------------------------------//
         private void FillEmployeeInputModel()
         {
-            var jobPositions = this.jobPositionsService.GetAll().Select(x => new JobPositionsListingViewModel
+            var jobPositions = this.jobPositionsService.GetAll().Select(x => new JobPositionsDropdownViewModel
             {
                 Id = x.Id,
                 JobPositionName = x.Name,
             });
 
-            var operatingLocations = this.operatingLocationsService.GetAll().Select(x => new OperatingLocationsListingViewModel
+            var operatingLocations = this.operatingLocationsService.GetAll().Select(x => new OperatingLocationsDropdownViewModel
             {
                 Id = x.Id,
                 Town = x.Town,

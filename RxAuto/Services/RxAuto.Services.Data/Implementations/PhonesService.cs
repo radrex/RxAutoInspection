@@ -28,8 +28,9 @@
 
         //--------------- METHODS -----------------
         /// <summary>
-        /// Creates a new <see cref="Phone"/> and adds it to the database if it doesn't already exist, then returns it's Id.
-        /// <para> If such <see cref="Phone"/> already exists, returns it's Id.</para>
+        /// Creates a new <see cref="Phone"/> using the <see cref="CreatePhoneServiceModel"/>.
+        /// If such <see cref="Phone"/> already exists in the database, fetches it's (int)<c>Id</c> and returns it.
+        /// If such <see cref="Phone"/> doesn't exist in the database, adds it and return it's (int)<c>Id</c>.
         /// </summary>
         /// <param name="model">Service model with <c>PhoneNumber</c></param>
         /// <returns>PhoneNumber ID</returns>
@@ -39,7 +40,7 @@
                                                      .Select(x => x.Id)
                                                      .FirstOrDefault();
 
-            if (phoneNumberId != 0)   // If phoneNumberId is different than 0, phone with such phoneNumber already exists, so return it's id.
+            if (phoneNumberId != 0)   // If phoneNumberId is different than 0 (int default value), phone with such phoneNumber already exists, so return it's id.
             {
                 return phoneNumberId;
             }
@@ -58,7 +59,7 @@
         /// <summary>
         /// Gets every <see cref="Phone"/>'s <c>Id</c> and <c>PhoneNumber</c> from the database and returns it as a service model collection.
         /// </summary>
-        /// <returns>IEnumerable<see cref="PhonesDropdownServiceModel"/></returns>
+        /// <returns>Collection of Phones</returns>
         public IEnumerable<PhonesDropdownServiceModel> GetAll()
         {
             return this.dbContext.Phones.Select(p => new PhonesDropdownServiceModel

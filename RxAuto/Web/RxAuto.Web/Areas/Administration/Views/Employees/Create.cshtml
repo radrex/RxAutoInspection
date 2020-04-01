@@ -3,7 +3,6 @@
 @{
     ViewData["Title"] = "Employees Create Form";
     var jobPositions = Model.JobPositions.Select(x => new SelectListItem(x.JobPositionName, x.Id.ToString()));
-    //var operatingLocations = Model.OperatingLocations.Select(x => new SelectListItem(x.Town, x.Id.ToString()));
 }
 
 <div class="text-center">
@@ -23,7 +22,6 @@
                     </p>
                     <p class="form-group">
                         <label asp-for="OperatingLocationId"></label>
-                        @*<select asp-for="OperatingLocationId" class="selectpicker show-tick" data-size="5">*@
                         <select asp-for="OperatingLocationId" class="selectpicker show-tick" data-show-subtext="true" data-live-search="true" data-size="5">
                             @foreach (var item in Model.OperatingLocations)
                             {

@@ -71,12 +71,12 @@
                 return this.View("Create", this.unifiedModel);
             }
 
-            var qualifications = new List<QualificationsListingServiceModel>();
+            var qualifications = new List<QualificationsDropdownServiceModel>();
             if (model.QualificationIds != null)
             {
                 foreach (int qualificationId in model.QualificationIds)
                 {
-                    qualifications.Add(new QualificationsListingServiceModel
+                    qualifications.Add(new QualificationsDropdownServiceModel
                     {
                         Id = qualificationId,
                     });
@@ -133,7 +133,7 @@
                 QualificationInputModel = new QualificationInputModel(),
             };
 
-            var qualifications = qualificationsService.GetAll().Select(x => new QualificationsListingViewModel
+            var qualifications = qualificationsService.GetAll().Select(x => new QualificationsDropdownViewModel
             {
                 Id = x.Id,
                 Name = x.Name,

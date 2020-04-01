@@ -75,12 +75,12 @@
                 return this.View("Create", this.unifiedModel);
             }
 
-            var phones = new List<PhonesListingServiceModel>();
+            var phones = new List<PhonesDropdownServiceModel>();
             if (model.PhoneNumberIds != null)
             {
                 foreach (int phoneNumberId in model.PhoneNumberIds)
                 {
-                    phones.Add(new PhonesListingServiceModel
+                    phones.Add(new PhonesDropdownServiceModel
                     {
                         Id = phoneNumberId,
                     });
@@ -132,7 +132,7 @@
         //-----------------------------------------------------------------------------------------------------//
         private void FillUnifiedModel()
         {
-            var phones = this.phonesService.GetAll().Select(x => new PhonesListingViewModel
+            var phones = this.phonesService.GetAll().Select(x => new PhonesDropdownViewModel
             {
                 Id = x.Id,
                 PhoneNumber = x.PhoneNumber,

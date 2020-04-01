@@ -1,7 +1,7 @@
 ﻿namespace RxAuto.Services.Models.OperatingLocations
 {
     /// <summary>
-    /// Service model for Listing an OperatingLocation's <c>Id</c> and <c>Town</c> properties.
+    /// Service model for Dropdown listing a OperatingLocation's <c>Id</c>, <c>Town</c> and <c>Address</c> properties.
     /// </summary>
     public class OperatingLocationsDropdownServiceModel
     {

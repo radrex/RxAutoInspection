@@ -27,10 +27,11 @@
 
         //--------------- METHODS -----------------
         /// <summary>
-        /// Creates a new <see cref="Employee"/> and adds it to the database if it doesn't already exist, then returns it's Id.
-        /// <para> If such <see cref="Employee"/> already exists, returns it's Id.</para>
+        /// Creates a new <see cref="Employee"/> using the <see cref="CreateEmployeeServiceModel"/>.
+        /// If such <see cref="Employee"/> already exists in the database, fetches it's (string)<c>Id</c> and returns it.
+        /// If such <see cref="Employee"/> doesn't exist in the database, adds it and return it's (string)<c>Id</c>.
         /// </summary>
-        /// <param name="model">Service model with JobPositionId, OperatingLocationId and Employee credentials.</param>
+        /// <param name="model">Service model with <c>JobPositionId</c>, <c>OperatingLocationId</c>, <c>FirstName</c>, <c>MiddleName</c>, <c>LastName</c>, <c>Phone</c>, <c>Email</c>, <c>Town</c>, <c>Address</c> and <c>ImageUrl</c></param>
         /// <returns>Employee ID</returns>
         public async Task<string> CreateAsync(CreateEmployeeServiceModel model)
         {
@@ -41,7 +42,7 @@
                                                         .Select(x => x.Id)
                                                         .FirstOrDefault();
 
-            if (employeeId != null)   // If employeeId is different than null, employee with such name already exists, so return it's id.
+            if (employeeId != null)   // If employeeId is different than null (string default value), employee with such name already exists, so return it's id.
             {
                 return employeeId;
             }

@@ -29,10 +29,11 @@
 
         //--------------- METHODS -----------------
         /// <summary>
-        /// Creates a new <see cref="JobPosition"/> and adds it to the database if it doesn't already exist, then returns it's Id.
-        /// <para> If such <see cref="JobPosition"/> already exists, returns it's Id.</para>
+        /// Creates a new <see cref="JobPosition"/> using the <see cref="CreateJobPositionServiceModel"/>.
+        /// If such <see cref="JobPosition"/> already exists in the database, fetches it's (int)<c>Id</c> and returns it.
+        /// If such <see cref="JobPosition"/> doesn't exist in the database, adds it and return it's (int)<c>Id</c>.
         /// </summary>
-        /// <param name="model">Service model with <c>Name</c> and a collection of <see cref="QualificationsDropdownServiceModel"/>.</param>
+        /// <param name="model">Service model with <c>Name</c> and a collection of <c>Qualifications</c></param>
         /// <returns>Job Position ID</returns>
         public async Task<int> CreateAsync(CreateJobPositionServiceModel model)
         {
@@ -40,7 +41,7 @@
                                                            .Select(x => x.Id)
                                                            .FirstOrDefault();
 
-            if (jobPositionId != 0)   // If jobPositionId is different than 0, jobPosition with such name already exists, so return it's id.
+            if (jobPositionId != 0)   // If jobPositionId is different than 0 (int default value), jobPosition with such name already exists, so return it's id.
             {
                 return jobPositionId;
             }
@@ -59,7 +60,7 @@
                 });
             }
 
-            // Add job position without any qualifications
+            // Adds job position without any qualifications
             if (model.Qualifications.Count() == 0)
             {
                 await this.dbContext.JobPositions.AddAsync(jobPosition);
@@ -72,7 +73,7 @@
         /// <summary>
         /// Gets every <see cref="JobPosition"/>'s <c>Id</c> and <c>Name</c> from the database and returns it as a service model collection.
         /// </summary>
-        /// <returns>IEnumerable<see cref="JobPositionsDropdownServiceModel"/></returns>
+        /// <returns>Collection of JobPositions</returns>
         public IEnumerable<JobPositionsDropdownServiceModel> GetAll()
         {
             return this.dbContext.JobPositions.Select(jp => new JobPositionsDropdownServiceModel
