@@ -5,6 +5,10 @@
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
 
+    /// <summary>
+    /// Input model for entering JobPosition information from the user. It includes <c>JobPositionName</c>, array of <c>QualificationIds</c> and a collection of <c>Qualifications</c>.
+    /// Validation on User-Side is also included via attributes.
+    /// </summary>
     public class JobPositionInputModel
     {
         [Display(Name = "Job Position")]

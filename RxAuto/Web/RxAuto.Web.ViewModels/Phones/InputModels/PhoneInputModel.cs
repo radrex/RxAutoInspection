@@ -2,6 +2,10 @@
 {
     using System.ComponentModel.DataAnnotations;
 
+    /// <summary>
+    /// Input model for entering Phone information from the user. It includes <c>PhoneNumber</c>.
+    /// Validation on User-Side is also included via attributes.
+    /// </summary>
     public class PhoneInputModel
     {
         [Display(Name = "Phone Number")]

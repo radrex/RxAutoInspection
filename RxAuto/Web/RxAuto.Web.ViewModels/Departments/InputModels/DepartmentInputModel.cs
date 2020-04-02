@@ -5,6 +5,10 @@
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
 
+    /// <summary>
+    /// Input model for entering Department information from the user. It includes <c>Name</c>, <c>Email</c>, <c>Description</c>, array of <c>PhoneNumberIds</c> and a collection of <c>PhoneNumbers</c>.
+    /// Validation on User-Side is also included via attributes.
+    /// </summary>
     public class DepartmentInputModel
     {
         [Required(ErrorMessage = "Please enter Department name")]
