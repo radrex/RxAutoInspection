@@ -53,19 +53,14 @@
                 Description = model.Description,
             };
 
-            foreach (var phone in model.PhoneNumbers)
+            foreach (var phoneDropdown in model.PhoneNumbers)
             {
+                Phone phone = this.dbContext.Phones.FirstOrDefault(x => x.Id == phoneDropdown.Id);
                 await this.dbContext.DepartmentPhones.AddAsync(new DepartmentPhone
                 {
                     Department = department,
-                    PhoneId = phone.Id,
+                    Phone = phone,
                 });
-            }
-
-            // Adds department without any qualifications
-            if (model.PhoneNumbers.Count() == 0)
-            {
-                await this.dbContext.Departments.AddAsync(department);
             }
 
             await this.dbContext.Departments.AddAsync(department);
@@ -88,9 +83,87 @@
                 Phones = d.Phones.Select(d => new PhonesDropdownServiceModel
                 {
                     Id = d.PhoneId,
-                    PhoneNumber = d.Phone.PhoneNumber
+                    PhoneNumber = d.Phone.PhoneNumber,
                 })
             }).ToList();
+        }
+
+
+        /// <summary>
+        /// Gets every <see cref="Department"/>'s <c>Id</c>, <c>Name</c>, <c>Email</c> and <c>Phones</c> that doesn't have an <see cref="OperatingLocation"/> from the database and returns it as a service model collection.
+        /// </summary>
+        /// <returns>Collection of Departments</returns>
+        public IEnumerable<DepartmentsDropdownServiceModel> GetAllWithoutOperatingLocation()
+        {
+            return this.dbContext.Departments.Where(d => d.OperatingLocationId == null)
+                                             .Select(d => new DepartmentsDropdownServiceModel
+                                             {
+                                                 Id = d.Id,
+                                                 Name = d.Name,
+                                                 Email = d.Email,
+                                                 Phones = d.Phones.Select(d => new PhonesDropdownServiceModel
+                                                 {
+                                                     Id = d.PhoneId,
+                                                     PhoneNumber = d.Phone.PhoneNumber,
+                                                 })
+                                             }).ToList();
+        }
+
+        /// <summary>
+        /// Gets all selected <see cref="Department"/>s and their <see cref="Phone"/>s from the database, using the given string[] parameter and returns it as a service model collection.
+        /// </summary>
+        /// <param name="departmentIds">First element is <c>Department</c> ID, second element is <c>Phone</c> ID for that <c>Department</c></param>
+        /// <returns></returns>
+        public IEnumerable<DepartmentsDropdownServiceModel> GetAllDepartmentsWithSelectedPhones(string[] departmentIds)
+        {
+            List<DepartmentsDropdownServiceModel> departments = new List<DepartmentsDropdownServiceModel>();
+
+            // Return empty service model - Create Operating Location without any Departments
+            if (departmentIds == null)
+            {
+                return departments;
+            }
+
+            // Dictionary<DepartmentId, HashSet<PhoneId>>  - summarize information - data comes from user input
+            Dictionary<int, HashSet<int>> departmentPhonesIds = new Dictionary<int, HashSet<int>>();
+            foreach (string departmentId in departmentIds)
+            {
+                int[] tokens = departmentId.Split(' ').Select(int.Parse).ToArray();
+                int depId = tokens[0];
+                if (!departmentPhonesIds.ContainsKey(depId))
+                {
+                    departmentPhonesIds[depId] = new HashSet<int>(tokens[1]);
+                }
+
+                departmentPhonesIds[depId].Add(tokens[1]);
+            }
+
+            foreach (var department in departmentPhonesIds)
+            {
+                var phones = new List<PhonesDropdownServiceModel>();
+                foreach (int phoneId in department.Value)
+                {
+                    var phone = this.dbContext.Phones.Where(p => p.Id == phoneId)
+                                                     .Select(p => new PhonesDropdownServiceModel
+                                                     {
+                                                         Id = p.Id,
+                                                         PhoneNumber = p.PhoneNumber,
+                                                     }).FirstOrDefault();
+                    phones.Add(phone);
+                }
+
+                var dep = this.dbContext.Departments.Where(d => d.Id == department.Key)
+                                                    .Select(d => new DepartmentsDropdownServiceModel
+                                                    {
+                                                        Id = d.Id,
+                                                        Name = d.Name,
+                                                        Email = d.Email,
+                                                        Phones = phones,
+                                                    }).FirstOrDefault();
+                departments.Add(dep);
+            }
+
+            return departments;
         }
     }
 }
