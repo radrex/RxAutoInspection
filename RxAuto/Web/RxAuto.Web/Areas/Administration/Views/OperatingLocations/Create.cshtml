@@ -1,0 +1,110 @@
+﻿@model RxAuto.Web.ViewModels.OperatingLocations.InputModels.OperatingLocationInputModel
+
+@{
+    ViewData["Title"] = "Operating Locations Create Form";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Operating Location Form</h1>
+</div>
+
+<form method="post" asp-controller="OperatingLocations" asp-action="Create">
+    <div class="container">
+        <div class="row">
+            <div class="col-6">
+                <fieldset class="border p-3">
+                    <legend class="w-auto">Operating Location Information</legend>
+                    <p class="form-group">
+                        <label asp-for="Town"></label>
+                        <input asp-for="Town" class="form-control" />
+                        <span asp-validation-for="Town" class="text-danger"></span>
+                    </p>
+                    <p class="form-group">
+                        <label asp-for="Address"></label>
+                        <input asp-for="Address" class="form-control" />
+                        <span asp-validation-for="Address" class="text-danger"></span>
+                    </p>
+                    <p class="form-group">
+                        <label asp-for="Description"></label>
+                        <textarea asp-for="Description" class="form-control"></textarea>
+                        <span asp-validation-for="Description" class="text-danger"></span>
+                    </p>
+                    <p class="form-group">
+                        <label asp-for="ImageUrl"></label>
+                        <input asp-for="ImageUrl" class="form-control" />
+                        <span asp-validation-for="ImageUrl" class="text-danger"></span>
+                    </p>
+                </fieldset>
+            </div>
+            <div class="col-6">
+                <fieldset class="border p-3">
+                    <legend class="w-auto">Choose Departments</legend>
+                    <select asp-for="DepartmentIds" class="selectpicker show-tick" multiple data-selected-text-format="count" data-show-subtext="true">
+                        @foreach (var department in Model.Departments)
+                        {
+                            <optgroup label="@department.Email" data-subtext="Department: @department.Name">
+                                @foreach (var phone in department.Phones)
+                                {
+                                    <option value="@department.Id.ToString() @phone.Id.ToString()">@phone.PhoneNumber</option>
+                                }
+                            </optgroup>
+                        }
+                    </select>
+                    <!--// TODO: Add link to button-->
+                    <button class="btn btn-info float-right">Add new Department</button>
+                </fieldset>
+            </div>
+            <row class="mx-auto mt-3">
+                <div class="col-12">
+                    <button type="submit" class="btn btn-success btn-lg">Submit</button>
+                </div>
+            </row>
+        </div>
+    </div>
+</form>
+
+@*<div class="container">
+        <div class="row">
+            <div class="col">
+                <form method="post" asp-controller="OperatingLocations" asp-action="Create">
+                    <fieldset class="border p-3">
+                        <legend class="w-auto">Add Operating Location</legend>
+                        <p class="form-group">
+                            <label asp-for="Town"></label>
+                            <input asp-for="Town" class="form-control" />
+                            <span asp-validation-for="Town" class="text-danger"></span>
+                        </p>
+                        <p class="form-group">
+                            <label asp-for="Address"></label>
+                            <input asp-for="Address" class="form-control" />
+                            <span asp-validation-for="Address" class="text-danger"></span>
+                        </p>
+                        <p class="form-group">
+                            <label asp-for="Description"></label>
+                            <textarea asp-for="Description" class="form-control"></textarea>
+                            <span asp-validation-for="Description" class="text-danger"></span>
+                        </p>
+                        <p class="form-group">
+                            <label asp-for="ImageUrl"></label>
+                            <input asp-for="ImageUrl" class="form-control" />
+                            <span asp-validation-for="ImageUrl" class="text-danger"></span>
+                        </p>
+
+                        <label asp-for="DepartmentIds"></label>
+                        <select asp-for="DepartmentIds" class="selectpicker show-tick" multiple data-selected-text-format="count" data-show-subtext="true">
+                            @foreach (var department in Model.Departments)
+                            {
+                                <optgroup label="@department.Email" data-subtext="Department: @department.Name">
+                                    @foreach (var phone in department.Phones)
+                                    {
+                                        <option value="@department.Id.ToString() @phone.Id.ToString()">@phone.PhoneNumber</option>
+                                    }
+                                </optgroup>
+                            }
+                        </select>
+                        <button type="submit" class="btn btn-success">Submit</button>
+                    </fieldset>
+                </form>
+            </div>
+        </div>
+    </div>*@
