@@ -23,13 +23,19 @@
         //---------------- FIELDS -----------------
         private readonly IQualificationsService qualificationsService;
         private readonly IJobPositionsService jobPositionsService;
-        private JobPositionQualificationUnifiedModel unifiedModel;
+        private readonly JobPositionQualificationUnifiedModel unifiedModel;
 
         //------------- CONSTRUCTORS --------------
         public JobPositions(IQualificationsService qualificationsService, IJobPositionsService jobPositionsService)
         {
             this.qualificationsService = qualificationsService;
             this.jobPositionsService = jobPositionsService;
+
+            this.unifiedModel = new JobPositionQualificationUnifiedModel()
+            {
+                JobPositionInputModel = new JobPositionInputModel(),
+                QualificationInputModel = new QualificationInputModel(),
+            };
         }
 
         //-----------------------------------------------------------------------------------------------------//
@@ -59,7 +65,7 @@
         /// <para>The View renders 2 Partial Views. The 1st gets <see cref="JobPositionInputModel"/> and the 2nd <see cref="QualificationInputModel"/>.</para>
         /// <para>On this action we get <see cref="JobPositionInputModel"/>, we use it's data to create and add a new <c>JobPosition</c> to the database.</para>
         /// </summary>
-        /// <param name="model">JobPositionInputModel</param>
+        /// <param name="model">Input model for entering JobPosition information from the user.</param>
         /// <returns></returns>
         [HttpPost]
         public async Task<IActionResult> CreateJobPosition(JobPositionInputModel model)
@@ -101,7 +107,7 @@
         /// <para>The View renders 2 Partial Views. The 1st gets <see cref="JobPositionInputModel"/> and the 2nd <see cref="QualificationInputModel"/>.</para>
         /// <para>On this action we get <see cref="QualificationInputModel"/>, we use it's data to create and add a new <c>Qualification</c> to the database.</para>
         /// </summary>
-        /// <param name="model">QualificationInputModel</param>
+        /// <param name="model">Input model for entering Qualification information from the user.</param>
         /// <returns></returns>
         [HttpPost]
         public async Task<IActionResult> CreateQualification(QualificationInputModel model)
@@ -127,12 +133,6 @@
         //-----------------------------------------------------------------------------------------------------//
         private void InitializeAndFillUnifiedModel()
         {
-            this.unifiedModel = new JobPositionQualificationUnifiedModel()
-            {
-                JobPositionInputModel = new JobPositionInputModel(),
-                QualificationInputModel = new QualificationInputModel(),
-            };
-
             var qualifications = qualificationsService.GetAll().Select(x => new QualificationsDropdownViewModel
             {
                 Id = x.Id,

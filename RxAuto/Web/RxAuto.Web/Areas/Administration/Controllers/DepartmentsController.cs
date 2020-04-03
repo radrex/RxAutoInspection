@@ -23,7 +23,7 @@
         //---------------- FIELDS -----------------
         private readonly IPhonesService phonesService;
         private readonly IDepartmentsService departmentsService;
-        private DepartmentPhoneUnifiedModel unifiedModel;
+        private readonly DepartmentPhoneUnifiedModel unifiedModel;
 
         //------------- CONSTRUCTORS --------------
         public DepartmentsController(IPhonesService phonesService, IDepartmentsService departmentsService)

@@ -20,7 +20,7 @@
         private readonly IEmployeesService employeesService;
         private readonly IJobPositionsService jobPositionsService;
         private readonly IOperatingLocationsService operatingLocationsService;
-        private EmployeeInputModel employeeInputModel;
+        private readonly EmployeeInputModel employeeInputModel;
 
         //------------- CONSTRUCTORS --------------
         public EmployeesController(IEmployeesService employeesService, IJobPositionsService jobPositionsService, IOperatingLocationsService operatingLocationsService)
@@ -28,7 +28,6 @@
             this.employeesService = employeesService;
             this.jobPositionsService = jobPositionsService;
             this.operatingLocationsService = operatingLocationsService;
-
             this.employeeInputModel = new EmployeeInputModel();
         }
 
@@ -57,7 +56,7 @@
         /// <para>Initializes a <see cref="EmployeeInputModel"/> containing Employee credential properties.</para>
         /// <para>On this action we get <see cref="EmployeeInputModel"/>, we use it's data to create and add a new <c>Employee</c> to the database.</para>
         /// </summary>
-        /// <param name="model">EmployeeInputModel</param>
+        /// <param name="model">Input model for entering Employee information from the user.</param>
         /// <returns></returns>
         [HttpPost]
         public async Task<IActionResult> Create(EmployeeInputModel model)
@@ -83,7 +82,7 @@
             };
 
             await this.employeesService.CreateAsync(employee);
-            return this.RedirectToAction("Create"); // return this.View check
+            return this.RedirectToAction("Create");
         }
 
         //-----------------------------------------------------------------------------------------------------//

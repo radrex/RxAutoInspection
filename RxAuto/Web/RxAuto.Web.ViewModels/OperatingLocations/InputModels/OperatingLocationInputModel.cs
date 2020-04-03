@@ -1,5 +1,6 @@
 ﻿namespace RxAuto.Web.ViewModels.OperatingLocations.InputModels
 {
+    using RxAuto.Web.ViewModels.Phones.ViewModels;
     using RxAuto.Web.ViewModels.Departments.ViewModels;
 
     using System.Collections.Generic;
@@ -25,10 +26,10 @@
         [MaxLength(2000)]
         public string ImageUrl { get; set; }
 
+        //First element is <Department ID, second element is Phone ID
         //For multiple Id's passed from <select>
         [Display(Name = "Departments")]
-        public int[] DepartmentIds { get; set; }
-
+        public string[] DepartmentIds { get; set; }
         public IEnumerable<DepartmentsDropdownViewModel> Departments { get; set; }
     }
 }
