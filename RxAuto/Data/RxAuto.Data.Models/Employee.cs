@@ -49,6 +49,6 @@
 
         //------------ OperatingLocation [FK] -----------
         public int OperatingLocationId { get; set; }
-        public OperatingLocation OperatingLocation { get; set; }
+        public virtual OperatingLocation OperatingLocation { get; set; }
     }
 }
