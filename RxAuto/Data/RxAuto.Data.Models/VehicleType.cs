@@ -21,7 +21,7 @@
         [MaxLength(DescriptionMaxLength)]
         public string Description { get; set; }
 
-        //------------ ServiceVehicleType [FK] MAPPING TABLE -----------
-        public virtual ICollection<ServiceVehicleType> Services { get; set; } = new HashSet<ServiceVehicleType>();
+        //------------ Service [FK] -----------
+        public virtual ICollection<Service> Services { get; set; } = new HashSet<Service>();
     }
 }

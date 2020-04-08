@@ -28,10 +28,9 @@
         public DbSet<Qualification> Qualifications { get; set; }
         public DbSet<Reservation> Reservations { get; set; }
         public DbSet<Service> Services { get; set; }
-        public DbSet<ServiceDocument> ServiceDocument { get; set; }
+        public DbSet<ServiceDocument> ServiceDocuments { get; set; }
         public DbSet<ServiceOperatingLocation> ServiceOperatingLocations { get; set; }
         public DbSet<ServiceType> ServiceTypes { get; set; }
-        public DbSet<ServiceVehicleType> ServiceVehicleTypes { get; set; }
         public DbSet<VehicleType> VehicleTypes { get; set; }
         public DbSet<Phone> Phones { get; set; }
         public DbSet<Department> Departments { get; set; }
@@ -58,7 +57,6 @@
             builder.ApplyConfiguration(new ServiceDocumentConfiguration());
             builder.ApplyConfiguration(new ServiceOperatingLocationConfiguration());
             builder.ApplyConfiguration(new ServiceTypeConfiguration());
-            builder.ApplyConfiguration(new ServiceVehicleTypeConfiguration());
             builder.ApplyConfiguration(new VehicleTypeConfiguration());
             builder.ApplyConfiguration(new PhoneConfiguration());
             builder.ApplyConfiguration(new DepartmentConfiguration());

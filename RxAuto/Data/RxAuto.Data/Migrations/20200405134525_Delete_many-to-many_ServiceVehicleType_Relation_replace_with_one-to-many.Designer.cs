@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using RxAuto.Data;
 
 namespace RxAuto.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20200405134525_Delete_many-to-many_ServiceVehicleType_Relation_replace_with_one-to-many")]
+    partial class Delete_manytomany_ServiceVehicleType_Relation_replace_with_onetomany
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -535,7 +537,7 @@ namespace RxAuto.Data.Migrations
                         .HasColumnType("nvarchar(4000)")
                         .HasMaxLength(4000);
 
-                    b.Property<bool>("IsShownInSubMenu")
+                    b.Property<bool>("IsShownInMenu")
                         .HasColumnType("bit");
 
                     b.Property<string>("Name")
@@ -573,7 +575,7 @@ namespace RxAuto.Data.Migrations
 
                     b.HasIndex("DocumentId");
 
-                    b.ToTable("ServiceDocuments");
+                    b.ToTable("ServiceDocument");
                 });
 
             modelBuilder.Entity("RxAuto.Data.Models.ServiceOperatingLocation", b =>
@@ -604,7 +606,7 @@ namespace RxAuto.Data.Migrations
                         .HasColumnType("nvarchar(4000)")
                         .HasMaxLength(4000);
 
-                    b.Property<bool>("IsShownInMainMenu")
+                    b.Property<bool>("IsInDevelopment")
                         .HasColumnType("bit");
 
                     b.Property<string>("Name")

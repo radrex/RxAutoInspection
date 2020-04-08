@@ -8,8 +8,8 @@
     /// <summary>
     /// Applies configuration for <see cref="Service"/> entity.
     /// <para>Each <see cref="Service"/> has one <see cref="ServiceType"/>.</para>
+    /// <para>Each <see cref="Service"/> has one <see cref="VehicleType"/>s.</para>
     /// <para>Each <see cref="Service"/> has many <see cref="OperatingLocation"/>s.</para>
-    /// <para>Each <see cref="Service"/> has many <see cref="VehicleType"/>s.</para>
     /// <para>Each <see cref="Service"/> has many <see cref="Document"/>s.</para>
     /// <para>Each <see cref="Service"/> has many <see cref="Reservation"/>s.</para>
     /// </summary>
@@ -22,14 +22,14 @@
                    .HasForeignKey(s => s.ServiceTypeId)
                    .OnDelete(DeleteBehavior.Restrict);
 
+            service.HasOne(s => s.VehicleType)
+                   .WithMany(vt => vt.Services)
+                   .HasForeignKey(s => s.ServiceTypeId)
+                   .OnDelete(DeleteBehavior.Restrict);
+
             service.HasMany(s => s.OperatingLocations)
                    .WithOne(ol => ol.Service)
                    .HasForeignKey(ol => ol.ServiceId)
-                   .OnDelete(DeleteBehavior.Restrict);
-
-            service.HasMany(s => s.VehicleTypes)
-                   .WithOne(vt => vt.Service)
-                   .HasForeignKey(vt => vt.ServiceId)
                    .OnDelete(DeleteBehavior.Restrict);
 
             service.HasMany(s => s.Documents)

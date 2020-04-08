@@ -14,7 +14,7 @@
         [MaxLength(100)]
         public string Name { get; set; }
 
-        public bool IsInDevelopment { get; set; }
+        public bool IsShownInMainMenu{ get; set; }
 
         [MaxLength(DescriptionMaxLength)]
         public string Description { get; set; }

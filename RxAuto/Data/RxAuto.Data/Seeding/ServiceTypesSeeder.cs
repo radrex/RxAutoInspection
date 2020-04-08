@@ -31,7 +31,7 @@
                 {
                     Name = serviceType.Name,
                     Description = serviceType.Description,
-                    IsInDevelopment = serviceType.IsInDevelopment,
+                    IsShownInMainMenu = serviceType.IsInDevelopment,
                 });
             }
         }
