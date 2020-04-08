@@ -33,6 +33,8 @@
         //-----------------------------------------------------------------------------------------------------//
         //                                           ACTION METHODS                                            //
         //-----------------------------------------------------------------------------------------------------//
+
+        //----------------------- CREATE OPERATING LOCATION VIEW FORM -----------------------
         /// <summary>
         /// Controller GET Action Method.
         /// <para>Active Route --> /Administration/OperatingLocations/Create/</para>
@@ -46,7 +48,7 @@
             return this.View(this.operatingLocationInputModel);
         }
 
-
+        //----------------------- CREATE FOR OPERATING LOCATION FORM -----------------------
         /// <summary>
         /// Controller POST Action Method.
         /// <para>Active Route --> /Administration/OperatingLocations/Create/</para>

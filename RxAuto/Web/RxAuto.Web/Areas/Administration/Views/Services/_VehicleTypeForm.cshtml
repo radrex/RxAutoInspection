@@ -1,0 +1,24 @@
+﻿@model RxAuto.Web.ViewModels.VehicleTypes.InputModels.VehicleTypeInputModel
+
+<form method="post" asp-controller="Services" asp-action="CreateVehicleType">
+    <fieldset class="border p-3">
+        <legend class="w-auto">Add New Vehicle Type</legend>
+        <p>
+            <label asp-for="VehicleCategoryId"></label><br />
+            <select asp-for="VehicleCategoryId" asp-items="Html.GetEnumSelectList<VehicleCategory>()" class="selectpicker">
+                <!-- TODO: validation-->
+            </select>
+        </p>
+        <p class="form-group">
+            <label asp-for="VehicleTypeName"></label>
+            <input asp-for="VehicleTypeName" class="form-control" />
+            <span asp-validation-for="VehicleTypeName" class="text-danger"></span>
+        </p>
+        <p class="form-group">
+            <label asp-for="VehicleTypeDescription"></label>
+            <textarea asp-for="VehicleTypeDescription" class="form-control"></textarea>
+            <span asp-validation-for="VehicleTypeDescription" class="text-danger"></span>
+        </p>
+        <button type="submit" class="btn btn-success float-right">Submit</button>
+    </fieldset>
+</form>

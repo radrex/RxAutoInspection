@@ -1,0 +1,23 @@
+﻿@model RxAuto.Web.ViewModels.ServiceTypes.InputModels.ServiceTypeInputModel
+
+<form method="post" asp-controller="Services" asp-action="CreateServiceType">
+    <fieldset class="border p-3">
+        <legend class="w-auto">Add New Service Type</legend>
+        <p class="form-group">
+            <label asp-for="ServiceTypeName"></label>
+            <input asp-for="ServiceTypeName" class="form-control" />
+            <span asp-validation-for="ServiceTypeName" class="text-danger"></span>
+        </p>
+        <p class="form-group">
+            <label asp-for="ServiceTypeDescription"></label>
+            <textarea asp-for="ServiceTypeDescription" class="form-control"></textarea>
+            <span asp-validation-for="ServiceTypeDescription" class="text-danger"></span>
+        </p>
+
+        <p class="custom-control custom-checkbox my-1 mr-sm-2">
+            <input type="checkbox" asp-for="IsShownInMainMenu" class="custom-control-input" id="serviceTypeCheckboxId">
+            <label class="custom-control-label" asp-for="IsShownInMainMenu" for="serviceTypeCheckboxId">Show in <b>Main Menu</b></label>
+        </p>
+        <button type="submit" class="btn btn-success float-right">Submit</button>
+    </fieldset>
+</form>

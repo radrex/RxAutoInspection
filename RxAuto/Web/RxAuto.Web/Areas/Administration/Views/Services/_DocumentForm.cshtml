@@ -1,0 +1,18 @@
+﻿@model RxAuto.Web.ViewModels.Documents.InputModels.DocumentInputModel
+
+<form method="post" asp-controller="Services" asp-action="CreateDocument">
+    <fieldset class="border p-3">
+        <legend class="w-auto">Add New Document</legend>
+        <p class="form-group">
+            <label asp-for="DocumentName"></label>
+            <input asp-for="DocumentName" class="form-control" />
+            <span asp-validation-for="DocumentName" class="text-danger"></span>
+        </p>
+        <p class="form-group">
+            <label asp-for="DocumentDescription"></label>
+            <textarea asp-for="DocumentDescription" class="form-control"></textarea>
+            <span asp-validation-for="DocumentDescription" class="text-danger"></span>
+        </p>
+        <button type="submit" class="btn btn-success float-right">Submit</button>
+    </fieldset>
+</form>

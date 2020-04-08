@@ -55,6 +55,10 @@ namespace RxAuto.Web
             services.AddTransient<IPhonesService, PhonesService>();
             services.AddTransient<IOperatingLocationsService, OperatingLocationsService>();
             services.AddTransient<IDepartmentsService, DepartmentsService>();
+            services.AddTransient<IServicesService, ServicesService>();
+            services.AddTransient<IDocumentsService, DocumentsService>();
+            services.AddTransient<IServiceTypesService, ServiceTypesService>();
+            services.AddTransient<IVehicleTypesService, VehicleTypesService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
