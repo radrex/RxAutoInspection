@@ -8,6 +8,8 @@
     /// </summary>
     public class QualificationInputModel
     {
+        public int Id { get; set; }
+
         [Display(Name = "Qualification")]
         [Required(ErrorMessage = "Please enter Qualification name")]
         [StringLength(300, ErrorMessage = "Name should be 5-300 characters long", MinimumLength = 5)]

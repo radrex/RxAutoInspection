@@ -2,6 +2,7 @@
 {
     using RxAuto.Data;
     using RxAuto.Data.Models;
+
     using RxAuto.Services.Data;
     using RxAuto.Services.Models.Qualifications;
 
@@ -72,18 +73,19 @@
         }
 
         /// <summary>
-        /// Gets the first <see cref="Qualification"/> by (int)<c>Id</c> from the database and returns it's <c>Id</c> and <c>Name</c> as a service model.
+        /// Gets the first <see cref="Qualification"/> by (int)<c>Id</c> from the database and returns it's <c>Id</c>, <c>Name</c> and <c>Description</c> as a service model.
         /// <para> If there is no such <see cref="Qualification"/> in the database, returns the service model default value.</para>
         /// </summary>
         /// <param name="id">Qualification ID</param>
         /// <returns>A single Qualification</returns>
-        public QualificationsDropdownServiceModel GetById(int id)
+        public QualificationServiceModel GetById(int id)
         {
             return this.dbContext.Qualifications.Where(q => q.Id == id)
-                                                .Select(q => new QualificationsDropdownServiceModel
+                                                .Select(q => new QualificationServiceModel
                                                 {
                                                     Id = q.Id,
                                                     Name = q.Name,
+                                                    Description = q.Description,
                                                 }).FirstOrDefault();
         }
 
@@ -101,6 +103,93 @@
                                                     Id = q.Id,
                                                     Name = q.Name,
                                                 }).FirstOrDefault();
+        }
+
+        /// <summary>
+        /// Gets and returns the total <c>Qualifications</c> count.
+        /// </summary>
+        /// <returns>Qualifications Count</returns>
+        public int Count()
+        {
+            return this.dbContext.Qualifications.Count();
+        }
+
+        /// <summary>
+        /// Gets every <see cref="Qualification"/>'s <c>Id</c>, <c>Name</c> and <c>Description</c> and returns it as a service model collection.
+        /// </summary>
+        /// <param name="take">Pages to take</param>
+        /// <param name="skip">Pages to skip</param>
+        /// <returns>Collection of Qualifications</returns>
+        public IEnumerable<QualificationsListingServiceModel> All(int? take = null, int skip = 0)
+        {
+            var query = this.dbContext.Qualifications.Select(x => new QualificationsListingServiceModel
+            {
+                Id = x.Id,
+                Name = x.Name,
+                Description = x.Description,
+            })
+            .Skip(skip);
+
+            if (take.HasValue)
+            {
+                query = query.Take(take.Value);
+            }
+
+            return query.ToList();
+        }
+
+        /// <summary>
+        /// Removes an <see cref="Qualification"/> with the given <c>Id</c> from the database.
+        /// </summary>
+        /// <param name="id">Qualification ID</param>
+        /// <returns>True - removed entity. False - no such entity found.</returns>
+        public async Task<bool> RemoveAsync(int id)
+        {
+            Qualification qualification = this.dbContext.Qualifications.Find(id);
+            if (qualification == null)
+            {
+                return false;
+            }
+
+            var jobPositionQualifications = this.dbContext.JobPositionQualifications
+                                                          .Where(x => x.QualificationId == qualification.Id)
+                                                          .ToList();
+
+            this.dbContext.JobPositionQualifications.RemoveRange(jobPositionQualifications);
+            this.dbContext.Qualifications.Remove(qualification);
+            int deletedEntities = await this.dbContext.SaveChangesAsync();
+
+            if (deletedEntities == 0)
+            {
+                return false;
+            }
+            return true;
+        }
+
+        /// <summary>
+        /// Searches the database for a <see cref="Qualification"/> with the given <c>Id</c>.
+        /// </summary>
+        /// <param name="qualificationId">Qualification ID</param>
+        /// <returns>True - found. False - not found.</returns>
+        public bool Exists(int qualificationId)
+        {
+            return this.dbContext.Qualifications.Any(x => x.Id == qualificationId); // TODO: Use AnyAsync ?
+        }
+
+        /// <summary>
+        /// Edits the <see cref="Qualification"/> using <see cref="EditQualificationServiceModel"/>.
+        /// </summary>
+        /// <param name="model">Number of modified entities.</param>
+        /// <returns>Service model with <c>Id</c>, <c>Name</c> and <c>Description</c></returns>
+        public async Task<int> EditAsync(EditQualificationServiceModel model)
+        {
+            Qualification qualification = this.dbContext.Qualifications.Find(model.Id);
+
+            qualification.Name = model.Name;
+            qualification.Description = model.Description;
+
+            int modifiedEntities = await this.dbContext.SaveChangesAsync();
+            return modifiedEntities;
         }
     }
 }

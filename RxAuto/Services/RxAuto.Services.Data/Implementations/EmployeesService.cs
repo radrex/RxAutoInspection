@@ -152,6 +152,7 @@
             }
 
             this.dbContext.Employees.Remove(employee);
+
             int deletedEntities = await this.dbContext.SaveChangesAsync();
             if (deletedEntities == 0)
             {
