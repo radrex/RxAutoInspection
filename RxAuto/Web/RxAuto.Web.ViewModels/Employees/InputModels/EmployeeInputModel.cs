@@ -14,6 +14,8 @@
     /// </summary>
     public class EmployeeInputModel
     {
+        public string Id { get; set; }
+
         [Display(Name = "Job Position")]
         [Required]
         [Range(100, int.MaxValue)]
