@@ -5,6 +5,7 @@
     using RxAuto.Services.Models.Qualifications;
 
     using RxAuto.Web.ViewModels.UnifiedModels;
+    using RxAuto.Web.ViewModels.JobPositions.ViewModels;
     using RxAuto.Web.ViewModels.JobPositions.InputModels;
     using RxAuto.Web.ViewModels.Qualifications.ViewModels;
     using RxAuto.Web.ViewModels.Qualifications.InputModels;
@@ -12,6 +13,7 @@
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.AspNetCore.Authorization;
 
+    using System;
     using System.Linq;
     using System.Threading.Tasks;
     using System.Collections.Generic;
@@ -20,6 +22,9 @@
     [Authorize(Roles = "Administrator")]
     public class JobPositions : Controller
     {
+        //--------------- CONSTANTS ---------------
+        private const int ItemsPerPage = 10;
+
         //---------------- FIELDS -----------------
         private readonly IQualificationsService qualificationsService;
         private readonly IJobPositionsService jobPositionsService;
@@ -58,6 +63,7 @@
         }
 
         //----------------------- CREATE FOR JOB POSITION FORM -----------------------
+
         /// <summary>
         /// Controller POST Action Method.
         /// <para>Active Route --> /Administration/JobPositions/Create/</para>
@@ -126,6 +132,175 @@
 
             await this.qualificationsService.CreateAsync(qualification);
             return this.RedirectToAction("Create");
+        }
+
+        //----------------------- LISTING FOR JOB POSITIONS --------------------------
+        /// <summary>
+        /// Controller GET Action Method.
+        /// <para>Active Route --> /Administration/JobPositions/All/{page}</para>
+        /// <para>Returns a View with JobPositions listing using Pagination.</para>
+        /// </summary>
+        /// <param name="page">Page number</param>
+        /// <returns>View with JobPositions listing</returns>
+        [HttpGet]
+        public IActionResult All(int page = 1)
+        {
+            var viewModel = new JobPositionsListingViewModel()
+            {
+                JobPositions = jobPositionsService.All(ItemsPerPage, (page - 1) * ItemsPerPage).Select(x => new JobPositionViewModel
+                {
+                    Id = x.Id,
+                    Name = x.Name,
+                }),
+            };
+
+            int count = this.jobPositionsService.Count();
+            viewModel.PagesCount = (int)Math.Ceiling((double)count / ItemsPerPage);
+
+            if (viewModel.PagesCount == 0)
+            {
+                viewModel.PagesCount = 1;
+            }
+
+            viewModel.CurrentPage = page;
+            return this.View(viewModel);
+        }
+
+        //----------------------- DETAILS OF A JOB POSITION --------------------------
+        /// <summary>
+        /// Controller GET Action Method.
+        /// <para>Active Route --> /Administration/JobPositions/Details/{id}</para>
+        /// <para>Returns a View with details information for a <c>JobPosition</c>.</para>
+        /// </summary>
+        /// <param name="id">JobPosition ID</param>
+        /// <returns>JobPosition details View</returns>
+        [HttpGet]
+        public IActionResult Details(int id)
+        {
+            JobPositionServiceModel jobPosition = this.jobPositionsService.GetById(id);
+            if (jobPosition.Name == null)
+            {
+                return this.BadRequest();
+            }
+
+            var model = new JobPositionDetailsViewModel
+            {
+                Id = jobPosition.Id,
+                Name = jobPosition.Name,
+                // TODO: Add qualifications table
+            };
+
+            return this.View(model);
+        }
+
+        //----------------------- EDIT A JOB POSITION --------------------------------
+        /// <summary>
+        /// Controller GET Action Method.
+        /// <para>Active Route --> /Administration/JobPositions/Edit/{id}</para>
+        /// <para>Returns a View with edit information of a <c>JobPosition</c>.</para>
+        /// </summary>
+        /// <param name="id">JobPosition ID</param>
+        /// <returns>JobPosition edit View</returns>
+        [HttpGet]
+        public IActionResult Edit(int id)
+        {
+            JobPositionServiceModel jobPosition = this.jobPositionsService.GetById(id);
+            if (jobPosition.Name == null)
+            {
+                return this.BadRequest();
+            }
+
+            var model = new JobPositionInputModel
+            {
+                Id = jobPosition.Id,
+                JobPositionName = jobPosition.Name,
+
+                QualificationIds = jobPosition.QualificationIds,
+                Qualifications = this.qualificationsService.GetAll().Select(x => new QualificationsDropdownViewModel
+                {
+                    Id = x.Id,
+                    Name = x.Name,
+                }),
+            };
+
+            return this.View(model);
+        }
+
+        /// <summary>
+        /// Controller POST Action Method.
+        /// <para>Active Route --> /Administration/JobPositions/Edit/{id}</para>
+        /// <para>Edits a <c>JobPosition</c>.</para>
+        /// </summary>
+        /// <param name="model">Input model for editing a JobPosition</param>
+        /// <returns></returns>
+        [HttpPost]
+        public async Task<IActionResult> Edit(JobPositionInputModel model)
+        {
+            if (!this.jobPositionsService.Exists(model.Id))
+            {
+                return this.BadRequest();
+            }
+
+            if (!ModelState.IsValid)
+            {
+                return this.RedirectToAction("Error", "Home");
+            }
+
+            EditJobPositionServiceModel serviceModel = new EditJobPositionServiceModel
+            {
+                Id = model.Id,
+                Name = model.JobPositionName,
+                QualificationIds = model.QualificationIds,
+            };
+
+            await this.jobPositionsService.EditAsync(serviceModel);
+            return this.RedirectToAction("Details", "JobPositions", new { id = serviceModel.Id });
+        }
+
+        //----------------------- DELETION OF A JOB POSITION -------------------------
+        /// <summary>
+        /// Controller GET Action Method.
+        /// <para>Active Route --> /Administration/JobPositions/Delete/{id}</para>
+        /// <para>Returns a View with delete confirmation information for a <c>JobPosition</c>.</para>
+        /// </summary>
+        /// <param name="id">JobPosition ID</param>
+        /// <returns>Delete jobPosition confirmation View</returns>
+        [HttpGet]
+        public IActionResult Delete(int id)
+        {
+            JobPositionServiceModel jobPosition = this.jobPositionsService.GetById(id);
+            if (jobPosition.Name == null)
+            {
+                return this.BadRequest();
+            }
+
+            var model = new DeleteJobPositionViewModel
+            {
+                Id = jobPosition.Id,
+                Name = jobPosition.Name,
+                //TODO: add qualifications table on delete view
+            };
+
+            return this.View(model);
+        }
+
+        /// <summary>
+        /// Controller POST Action Method.
+        /// <para>Active Route --> /Administration/JobPositions/Delete/{id}</para>
+        /// <para>Deletes the selected jobPosition.</para>
+        /// </summary>
+        /// <param name = "model" > View model for deletion of a JobPosition</param>
+        /// <returns></returns>
+        [HttpPost]
+        public async Task<IActionResult> Delete(DeleteJobPositionViewModel model)
+        {
+            var success = await this.jobPositionsService.RemoveAsync(model.Id);
+            if (!success)
+            {
+                return this.RedirectToAction("Error", "Home"); // TODO: redirect
+            }
+
+            return this.RedirectToAction("All", "JobPositions");
         }
 
         //-----------------------------------------------------------------------------------------------------//

@@ -1,4 +1,4 @@
-﻿namespace RxAuto.Web.ViewModels.JobPositions.ViewModel
+﻿namespace RxAuto.Web.ViewModels.JobPositions.ViewModels
 {
     /// <summary>
     /// View model for Dropdown listing of a JobPosition's <c>Id</c> and <c>JobPositionName</c>.

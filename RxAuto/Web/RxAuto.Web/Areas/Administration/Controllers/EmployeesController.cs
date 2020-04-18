@@ -5,7 +5,7 @@
 
     using RxAuto.Web.ViewModels.Employees.ViewModels;
     using RxAuto.Web.ViewModels.Employees.InputModels;
-    using RxAuto.Web.ViewModels.JobPositions.ViewModel;
+    using RxAuto.Web.ViewModels.JobPositions.ViewModels;
     using RxAuto.Web.ViewModels.OperatingLocations.ViewModels;
 
     using Microsoft.AspNetCore.Mvc;

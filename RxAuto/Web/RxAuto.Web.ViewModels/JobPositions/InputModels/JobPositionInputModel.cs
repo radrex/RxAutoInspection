@@ -11,6 +11,8 @@
     /// </summary>
     public class JobPositionInputModel
     {
+        public int Id { get; set; }
+
         [Display(Name = "Job Position")]
         [Required(ErrorMessage = "Please enter Job Position name")]
         [StringLength(150, ErrorMessage = "Name should be 5 to 150 characters long", MinimumLength = 5)]

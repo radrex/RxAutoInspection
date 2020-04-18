@@ -1,0 +1,36 @@
+﻿@model RxAuto.Web.ViewModels.JobPositions.InputModels.JobPositionInputModel
+
+@{
+    ViewData["Title"] = "Job Positions Edit Form";
+    var qualifications = Model.Qualifications.Select(x => new SelectListItem(x.Name, x.Id.ToString()));
+}
+
+<div class="text-center">
+    <h1 class="display-4">Edit Job Positions Form</h1>
+</div>
+
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <form method="post" asp-controller="JobPositions" asp-action="Edit">
+                <fieldset class="border p-3">
+                    <legend class="w-auto">Edit Employee</legend>
+                    <div class="form-row">
+                        <div class="form-group col-md-12">
+                            <label asp-for="JobPositionName"></label>
+                            <input asp-for="JobPositionName" class="form-control" />
+                            <span asp-validation-for="JobPositionName" class="text-danger"></span>
+                        </div>
+                        <div class="form-group col-md-12">
+                            <label asp-for="QualificationIds"></label>
+                            <select asp-for="QualificationIds" asp-items="qualifications" class="selectpicker" data-size="5" multiple data-actions-box="true" data-selected-text-format="count > 3"></select>
+                            <span asp-validation-for="QualificationIds" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-success">Save</button>
+                    <a class="btn btn-info" asp-controller="JobPositions" asp-action="All">Back to List</a>
+                </fieldset>
+            </form>
+        </div>
+    </div>
+</div>

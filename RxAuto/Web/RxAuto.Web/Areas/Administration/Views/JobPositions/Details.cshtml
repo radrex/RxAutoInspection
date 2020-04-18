@@ -1,0 +1,25 @@
+﻿@model RxAuto.Web.ViewModels.JobPositions.ViewModels.JobPositionDetailsViewModel
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<h4>Job Positions information</h4>
+
+<div>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            <label asp-for="@Model.Name"></label>
+        </dt>
+        <dd class="col-sm-10">
+            <label asp-for="@Model.Name">@Model.Name</label>
+        </dd>
+    </dl>
+</div>
+<div>
+    <a class="btn btn-info" asp-controller="JobPositions" asp-action="All">Back to List</a>
+    <a class="btn btn-success" asp-controller="JobPositions" asp-action="Edit" asp-route-id="@Model.Id">Edit</a>
+</div>
