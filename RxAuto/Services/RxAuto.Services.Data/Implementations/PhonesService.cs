@@ -68,5 +68,24 @@
                 PhoneNumber = p.PhoneNumber,
             }).ToList();
         }
+
+        /// <summary>
+        /// Checks if the passed <c>Phone</c> is contained in more than 1 <c>Department</c>.
+        /// </summary>
+        /// <param name="phone">Phone Number</param>
+        /// <returns>True - phone is used in many departments. False - phone is used in one department.</returns>
+        public bool IsPhoneContainedInOtherDepartments(string phone)
+        {
+            int count = 0;
+            foreach (var department in this.dbContext.Departments)
+            {
+                foreach (var depPhone in department.Phones.Where(x => x.Phone.PhoneNumber == phone))
+                {
+                    count++;
+                }
+            }
+
+            return count > 1 ? true : false;
+        }
     }
 }

@@ -8,6 +8,7 @@
     using System.Linq;
     using System.Threading.Tasks;
     using System.Collections.Generic;
+    using RxAuto.Services.Models.OperatingLocations;
 
     /// <summary>
     /// Contains method implementations for <see cref="Department"/> entity and it's database relations.
@@ -16,15 +17,19 @@
     {
         //---------------- FIELDS -----------------
         private readonly ApplicationDbContext dbContext;
+        private readonly IPhonesService phonesService;
+        private readonly IOperatingLocationsService operatingLocationsService;
 
         //------------- CONSTRUCTORS --------------
         /// <summary>
         /// Initializes a new <see cref="DepartmentsService"/>.
         /// </summary>
         /// <param name="dbContext">Database context</param>
-        public DepartmentsService(ApplicationDbContext dbContext)
+        public DepartmentsService(ApplicationDbContext dbContext, IPhonesService phonesService, IOperatingLocationsService operatingLocationsService)
         {
             this.dbContext = dbContext;
+            this.phonesService = phonesService;
+            this.operatingLocationsService = operatingLocationsService;
         }
 
         //--------------- METHODS -----------------
@@ -87,7 +92,6 @@
                 })
             }).ToList();
         }
-
 
         /// <summary>
         /// Gets every <see cref="Department"/>'s <c>Id</c>, <c>Name</c>, <c>Email</c> and <c>Phones</c> that doesn't have an <see cref="OperatingLocation"/> from the database and returns it as a service model collection.
@@ -164,6 +168,142 @@
             }
 
             return departments;
+        }
+
+        /// <summary>
+        /// Gets and returns the total <c>Departments</c> count.
+        /// </summary>
+        /// <returns>Departments Count</returns>
+        public int Count()
+        {
+            return this.dbContext.Departments.Count();
+        }
+
+        /// <summary>
+        /// Gets every <see cref="Department"/>'s <c>Id</c>, <c>Name</c> and <c>Email</c> and returns it as a service model collection.
+        /// </summary>
+        /// <param name="take">Pages to take</param>
+        /// <param name="skip">Pages to skip</param>
+        /// <returns>Collection of Departments</returns>
+        public IEnumerable<DepartmentsListingServiceModel> All(int? take = null, int skip = 0)
+        {
+            var query = this.dbContext.Departments.Select(x => new DepartmentsListingServiceModel
+            {
+                Id = x.Id,
+                Name = x.Name,
+                Email = x.Email,
+            })
+            .Skip(skip);
+
+            if (take.HasValue)
+            {
+                query = query.Take(take.Value);
+            }
+
+            return query.ToList();
+        }
+
+        /// <summary>
+        /// Gets the first <see cref="Department"/> by (int)<c>Id</c> from the database and returns it's <c>Id</c>, <c>Name</c>, <c>Email</c> and <c>Description</c> as a service model.
+        /// <para> If there is no such <see cref="Department"/> in the database, returns the service model default value.</para>
+        /// </summary>
+        /// <param name="id">Department ID</param>
+        /// <returns>A single Department</returns>
+        public DepartmentServiceModel GetById(int id)
+        {
+            return this.dbContext.Departments.Where(x => x.Id == id)
+                                             .Select(x => new DepartmentServiceModel
+                                             {
+                                                 Id = x.Id,
+                                                 Name = x.Name,
+                                                 Email = x.Email,
+                                                 Description = x.Description,
+                                                 PhoneNumberIds = x.Phones.Select(p => p.PhoneId).ToArray(),
+                                             }).FirstOrDefault();
+        }
+
+        /// <summary>
+        /// Searches the database for a <see cref="Department"/> with the given <c>Id</c>.
+        /// </summary>
+        /// <param name="departmentId">Department ID</param>
+        /// <returns>True - found. False - not found.</returns>
+        public bool Exists(int departmentId)
+        {
+            return this.dbContext.Departments.Any(x => x.Id == departmentId); // TODO: Use AnyAsync ?
+        }
+
+        /// <summary>
+        /// Edits the <see cref="Department"/> using <see cref="EditDepartmentServiceModel"/>.
+        /// </summary>
+        /// <param name="model">Number of modified entities.</param>
+        /// <returns>Service model with <c>Id</c>, <c>Name</c>, <c>Email</c>, <c>Description</c> and <c>PhoneNumberIds</c>.</returns>
+        public async Task<int> EditAsync(EditDepartmentServiceModel model)
+        {
+            Department department = this.dbContext.Departments.Find(model.Id);
+            department.Name = model.Name;
+            department.Email = model.Email;
+            department.Description = model.Description;
+
+            // First Remove departmentPhone related entity (Mapping table) for that department
+            for (int i = 0; i < department.Phones.Count; i++)
+            {
+                this.dbContext.DepartmentPhones.Remove(department.Phones.ToArray()[i]);
+                await this.dbContext.SaveChangesAsync();
+                i--;
+            }
+
+            // Then Add the new departmentPhone related entities (Mapping table) for that department with the new Phones
+            foreach (var phoneNumberId in model.PhoneNumberIds)
+            {
+                await this.dbContext.DepartmentPhones.AddAsync(new DepartmentPhone
+                {
+                    Department = department,
+                    PhoneId = phoneNumberId,
+                });
+            }
+
+            int modifiedEntities = await this.dbContext.SaveChangesAsync();
+            return modifiedEntities;
+        }
+
+        /// <summary>
+        /// Removes a <see cref="Department"/> with the given <c>Id</c> from the database.
+        /// </summary>
+        /// <param name="id">Department ID</param>
+        /// <returns>True - removed entity. False - no such entity found.</returns>
+        public async Task<bool> RemoveAsync(int id)
+        {
+            Department department = this.dbContext.Departments.Find(id);
+            if (department == null)
+            {
+                return false;
+            }
+
+            // If we delete a department we need to set each of its phones to Internal, 
+            // but do not touch the phones that are used in other departments
+            foreach (var phone in department.Phones)
+            {
+                bool result = this.phonesService.IsPhoneContainedInOtherDepartments(phone.Phone.PhoneNumber);
+                // IS CONTAINED IN ONLY 1 DEPARTMENT
+                if (result == false)
+                {
+                    phone.Phone.IsInternal = true;
+                }
+                // BUG: IF Phone is contained in more than 1 department, and is selected in 2 OpLoc as Public, but we delete one of the departments -> the phone should stay public and not change to internal
+            }
+
+            // First Delete all departmentPhone related entities (Mapping table)
+            this.dbContext.DepartmentPhones.RemoveRange(department.Phones);
+
+            // And lastly Delete the jobPosition itself
+            this.dbContext.Departments.Remove(department);
+
+            int deletedEntities = await this.dbContext.SaveChangesAsync();
+            if (deletedEntities == 0)
+            {
+                return false;
+            }
+            return true;
         }
     }
 }

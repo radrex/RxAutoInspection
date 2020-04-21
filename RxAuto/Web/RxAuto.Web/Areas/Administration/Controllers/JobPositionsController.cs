@@ -250,7 +250,7 @@
             {
                 Id = model.Id,
                 Name = model.JobPositionName,
-                QualificationIds = model.QualificationIds,
+                QualificationIds = (model.QualificationIds == null) ? new int[0] : model.QualificationIds,
             };
 
             await this.jobPositionsService.EditAsync(serviceModel);

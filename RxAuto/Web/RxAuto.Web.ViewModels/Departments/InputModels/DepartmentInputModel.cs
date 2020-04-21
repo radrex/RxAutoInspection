@@ -11,6 +11,8 @@
     /// </summary>
     public class DepartmentInputModel
     {
+        public int Id { get; set; }
+
         [Required(ErrorMessage = "Please enter Department name")]
         [StringLength(150, ErrorMessage = "Name should be 5 to 150 characters long", MinimumLength = 5)]
         public string Name { get; set; }

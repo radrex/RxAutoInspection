@@ -44,5 +44,52 @@
         /// <param name="departmentIds">First element is <c>Department</c> ID, second element is <c>Phone</c> ID for that <c>Department</c></param>
         /// <returns></returns>
         IEnumerable<DepartmentsDropdownServiceModel> GetAllDepartmentsWithSelectedPhones(string[] departmentIds);
+
+        /// <summary>
+        /// Describes a method for getting the total number of <see cref="Department"/>s from the database.
+        /// <para>Should return the number of <see cref="Department"/>s</para>
+        /// </summary>
+        /// <returns>Department Count</returns>
+        int Count();
+
+        /// <summary>
+        /// Describes a method for getting all the <see cref="Department"/>s from the database with parameters for pagination.
+        /// <para>Should return a collection of <see cref="DepartmentsListingServiceModel"/>.</para>
+        /// </summary>
+        /// <param name="take">Pages to take</param>
+        /// <param name="skip">Pages to skip</param>
+        /// <returns>Service Model with Id, Name and Email</returns>
+        IEnumerable<DepartmentsListingServiceModel> All(int? take = null, int skip = 0);
+
+        /// <summary>
+        /// Describes a method which gets a <see cref="Department"/> from the database using the given (int) id.
+        /// <para>Should return <see cref="DepartmentServiceModel"/>.</para>
+        /// <para>Each service model has <see cref="Department"/>'s <c>Id</c>, <c>Name</c>, <c>Email</c> and <c>Description</c>.</para>
+        /// </summary>
+        /// <param name="id">Department ID</param>
+        /// <returns>A single Department</returns>
+        DepartmentServiceModel GetById(int id);
+
+        /// <summary>
+        /// Describes a method for searching a <see cref="Department"/> with given <c>Id</c>.
+        /// </summary>
+        /// <param name="departmentId">Department ID</param>
+        /// <returns>True - found. False - not found.</returns>
+        bool Exists(int departmentId);
+
+        /// <summary>
+        /// Describes an asynchronous method for editing a <see cref="Department"/> using <see cref="EditDepartmentServiceModel"/>.
+        /// <para>Should return the number of modified entities.</para>
+        /// </summary>
+        /// <param name="model">Service model with <c>Id</c>, <c>Name</c>, <c>Email</c>, <c>Description</c> and a collection of <c>PhoneNumberIds</c>.</param>
+        /// <returns>Number of modified entities.</returns>
+        Task<int> EditAsync(EditDepartmentServiceModel model);
+
+        /// <summary>
+        /// Describes an asynchronous method for removing a <see cref="Department"/> with given <c>Id</c> from the database.
+        /// </summary>
+        /// <param name="id">Department ID</param>
+        /// <returns>True - removed entity. False - no such entity found.</returns>
+        Task<bool> RemoveAsync(int id);
     }
 }

@@ -12,6 +12,8 @@
     /// </summary>
     public class OperatingLocationInputModel
     {
+        public int Id { get; set; }
+
         [Required(ErrorMessage = "Please enter Town name")]
         [StringLength(30, ErrorMessage = "Name should be 3 to 30 characters long", MinimumLength = 3)]
         public string Town { get; set; }

@@ -26,5 +26,12 @@
         /// </summary>
         /// <returns>Collection of Phones</returns>
         IEnumerable<PhonesDropdownServiceModel> GetAll();
+
+        /// <summary>
+        /// Describes a method which checks if the passed <c>Phone</c> is contained in more than 1 <c>Department</c>
+        /// </summary>
+        /// <param name="phone">Phone Number</param>
+        /// <returns>True - phone is used in many departments. False - phone is used in one department.</returns>
+        bool IsPhoneContainedInOtherDepartments(string phone);
     }
 }
