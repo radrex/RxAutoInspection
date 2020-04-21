@@ -18,18 +18,16 @@
         //---------------- FIELDS -----------------
         private readonly ApplicationDbContext dbContext;
         private readonly IPhonesService phonesService;
-        private readonly IOperatingLocationsService operatingLocationsService;
 
         //------------- CONSTRUCTORS --------------
         /// <summary>
         /// Initializes a new <see cref="DepartmentsService"/>.
         /// </summary>
         /// <param name="dbContext">Database context</param>
-        public DepartmentsService(ApplicationDbContext dbContext, IPhonesService phonesService, IOperatingLocationsService operatingLocationsService)
+        public DepartmentsService(ApplicationDbContext dbContext, IPhonesService phonesService)
         {
             this.dbContext = dbContext;
             this.phonesService = phonesService;
-            this.operatingLocationsService = operatingLocationsService;
         }
 
         //--------------- METHODS -----------------
