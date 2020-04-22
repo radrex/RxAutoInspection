@@ -17,17 +17,19 @@
         private readonly ApplicationDbContext dbContext;
         private readonly IDepartmentsService departmentsService;
         private readonly IPhonesService phonesService;
+        private readonly IEmployeesService employeesService;
 
         //------------- CONSTRUCTORS --------------
         /// <summary>
         /// Initializes a new <see cref="OperatingLocationsService"/>.
         /// </summary>
         /// <param name="dbContext">Database context</param>
-        public OperatingLocationsService(ApplicationDbContext dbContext, IDepartmentsService departmentsService, IPhonesService phonesService)
+        public OperatingLocationsService(ApplicationDbContext dbContext, IDepartmentsService departmentsService, IPhonesService phonesService, IEmployeesService employeesService)
         {
             this.dbContext = dbContext;
             this.departmentsService = departmentsService;
             this.phonesService = phonesService;
+            this.employeesService = employeesService;
         }
 
         //--------------- METHODS -----------------
@@ -226,6 +228,47 @@
 
             modifiedEntities += await this.dbContext.SaveChangesAsync();
             return modifiedEntities;
+        }
+
+        /// <summary>
+        /// Removes a <see cref="OperatingLocation"/> with the given <c>Id</c> from the database.
+        /// </summary>
+        /// <param name="id">OperatingLocation ID</param>
+        /// <returns>True - removed entity. False - no such entity found.</returns>
+        public async Task<bool> RemoveAsync(int id)
+        {
+            OperatingLocation operatingLocation = this.dbContext.OperatingLocations.Find(id);
+            if (operatingLocation == null)
+            {
+                return false;
+            }
+
+            // First Set each Department's OperatingLocationId to null for that Operating Location
+            foreach (var department in this.dbContext.Departments.Where(x => x.OperatingLocationId == operatingLocation.Id))
+            {
+                department.OperatingLocationId = null;
+            }
+
+            // Then Delete cascade all employees with that operatingLocation
+            for (int i = 0; i < operatingLocation.Employees.Count; i++)
+            {
+                await this.employeesService.RemoveAsync(operatingLocation.Employees.ToArray()[i].Id);
+                i--;
+            }
+
+            // Then Delete all serviceOperatingLocation related entities (Mapping table)
+            this.dbContext.ServiceOperatingLocations.RemoveRange(operatingLocation.Services);
+
+            // And lastly Delete the operatingLocation itself
+            this.dbContext.OperatingLocations.Remove(operatingLocation);
+
+            int deletedEntities = await this.dbContext.SaveChangesAsync();
+
+            if (deletedEntities == 0)
+            {
+                return false;
+            }
+            return true;
         }
     }
 }

@@ -249,7 +249,24 @@
             return this.View(model);
         }
 
-        // TODO: Implement delete on POST
+        /// <summary>
+        /// Controller POST Action Method.
+        /// <para>Active Route --> /Administration/OperatingLocations/Delete/{id}</para>
+        /// <para>Deletes the selected operatingLocation.</para>
+        /// </summary>
+        /// <param name="model"> View model for deletion of a OperatingLocation</param>
+        /// <returns></returns>
+        [HttpPost]
+        public async Task<IActionResult> Delete(DeleteOperatingLocationViewModel model)
+        {
+            var success = await this.operatingLocationsService.RemoveAsync(model.Id);
+            if (!success)
+            {
+                return this.RedirectToAction("Error", "Home"); // TODO: redirect
+            }
+
+            return this.RedirectToAction("All", "OperatingLocations");
+        }
 
 
         //-----------------------------------------------------------------------------------------------------//

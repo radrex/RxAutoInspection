@@ -66,5 +66,12 @@
         /// <param name="model">Service model with <c>Id</c>, <c>Town</c>, <c>Address</c>, <c>Description</c>, <c>ImageUrl</c> and a collection of <c>DepartmentIds</c>  with associated <c>PhoneIds</c>.</param>
         /// <returns>Number of modified entities.</returns>
         Task<int> EditAsync(EditOperatingLocationServiceModel model);
+
+        /// <summary>
+        /// Describes an asynchronous method for removing a <see cref="OperatingLocation"/> with given <c>Id</c> from the database.
+        /// </summary>
+        /// <param name="id">OperatingLocation ID</param>
+        /// <returns>True - removed entity. False - no such entity found.</returns>
+        Task<bool> RemoveAsync(int id);
     }
 }
