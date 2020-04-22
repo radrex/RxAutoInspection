@@ -55,6 +55,7 @@ namespace RxAuto.Web
             services.AddTransient<IPhonesService, PhonesService>();
             services.AddTransient<IOperatingLocationsService, OperatingLocationsService>();
             services.AddTransient<IDepartmentsService, DepartmentsService>();
+            services.AddTransient<IPhonesService, PhonesService>();
             services.AddTransient<IServicesService, ServicesService>();
             services.AddTransient<IDocumentsService, DocumentsService>();
             services.AddTransient<IServiceTypesService, ServiceTypesService>();

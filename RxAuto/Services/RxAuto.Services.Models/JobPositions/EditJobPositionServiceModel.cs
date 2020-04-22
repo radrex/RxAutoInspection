@@ -1,7 +1,7 @@
 ﻿namespace RxAuto.Services.Models.JobPositions
 {
     /// <summary>
-    /// Service model for Qualification edit information with <c>Id</c>, <c>Name</c> and a collection of <c>QualificationIds</c>.
+    /// Service model for JobPosition edit information with <c>Id</c>, <c>Name</c> and a collection of <c>QualificationIds</c>.
     /// </summary>
     public class EditJobPositionServiceModel
     {

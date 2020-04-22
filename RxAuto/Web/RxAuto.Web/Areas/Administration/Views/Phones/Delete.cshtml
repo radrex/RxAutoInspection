@@ -1,0 +1,31 @@
+﻿@model RxAuto.Web.ViewModels.Phones.ViewModels.DeletePhoneViewModel
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<h1>Delete</h1>
+
+<h3>Are you sure you want to delete this phone? Bear in mind that every department's list of phones will loose that phone.</h3>
+<div>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            <label asp-for="@Model.PhoneNumber"></label>
+        </dt>
+        <dd class="col-sm-10">
+            <label asp-for="@Model.PhoneNumber">@Model.PhoneNumber</label>
+        </dd>
+        <dt class="col-sm-2">
+            <label asp-for="@Model.IsInternal"></label>
+        </dt>
+        <dd class="col-sm-10">
+            <label asp-for="@Model.IsInternal">@Model.IsInternal</label>
+        </dd>
+    </dl>
+
+    <form method="post" asp-controller="Phones" asp-action="Delete">
+        <input type="submit" value="Delete" class="btn btn-danger" />
+        <a class="btn btn-info" asp-action="All">Back to List</a>
+    </form>
+</div>

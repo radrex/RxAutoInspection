@@ -1,0 +1,28 @@
+﻿@model RxAuto.Web.ViewModels.Phones.InputModels.PhoneInputModel
+
+@{
+    ViewData["Title"] = "Phones Edit Form";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Operating Location Form</h1>
+</div>
+
+<form method="post" asp-controller="Phones" asp-action="Edit">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <fieldset class="border p-3">
+                    <legend class="w-auto">Phone information</legend>
+                    <p class="form-group">
+                        <label asp-for="PhoneNumber"></label>
+                        <input asp-for="PhoneNumber" class="form-control" />
+                        <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+                    </p>
+                    <button type="submit" class="btn btn-success">Save</button>
+                    <a class="btn btn-info" asp-controller="Phones" asp-action="All">Back to List</a>
+                </fieldset>
+            </div>
+        </div>
+    </div>
+</form>

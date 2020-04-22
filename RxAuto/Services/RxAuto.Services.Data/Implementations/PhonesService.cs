@@ -5,8 +5,8 @@
     using RxAuto.Services.Models.Phones;
 
     using System.Linq;
-    using System.Collections.Generic;
     using System.Threading.Tasks;
+    using System.Collections.Generic;
 
     /// <summary>
     /// Contains method implementations for <see cref="Phone"/> entity and it's database relations.
@@ -86,6 +86,110 @@
             }
 
             return count > 1 ? true : false;
+        }
+
+        /// <summary>
+        /// Gets and returns the total <c>Phones</c> count.
+        /// </summary>
+        /// <returns>Phones Count</returns>
+        public int Count()
+        {
+            return this.dbContext.Phones.Count();
+        }
+
+        /// <summary>
+        /// Gets every <see cref="Phone"/>'s <c>Id</c>, <c>PhoneNumber</c> and <c>IsInternal</c> and returns it as a service model collection.
+        /// </summary>
+        /// <param name="take">Pages to take</param>
+        /// <param name="skip">Pages to skip</param>
+        /// <returns>Collection of Phones</returns>
+        public IEnumerable<PhonesListingServiceModel> All(int? take = null, int skip = 0)
+        {
+            var query = this.dbContext.Phones.Select(x => new PhonesListingServiceModel
+            {
+                Id = x.Id,
+                PhoneNumber = x.PhoneNumber,
+                IsInternal = x.IsInternal == true ? "Internal" : "Public",
+            })
+            .Skip(skip);
+
+            if (take.HasValue)
+            {
+                query = query.Take(take.Value);
+            }
+
+            return query.ToList();
+        }
+
+        /// <summary>
+        /// Gets the first <see cref="Phone"/> by (int)<c>Id</c> from the database and returns it's <c>Id</c>, <c>Name</c> and <c>IsInternal</c> as a service model.
+        /// <para> If there is no such <see cref="Phone"/> in the database, returns the service model default value.</para>
+        /// </summary>
+        /// <param name="id">Phone ID</param>
+        /// <returns>A single Phone</returns>
+        public PhoneServiceModel GetById(int id)
+        {
+            return this.dbContext.Phones.Where(x => x.Id == id)
+                                        .Select(x => new PhoneServiceModel
+                                        {
+                                            Id = x.Id,
+                                            PhoneNumber = x.PhoneNumber,
+                                            IsInternal = x.IsInternal.ToString(),
+                                        }).FirstOrDefault();
+        }
+
+        /// <summary>
+        /// Searches the database for a <see cref="Phone"/> with the given <c>Id</c>.
+        /// </summary>
+        /// <param name="phoneId">Employe ID</param>
+        /// <returns>True - found. False - not found.</returns>
+        public bool Exists(int phoneId)
+        {
+            return this.dbContext.Phones.Any(x => x.Id == phoneId); // TODO: Use AnyAsync ?
+        }
+
+        /// <summary>
+        /// Edits the <see cref="Phone"/> using <see cref="EditPhoneServiceModel"/>.
+        /// </summary>
+        /// <param name="model">Number of modified entities.</param>
+        /// <returns>Service model with <c>Id</c> and <c>PhoneNumber</c></returns>
+        public async Task<int> EditAsync(EditPhoneServiceModel model)
+        {
+            Phone phone = this.dbContext.Phones.Find(model.Id);
+            phone.PhoneNumber = model.PhoneNumber;
+
+            // TODO: check for duplicates
+
+            int modifiedEntities = await this.dbContext.SaveChangesAsync();
+            return modifiedEntities;
+        }
+
+        /// <summary>
+        /// Removes a <see cref="Phone"/> with the given <c>Id</c> from the database.
+        /// </summary>
+        /// <param name="id">Phone ID</param>
+        /// <returns>True - removed entity. False - no such entity found.</returns>
+        public async Task<bool> RemoveAsync(int id)
+        {
+            Phone phone = this.dbContext.Phones.Find(id);
+            if (phone == null)
+            {
+                return false;
+            }
+
+            // First Delete all DepartmentPhone related entities (Mapping table)
+            this.dbContext.DepartmentPhones.RemoveRange(phone.Departments);
+
+            // And lastly Delete the Phone itself
+            this.dbContext.Phones.Remove(phone);
+
+            int deletedEntities = await this.dbContext.SaveChangesAsync();
+
+            if (deletedEntities == 0)
+            {
+                return false;
+            }
+            return true;
         }
     }
 }

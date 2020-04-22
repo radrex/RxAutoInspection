@@ -8,6 +8,8 @@
     /// </summary>
     public class PhoneInputModel
     {
+        public int Id { get; set; }
+
         [Display(Name = "Phone Number")]
         [Required(ErrorMessage = "Please enter Phone Number")]
         //TODO: Add phone regex validation
