@@ -1,0 +1,37 @@
+﻿@model RxAuto.Web.ViewModels.ServiceTypes.ViewModels.ServiceTypeDetailsViewModel
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<h4>Service Type information</h4>
+
+<div>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            <label asp-for="@Model.Name"></label>
+        </dt>
+        <dd class="col-sm-10">
+            <label asp-for="@Model.Name">@Model.Name</label>
+        </dd>
+        <dt class="col-sm-2">
+            <label asp-for="@Model.IsShownInMainMenu"></label>
+        </dt>
+        <dd class="col-sm-10">
+            <label asp-for="@Model.IsShownInMainMenu">@Model.IsShownInMainMenu</label>
+        </dd>
+        <dt class="col-sm-2">
+            <label asp-for="@Model.Description"></label>
+        </dt>
+        <dd class="col-sm-10">
+            <label asp-for="@Model.Description">@Model.Description</label>
+        </dd>
+    </dl>
+</div>
+<div>
+    <a class="btn btn-info" asp-controller="ServiceTypes" asp-action="All">Back to List</a>
+    <a class="btn btn-success" asp-controller="ServiceTypes" asp-action="Edit" asp-route-id="@Model.Id">Edit</a>
+</div>

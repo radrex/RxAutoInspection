@@ -1,12 +1,14 @@
 ﻿namespace RxAuto.Web.Areas.Administration.Controllers
 {
     using RxAuto.Services.Data;
+    using RxAuto.Services.Models.Services;
     using RxAuto.Services.Models.Documents;
     using RxAuto.Services.Models.ServiceTypes;
     using RxAuto.Services.Models.VehicleTypes;
     using RxAuto.Services.Models.OperatingLocations;
 
     using RxAuto.Web.ViewModels.UnifiedModels;
+    using RxAuto.Web.ViewModels.Services.ViewModels;
     using RxAuto.Web.ViewModels.Documents.ViewModels;
     using RxAuto.Web.ViewModels.Services.InputModels;
     using RxAuto.Web.ViewModels.Documents.InputModels;
@@ -19,15 +21,19 @@
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.AspNetCore.Authorization;
 
+    using System;
     using System.Linq;
     using System.Threading.Tasks;
     using System.Collections.Generic;
-    using RxAuto.Services.Models.Services;
+    using RxAuto.Data.Models;
 
     [Area("Administration")]
     [Authorize(Roles = "Administrator")]
     public class ServicesController : Controller
     {
+        //--------------- CONSTANTS ---------------
+        private const int ItemsPerPage = 10;
+
         //---------------- FIELDS -----------------
         private readonly IServicesService servicesService;
         private readonly IDocumentsService documentsService;
@@ -222,6 +228,223 @@
 
             await this.documentsService.CreateAsync(document);
             return this.RedirectToAction("Create");
+        }
+
+        //------------------------- LISTING FOR SERVICES ----------------------------
+        /// <summary>
+        /// Controller GET Action Method.
+        /// <para>Active Route --> /Administration/Services/All/{page}</para>
+        /// <para>Returns a View with Services listing using Pagination.</para>
+        /// </summary>
+        /// <param name="page">Page number</param>
+        /// <returns>View with Services listing</returns>
+        [HttpGet]
+        public IActionResult All(int page = 1)
+        {
+            var viewModel = new ServicesListingViewModel()
+            {
+                Services = this.servicesService.All(ItemsPerPage, (page - 1) * ItemsPerPage).Select(x => new ServiceViewModel 
+                {
+                    Id = x.Id,
+                    Name = x.Name,
+                    IsShownInSubMenu = x.IsShownInSubMenu,
+                    ServiceType = x.ServiceType,
+                    VehicleType = x.VehicleType,
+                    Price = x.Price,
+                }),
+            };
+
+            int count = this.servicesService.Count();
+            viewModel.PagesCount = (int)Math.Ceiling((double)count / ItemsPerPage);
+
+            if (viewModel.PagesCount == 0)
+            {
+                viewModel.PagesCount = 1;
+            }
+
+            viewModel.CurrentPage = page;
+            return this.View(viewModel);
+        }
+
+        //------------------------- DETAILS OF A SERVICE ----------------------------
+        /// <summary>
+        /// Controller GET Action Method.
+        /// <para>Active Route --> /Administration/Services/Details/{id}</para>
+        /// <para>Returns a View with details information for a <c>Service</c>.</para>
+        /// </summary>
+        /// <param name="id">Service ID</param>
+        /// <returns>Service details View</returns>
+        [HttpGet]
+        public IActionResult Details(int id)
+        {
+            ServiceServiceModel service = this.servicesService.GetById(id);
+            if (service.Name == null)
+            {
+                return this.BadRequest();
+            }
+
+            var model = new ServiceDetailsViewModel
+            {
+                Id = service.Id,
+                Name = service.Name,
+                IsShownInSubMenu = service.IsShownInSubMenu == true ? "IsShownInSubMenu" : "IsNotShownInSubMenu",
+                ServiceType = service.ServiceType,
+                VehicleType = service.VehicleType,
+                Description = service.Description,
+                Price = service.Price,
+                //TODO: Add operatingLocations, documents, reservations
+            };
+
+            return this.View(model);
+        }
+
+        //------------------------- EDIT A SERVICE ----------------------------------
+        /// <summary>
+        /// Controller GET Action Method.
+        /// <para>Active Route --> /Administration/Services/Edit/{id}</para>
+        /// <para>Returns a View with edit information of a <c>Service</c>.</para>
+        /// </summary>
+        /// <param name="id">Service ID</param>
+        /// <returns>Service edit View</returns>
+        [HttpGet]
+        public IActionResult Edit(int id)
+        {
+            ServiceServiceModel service = this.servicesService.GetById(id);
+            if (service.Name == null)
+            {
+                return this.BadRequest();
+            }
+
+            var model = new ServiceInputModel
+            {
+                Id = service.Id,
+                ServiceName = service.Name,
+                IsShownInSubMenu = service.IsShownInSubMenu,
+                ServiceDescription = service.Description,
+                Price = service.Price,
+
+                VehicleTypeId = service.VehicleTypeId,
+                VehicleTypes = this.vehicleTypesService.GetAll().Select(x => new VehicleTypesDropdownViewModel
+                {
+                    Id = x.Id,
+                    Name = x.Name,
+                    Category = x.Category,
+                }),
+
+                ServiceTypeId = service.ServiceTypeId,
+                ServiceTypes = this.serviceTypesService.GetAll().Select(x => new ServiceTypesDropdownViewModel
+                {
+                    Id = x.Id,
+                    Name = x.Name,
+                }),
+
+                OperatingLocationIds = service.OperatingLocationIds,
+                OperatingLocations = this.operatingLocationsService.GetAll().Select(x => new OperatingLocationsDropdownViewModel 
+                {
+                    Id = x.Id,
+                    Town = x.Town,
+                    Address = x.Address,
+                }),
+
+                DocumentIds = service.DocumentIds,
+                Documents = this.documentsService.GetAll().Select(x => new DocumentsDropdownViewModel
+                {
+                    Id = x.Id,
+                    Name = x.Name,
+                }),
+            };
+
+            return this.View(model);
+        }
+
+        /// <summary>
+        /// Controller POST Action Method.
+        /// <para>Active Route --> /Administration/Services/Edit/{id}</para>
+        /// <para>Edits a <c>Service</c>.</para>
+        /// </summary>
+        /// <param name="model">Input model for editing a Service</param>
+        /// <returns></returns>
+        [HttpPost]
+        public async Task<IActionResult> Edit(ServiceInputModel model)
+        {
+            if (!this.servicesService.Exists(model.Id))
+            {
+                return this.BadRequest();
+            }
+
+            if (!ModelState.IsValid)
+            {
+                return this.RedirectToAction("Error", "Home");
+            }
+
+            EditServiceServiceModel serviceModel = new EditServiceServiceModel
+            {
+                Id = model.Id,
+                Name = model.ServiceName,
+                Price = model.Price,
+                Description = model.ServiceDescription,
+                IsShownInSubMenu = model.IsShownInSubMenu,
+
+                ServiceTypeId = model.ServiceTypeId,
+                VehicleTypeId = model.VehicleTypeId,
+
+                OperatingLocationIds = (model.OperatingLocationIds == null) ? new int[0] : model.OperatingLocationIds,
+                DocumentIds = (model.DocumentIds == null) ? new int[0] : model.DocumentIds,
+            };
+
+            await this.servicesService.EditAsync(serviceModel);
+            return this.RedirectToAction("Details", "Services", new { id = serviceModel.Id });
+        }
+
+        //------------------------- DELETION OF A SERVICE ---------------------------
+        /// <summary>
+        /// Controller GET Action Method.
+        /// <para>Active Route --> /Administration/Services/Delete/{id}</para>
+        /// <para>Returns a View with delete confirmation information for a <c>Service</c>.</para>
+        /// </summary>
+        /// <param name="id">Service ID</param>
+        /// <returns>Delete Service confirmation View</returns>
+        [HttpGet]
+        public IActionResult Delete(int id)
+        {
+            ServiceServiceModel service = this.servicesService.GetById(id);
+            if (service.Name == null)
+            {
+                return this.BadRequest();
+            }
+
+            var model = new DeleteServiceViewModel
+            {
+                Id = service.Id,
+                Name = service.Name,
+                Price = service.Price,
+                Description = service.Description,
+                ServiceType = service.ServiceType,
+                VehicleType = service.VehicleType,
+                IsShownInSubMenu = (service.IsShownInSubMenu == true) ? "IsShownInSubMenu" : "NotShownInSubMenu",
+                //TODO: add operating locations and documents tables
+            };
+
+            return this.View(model);
+        }
+
+        /// <summary>
+        /// Controller POST Action Method.
+        /// <para>Active Route --> /Administration/Services/Delete/{id}</para>
+        /// <para>Deletes the selected Service.</para>
+        /// </summary>
+        /// <param name="model"> View model for deletion of a Service</param>
+        /// <returns></returns>
+        [HttpPost]
+        public async Task<IActionResult> Delete(DeleteServiceViewModel model)
+        {
+            var success = await this.servicesService.RemoveAsync(model.Id);
+            if (!success)
+            {
+                return this.RedirectToAction("Error", "Home"); // TODO: redirect
+            }
+
+            return this.RedirectToAction("All", "Services");
         }
 
         //-----------------------------------------------------------------------------------------------------//

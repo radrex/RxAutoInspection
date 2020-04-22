@@ -16,15 +16,17 @@
     {
         //---------------- FIELDS -----------------
         private readonly ApplicationDbContext dbContext;
+        private readonly IServicesService servicesService;
 
         //------------- CONSTRUCTORS --------------
         /// <summary>
         /// Initializes a new <see cref="ServiceTypesService"/>.
         /// </summary>
         /// <param name="dbContext">Database context</param>
-        public ServiceTypesService(ApplicationDbContext dbContext)
+        public ServiceTypesService(ApplicationDbContext dbContext, IServicesService servicesService)
         {
             this.dbContext = dbContext;
+            this.servicesService = servicesService;
         }
 
         //--------------- METHODS -----------------
@@ -70,6 +72,116 @@
                 Id = st.Id,
                 Name = st.Name,
             }).ToList();
+        }
+
+        /// <summary>
+        /// Gets every <see cref="ServiceType"/>'s <c>Id</c>, <c>Name</c> and <c>IsShownInMainMenu</c> and returns it as a service model collection.
+        /// </summary>
+        /// <param name="take">Pages to take</param>
+        /// <param name="skip">Pages to skip</param>
+        /// <returns>Collection of ServiceTypes</returns>
+        public IEnumerable<ServiceTypesListingServiceModel> All(int? take = null, int skip = 0)
+        {
+            var query = this.dbContext.ServiceTypes.Select(x => new ServiceTypesListingServiceModel
+            {
+                Id = x.Id,
+                Name = x.Name,
+                IsShownInMainMenu = x.IsShownInMainMenu == true ? "IsShownInMainMenu" : "NotShownInMainMenu",
+            })
+            .Skip(skip);
+
+            if (take.HasValue)
+            {
+                query = query.Take(take.Value);
+            }
+
+            return query.ToList();
+        }
+
+        /// <summary>
+        /// Gets and returns the total <c>ServiceTypes</c> count.
+        /// </summary>
+        /// <returns>ServiceTypes Count</returns>
+        public int Count()
+        {
+            return this.dbContext.ServiceTypes.Count();
+        }
+
+        /// <summary>
+        /// Gets the first <see cref="ServiceType"/> by (int)<c>Id</c> from the database and returns it's <c>Id</c>, <c>Name</c> and <c>IsShownInMainMenu</c> as a service model.
+        /// <para> If there is no such <see cref="ServiceType"/> in the database, returns the service model default value.</para>
+        /// </summary>
+        /// <param name="id">ServiceType ID</param>
+        /// <returns>A single ServiceType</returns>
+        public ServiceTypeServiceModel GetById(int id)
+        {
+            return this.dbContext.ServiceTypes.Where(x => x.Id == id)
+                                              .Select(x => new ServiceTypeServiceModel
+                                              {
+                                                  Id = x.Id,
+                                                  Name = x.Name,
+                                                  Description = x.Description,
+                                                  IsShownInMainMenu = x.IsShownInMainMenu,
+                                              }).FirstOrDefault();
+        }
+
+        /// <summary>
+        /// Searches the database for a <see cref="ServiceType"/> with the given <c>Id</c>.
+        /// </summary>
+        /// <param name="serviceTypeId">ServiceType ID</param>
+        /// <returns>True - found. False - not found.</returns>
+        public bool Exists(int serviceTypeId)
+        {
+            return this.dbContext.ServiceTypes.Any(x => x.Id == serviceTypeId); // TODO: Use AnyAsync ?
+        }
+
+        /// <summary>
+        /// Edits the <see cref="ServiceType"/> using <see cref="EditServiceTypeServiceModel"/>.
+        /// </summary>
+        /// <param name="model">Number of modified entities.</param>
+        /// <returns>Service model with <c>Id</c>, <c>Name</c>, <c>Description</c> and <c>IsShownInMainMenu</c>.</returns>
+        public async Task<int> EditAsync(EditServiceTypeServiceModel model)
+        {
+            ServiceType serviceType = this.dbContext.ServiceTypes.Find(model.Id);
+            serviceType.Name = model.Name;
+            serviceType.Description = model.Description;
+            serviceType.IsShownInMainMenu = model.IsShownInMainMenu;
+
+            int modifiedEntities = await this.dbContext.SaveChangesAsync();
+            return modifiedEntities;
+        }
+
+        /// <summary>
+        /// Removes a <see cref="ServiceType"/> with the given <c>Id</c> from the database.
+        /// </summary>
+        /// <param name="id">ServiceType ID</param>
+        /// <returns>True - removed entity. False - no such entity found.</returns>
+        public async Task<bool> RemoveAsync(int id)
+        {
+            ServiceType serviceType = this.dbContext.ServiceTypes.Find(id);
+            if (serviceType == null)
+            {
+                return false;
+            }
+
+            // TODO: UNCOMMENT THIS WHEN RESERVATIONS REMOVE METHOD IS READY
+            // First Delete cascade all services with that serviceType
+            //for (int i = 0; i < serviceType.Services.Count; i++)
+            //{
+            //    await this.servicesService.RemoveAsync(serviceType.Services.ToArray()[i].Id);
+            //    i--;
+            //}
+
+            // And lastly Delete the serviceType itself
+            this.dbContext.ServiceTypes.Remove(serviceType);
+
+            int deletedEntities = await this.dbContext.SaveChangesAsync();
+
+            if (deletedEntities == 0)
+            {
+                return false;
+            }
+            return true;
         }
     }
 }

@@ -9,6 +9,8 @@
     /// </summary>
     public class ServiceTypeInputModel
     {
+        public int Id { get; set; }
+
         [Display(Name = "Service Type")]
         [Required]
         [StringLength(100, ErrorMessage = "Name should be 3 to 20 characters long", MinimumLength = 3)]

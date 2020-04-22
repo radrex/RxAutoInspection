@@ -16,6 +16,8 @@
     /// </summary>
     public class ServiceInputModel
     {
+        public int Id { get; set; }
+
         //----------------------------- SERVICE TYPES ---------------------------------
         // For Id passed from <select>
         [Display(Name = "Service Type")]
