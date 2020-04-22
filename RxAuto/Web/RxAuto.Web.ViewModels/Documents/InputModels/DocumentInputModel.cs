@@ -9,6 +9,8 @@
     /// </summary>
     public class DocumentInputModel
     {
+        public int Id { get; set; }
+
         [Required]
         [StringLength(300, ErrorMessage = "Name should be 5 to 20 characters long", MinimumLength = 5)]
         public string DocumentName { get; set; }

@@ -1,0 +1,33 @@
+﻿@model RxAuto.Web.ViewModels.Documents.InputModels.DocumentInputModel
+
+@{
+    ViewData["Title"] = "Document Edit Form";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Document Form</h1>
+</div>
+
+<form method="post" asp-controller="Documents" asp-action="Edit">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <fieldset class="border p-3">
+                    <legend class="w-auto">Document information</legend>
+                    <p class="form-group">
+                        <label asp-for="DocumentName"></label>
+                        <input asp-for="DocumentName" class="form-control" />
+                        <span asp-validation-for="DocumentName" class="text-danger"></span>
+                    </p>
+                    <p class="form-group">
+                        <label asp-for="DocumentDescription"></label>
+                        <textarea asp-for="DocumentDescription" class="form-control"></textarea>
+                        <span asp-validation-for="DocumentDescription" class="text-danger"></span>
+                    </p>
+                    <button type="submit" class="btn btn-success">Save</button>
+                    <a class="btn btn-info" asp-controller="Documents" asp-action="All">Back to List</a>
+                </fieldset>
+            </div>
+        </div>
+    </div>
+</form>
