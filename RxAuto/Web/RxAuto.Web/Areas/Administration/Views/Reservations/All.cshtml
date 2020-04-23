@@ -1,0 +1,74 @@
+﻿@model RxAuto.Web.ViewModels.Reservations.ViewModels.ReservationsListingViewModel
+@{
+    ViewData["Title"] = "All";
+}
+
+<h1>Reservations</h1>
+
+<table class="table table-hover table-responsive">
+    <thead>
+        <tr>
+            <th><label asp-for="@Model.Reservations.First().ServiceType"></label></th>
+            <th><label asp-for="@Model.Reservations.First().Service"></label></th>
+            <th><label asp-for="@Model.Reservations.First().IsActive"></label></th>
+            <th><label asp-for="@Model.Reservations.First().VehicleMake"></label></th>
+            <th><label asp-for="@Model.Reservations.First().VehicleModel"></label></th>
+            <th><label asp-for="@Model.Reservations.First().LicenseNumber"></label></th>
+            <th><label asp-for="@Model.Reservations.First().PhoneNumber"></label></th>
+            <th><label asp-for="@Model.Reservations.First().ReservationDateTime"></label></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var reservation in Model.Reservations)
+        {
+            <tr>
+                <td>@reservation.ServiceType</td>
+                <td>@reservation.Service</td>
+                <td>@reservation.IsActive</td>
+                <td>@reservation.VehicleMake</td>
+                <td>@reservation.VehicleModel</td>
+                <td>@reservation.LicenseNumber</td>
+                <td>@reservation.PhoneNumber</td>
+                <td>@reservation.ReservationDateTime</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<nav>
+    <ul class="pagination justify-content-center">
+        @if (this.Model.CurrentPage == 1)
+        {
+            <li class="page-item disabled">
+                <a class="page-link" href="#" tabindex="-1">Previous</a>
+            </li>
+        }
+        else
+        {
+            <li class="page-item">
+                <a class="page-link" asp-route-page="@(this.Model.CurrentPage - 1)">Previous</a>
+            </li>
+        }
+
+        @for (int i = 1; i <= this.Model.PagesCount; i++)
+        {
+            var active = i == this.Model.CurrentPage ? "active" : string.Empty;
+            <li class="page-item @active">
+                <a class="page-link" asp-route-page="@i">@i</a>
+            </li>
+        }
+
+        @if (this.Model.CurrentPage == this.Model.PagesCount)
+        {
+            <li class="page-item disabled">
+                <a class="page-link" href="#" tabindex="-1">Next</a>
+            </li>
+        }
+        else
+        {
+            <li class="page-item">
+                <a class="page-link" asp-route-page="@(this.Model.CurrentPage + 1)">Next</a>
+            </li>
+        }
+    </ul>
+</nav>

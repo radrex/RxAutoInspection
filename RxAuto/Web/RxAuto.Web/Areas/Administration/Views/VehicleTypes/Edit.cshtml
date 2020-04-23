@@ -1,0 +1,39 @@
+﻿@model RxAuto.Web.ViewModels.VehicleTypes.InputModels.VehicleTypeInputModel
+
+@{
+    ViewData["Title"] = "VehicleType Edit Form";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Vehicle Type Form</h1>
+</div>
+
+<form method="post" asp-controller="VehicleTypes" asp-action="Edit">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <fieldset class="border p-3">
+                    <legend class="w-auto">Vehicle type information</legend>
+                    <p>
+                        <label asp-for="VehicleCategoryId"></label><br />
+                        <select asp-for="VehicleCategoryId" asp-items="Html.GetEnumSelectList<VehicleCategory>()" class="selectpicker">
+                            <!-- TODO: validation-->
+                        </select>
+                    </p>
+                    <p class="form-group">
+                        <label asp-for="VehicleTypeName"></label>
+                        <input asp-for="VehicleTypeName" class="form-control" />
+                        <span asp-validation-for="VehicleTypeName" class="text-danger"></span>
+                    </p>
+                    <p class="form-group">
+                        <label asp-for="VehicleTypeDescription"></label>
+                        <textarea asp-for="VehicleTypeDescription" class="form-control"></textarea>
+                        <span asp-validation-for="VehicleTypeDescription" class="text-danger"></span>
+                    </p>
+                    <button type="submit" class="btn btn-success">Save</button>
+                    <a class="btn btn-info" asp-controller="VehicleTypes" asp-action="All">Back to List</a>
+                </fieldset>
+            </div>
+        </div>
+    </div>
+</form>

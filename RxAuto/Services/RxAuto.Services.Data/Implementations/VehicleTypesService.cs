@@ -16,15 +16,17 @@
     {
         //---------------- FIELDS -----------------
         private readonly ApplicationDbContext dbContext;
+        private readonly IServicesService servicesService;
 
         //------------- CONSTRUCTORS --------------
         /// <summary>
         /// Initializes a new <see cref="VehicleTypesService"/>.
         /// </summary>
         /// <param name="dbContext">Database context</param>
-        public VehicleTypesService(ApplicationDbContext dbContext)
+        public VehicleTypesService(ApplicationDbContext dbContext, IServicesService servicesService)
         {
             this.dbContext = dbContext;
+            this.servicesService = servicesService;
         }
 
         //--------------- METHODS -----------------
@@ -73,6 +75,118 @@
                 Category = vt.VehicleCategory.ToString(),
                 Name = vt.Name,
             }).ToList().OrderBy(x => x.Category);
+        }
+
+        /// <summary>
+        /// Gets every <see cref="VehicleType"/>'s <c>Id</c>, <c>Name</c> and <c>VehicleCategory</c> and returns it as a service model collection.
+        /// </summary>
+        /// <param name="take">Pages to take</param>
+        /// <param name="skip">Pages to skip</param>
+        /// <returns>Collection of VehicleTypes</returns>
+        public IEnumerable<VehicleTypesListingServiceModel> All(int? take = null, int skip = 0)
+        {
+            var query = this.dbContext.VehicleTypes.Select(x => new VehicleTypesListingServiceModel
+            {
+                Id = x.Id,
+                Name = x.Name,
+                VehicleCategory = x.VehicleCategory.ToString(),
+            })
+            .Skip(skip);
+
+            if (take.HasValue)
+            {
+                query = query.Take(take.Value);
+            }
+
+            return query.ToList();
+        }
+
+        /// <summary>
+        /// Gets and returns the total <c>VehicleTypes</c> count.
+        /// </summary>
+        /// <returns>VehicleTypes Count</returns>
+        public int Count()
+        {
+            return this.dbContext.VehicleTypes.Count();
+        }
+
+        /// <summary>
+        /// Gets the first <see cref="VehicleType"/> by (int)<c>Id</c> from the database and returns it's <c>Id</c>, <c>Name</c>, <c>VehicleCategory</c> and <c>Description</c> as a service model.
+        /// <para> If there is no such <see cref="VehicleType"/> in the database, returns the service model default value.</para>
+        /// </summary>
+        /// <param name="id">VehicleType ID</param>
+        /// <returns>A single VehicleType</returns>
+        public VehicleTypeServiceModel GetById(int id)
+        {
+            return this.dbContext.VehicleTypes.Where(x => x.Id == id)
+                                              .Select(x => new VehicleTypeServiceModel
+                                              {
+                                                  Id = x.Id,
+                                                  Name = x.Name,
+                                                  VehicleCategoryId = (int)x.VehicleCategory,
+                                                  VehicleCategory = x.VehicleCategory,
+                                                  Description = x.Description,
+                                              }).FirstOrDefault();
+        }
+
+        /// <summary>
+        /// Searches the database for a <see cref="VehicleType"/> with the given <c>Id</c>.
+        /// </summary>
+        /// <param name="vehicleTypeId">VehicleType ID</param>
+        /// <returns>True - found. False - not found.</returns>
+        public bool Exists(int vehicleTypeId)
+        {
+            return this.dbContext.VehicleTypes.Any(x => x.Id == vehicleTypeId); // TODO: Use AnyAsync ?
+        }
+
+        /// <summary>
+        /// Edits the <see cref="VehicleType"/> using <see cref="EditVehicleTypeServiceModel"/>.
+        /// </summary>
+        /// <param name="model">Number of modified entities.</param>
+        /// <returns>Service model with <c>Id</c>, <c>Name</c>, <c>Description</c> and <c>VehicleCategoryId</c>.</returns>
+        public async Task<int> EditAsync(EditVehicleTypeServiceModel model)
+        {
+            VehicleType vehicleType = this.dbContext.VehicleTypes.Find(model.Id);
+            vehicleType.Name = model.Name;
+            vehicleType.Description = model.Description;
+
+            VehicleCategory vehicleCategory = (VehicleCategory)model.VehicleCategoryId;
+            vehicleType.VehicleCategory = vehicleCategory;
+
+            int modifiedEntities = await this.dbContext.SaveChangesAsync();
+            return modifiedEntities;
+        }
+
+        /// <summary>
+        /// Removes a <see cref="VehicleType"/> with the given <c>Id</c> from the database.
+        /// </summary>
+        /// <param name="id">VehicleType ID</param>
+        /// <returns>True - removed entity. False - no such entity found.</returns>
+        public async Task<bool> RemoveAsync(int id)
+        {
+            VehicleType vehicleType = this.dbContext.VehicleTypes.Find(id);
+            if (vehicleType == null)
+            {
+                return false;
+            }
+
+            // First Delete cascade all Services with that VehicleType
+            for (int i = 0; i < vehicleType.Services.Count; i++)
+            {
+                await this.servicesService.RemoveAsync(vehicleType.Services.ToArray()[i].Id);
+                i--;
+            }
+
+            // And lastly Delete the VehicleType itself
+            this.dbContext.VehicleTypes.Remove(vehicleType);
+
+            int deletedEntities = await this.dbContext.SaveChangesAsync();
+
+            if (deletedEntities == 0)
+            {
+                return false;
+            }
+            return true;
         }
     }
 }

@@ -164,13 +164,12 @@
                 return false;
             }
 
-            // TODO: UNCOMMENT THIS WHEN RESERVATIONS REMOVE METHOD IS READY
             // First Delete cascade all services with that serviceType
-            //for (int i = 0; i < serviceType.Services.Count; i++)
-            //{
-            //    await this.servicesService.RemoveAsync(serviceType.Services.ToArray()[i].Id);
-            //    i--;
-            //}
+            for (int i = 0; i < serviceType.Services.Count; i++)
+            {
+                await this.servicesService.RemoveAsync(serviceType.Services.ToArray()[i].Id);
+                i--;
+            }
 
             // And lastly Delete the serviceType itself
             this.dbContext.ServiceTypes.Remove(serviceType);

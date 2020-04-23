@@ -9,6 +9,8 @@
     /// </summary>
     public class VehicleTypeInputModel
     {
+        public int Id { get; set; }
+
         [Required]
         [StringLength(50, ErrorMessage = "Name should be 5 to 50 characters long", MinimumLength = 5)]
         public string VehicleTypeName { get; set; }

@@ -16,15 +16,17 @@
     {
         //---------------- FIELDS -----------------
         private readonly ApplicationDbContext dbContext;
+        private readonly IReservationsService reservationsService;
 
         //------------- CONSTRUCTORS --------------
         /// <summary>
         /// Initializes a new <see cref="ServicesService"/>.
         /// </summary>
         /// <param name="dbContext">Database context</param>
-        public ServicesService(ApplicationDbContext dbContext)
+        public ServicesService(ApplicationDbContext dbContext, IReservationsService reservationsService)
         {
             this.dbContext = dbContext;
+            this.reservationsService = reservationsService;
         }
 
         //--------------- METHODS -----------------
@@ -226,13 +228,12 @@
                 return false;
             }
 
-            // TODO: UNCOMMENT THIS WHEN RESERVATIONS REMOVE METHOD IS READY
             // First Delete cascade all reservations with that service
-            //for (int i = 0; i < service.Reservations.Count; i++)
-            //{
-            //    await this.reservationsService.RemoveAsync(service.Reservations.ToArray()[i].Id);
-            //    i--;
-            //}
+            for (int i = 0; i < service.Reservations.Count; i++)
+            {
+                await this.reservationsService.RemoveAsync(service.Reservations.ToArray()[i].Id);
+                i--;
+            }
 
             // Then Delete all serviceOperatingLocation related entities (Mapping table)
             this.dbContext.ServiceOperatingLocations.RemoveRange(service.OperatingLocations);
