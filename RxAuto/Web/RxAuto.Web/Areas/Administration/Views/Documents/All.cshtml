@@ -4,6 +4,9 @@
 }
 
 <h1>Documents</h1>
+<div class="d-flex justify-content-end">
+    <a class="btn btn-lg btn-success" asp-area="Administration" asp-controller="Services" asp-action="Create">Create new</a>
+</div>
 
 <table class="table table-hover table-responsive">
     <thead>
@@ -18,9 +21,9 @@
             <tr>
                 <td>@document.Name</td>
                 <td style="width: 20%">
-                    <a class="btn btn-sm btn-success" asp-controller="Documents" asp-action="Edit" asp-route-id="@document.Id">Edit</a>
-                    <a class="btn btn-sm btn-info" asp-controller="Documents" asp-action="Details" asp-route-id="@document.Id">Details</a>
-                    <a class="btn btn-sm btn-danger" asp-controller="Documents" asp-action="Delete" asp-route-id="@document.Id">Delete</a>
+                    <a class="btn btn-sm btn-success" asp-area="Administration" asp-controller="Documents" asp-action="Edit" asp-route-id="@document.Id">Edit</a>
+                    <a class="btn btn-sm btn-info" asp-area="Administration" asp-controller="Documents" asp-action="Details" asp-route-id="@document.Id">Details</a>
+                    <a class="btn btn-sm btn-danger" asp-area="Administration" asp-controller="Documents" asp-action="Delete" asp-route-id="@document.Id">Delete</a>
                 </td>
             </tr>
         }

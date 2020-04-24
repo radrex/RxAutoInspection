@@ -12,6 +12,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
 using RxAuto.Data.Models;
+using System.Security.Claims;
 
 namespace RxAuto.Web.Areas.Identity.Pages.Account
 {
@@ -82,6 +83,14 @@ namespace RxAuto.Web.Areas.Identity.Pages.Account
                 var result = await _signInManager.PasswordSignInAsync(Input.Username, Input.Password, Input.RememberMe, lockoutOnFailure: false);
                 if (result.Succeeded)
                 {
+                    ApplicationUser user = await this._userManager.FindByNameAsync(Input.Username);
+                    var roles = await _userManager.GetRolesAsync(user);
+
+                    if (roles.Any(x => x.Equals("Administrator")))
+                    {
+                        return RedirectToAction("Index", "Home", new { area = "Administration" });
+                    }
+
                     _logger.LogInformation("User logged in.");
                     return LocalRedirect(returnUrl);
                 }

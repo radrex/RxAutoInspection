@@ -12,13 +12,13 @@
 <div class="container">
     <div class="row">
         <div class="col">
-            <form method="post" asp-controller="Employees" asp-action="Create">
+            <form method="post" asp-area="Administration" asp-controller="Employees" asp-action="Create">
                 <fieldset class="border p-3">
                     <legend class="w-auto">Add Employee</legend>
                     <p class="form-group">
                         <label asp-for="JobPositionId"></label>
                         <select asp-for="JobPositionId" asp-items="jobPositions" class="selectpicker show-tick" data-size="5"></select>
-                        <button class="btn btn-info">Add new Job Position</button>
+                        <a class="btn btn-info" asp-area="Administration" asp-controller="JobPositions" asp-action="Create">Add new Job Position</a>
                     </p>
                     <p class="form-group">
                         <label asp-for="OperatingLocationId"></label>
@@ -28,7 +28,7 @@
                                 <option value="@operatingLocation.Id" data-subtext="@operatingLocation.Address">@operatingLocation.Town</option>
                             }
                         </select>
-                        <button class="btn btn-info">Add new Location</button>
+                        <a class="btn btn-info" asp-area="Administration" asp-controller="OperatingLocations" asp-action="Create">Add new Operating Location</a>
                     </p>
                     <div class="form-row">
                         <div class="form-group col-md-4">

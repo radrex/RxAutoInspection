@@ -11,7 +11,7 @@
 <div class="container">
     <div class="row">
         <div class="col">
-            <form method="post" asp-controller="Qualifications" asp-action="Edit">
+            <form method="post" asp-area="Administration" asp-controller="Qualifications" asp-action="Edit">
                 <fieldset class="border p-3">
                     <legend class="w-auto">Edit Employee</legend>
                     <div class="form-row">
@@ -27,7 +27,7 @@
                         </div>
                     </div>
                     <button type="submit" class="btn btn-success">Save</button>
-                    <a class="btn btn-info" asp-controller="Qualifications" asp-action="All">Back to List</a>
+                    <a class="btn btn-info" asp-area="Administration" asp-controller="Qualifications" asp-action="All">Back to List</a>
                 </fieldset>
             </form>
         </div>

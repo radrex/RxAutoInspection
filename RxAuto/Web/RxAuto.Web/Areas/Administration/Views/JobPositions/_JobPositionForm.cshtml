@@ -4,7 +4,7 @@
     var qualifications = Model.Qualifications.Select(x => new SelectListItem(x.Name, x.Id.ToString()));
 }
 
-<form method="post" asp-controller="JobPositions" asp-action="CreateJobPosition">
+<form method="post" asp-area="Administration" asp-controller="JobPositions" asp-action="CreateJobPosition">
     <fieldset class="border p-3">
         <legend class="w-auto">Add Job Position</legend>
         <p class="form-group">

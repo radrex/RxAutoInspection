@@ -8,7 +8,7 @@
     <h1 class="display-4">Operating Location Form</h1>
 </div>
 
-<form method="post" asp-controller="OperatingLocations" asp-action="Edit">
+<form method="post" asp-area="Administration" asp-controller="OperatingLocations" asp-action="Edit">
     <div class="container">
         <div class="row">
             <div class="col-6">
@@ -50,13 +50,13 @@
                             </optgroup>
                         }
                     </select>
-                    <a class="btn btn-info float-right" asp-controller="Departments" asp-action="Create">Add new Department</a>
+                    <a class="btn btn-info float-right" asp-area="Administration" asp-controller="Departments" asp-action="Create">Add new Department</a>
                 </fieldset>
             </div>
             <row class="mx-auto mt-3">
                 <div class="col-12">
                     <button type="submit" class="btn btn-success">Save</button>
-                    <a class="btn btn-info" asp-controller="OperatingLocations" asp-action="All">Back to List</a>
+                    <a class="btn btn-info" asp-area="Administration" asp-controller="OperatingLocations" asp-action="All">Back to List</a>
                 </div>
             </row>
         </div>

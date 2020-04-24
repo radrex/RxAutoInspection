@@ -4,6 +4,9 @@
 }
 
 <h1>Vehicle Types</h1>
+<div class="d-flex justify-content-end">
+    <a class="btn btn-lg btn-success" asp-area="Administration" asp-controller="Services" asp-action="Create">Create new</a>
+</div>
 
 <table class="table table-hover table-responsive">
     <thead>
@@ -20,9 +23,9 @@
                 <td>@vehicleType.VehicleCategory</td>
                 <td>@vehicleType.Name</td>
                 <td style="width: 20%">
-                    <a class="btn btn-sm btn-success" asp-controller="VehicleTypes" asp-action="Edit" asp-route-id="@vehicleType.Id">Edit</a>
-                    <a class="btn btn-sm btn-info" asp-controller="VehicleTypes" asp-action="Details" asp-route-id="@vehicleType.Id">Details</a>
-                    <a class="btn btn-sm btn-danger" asp-controller="VehicleTypes" asp-action="Delete" asp-route-id="@vehicleType.Id">Delete</a>
+                    <a class="btn btn-sm btn-success" asp-area="Administration" asp-controller="VehicleTypes" asp-action="Edit" asp-route-id="@vehicleType.Id">Edit</a>
+                    <a class="btn btn-sm btn-info" asp-area="Administration" asp-controller="VehicleTypes" asp-action="Details" asp-route-id="@vehicleType.Id">Details</a>
+                    <a class="btn btn-sm btn-danger" asp-area="Administration" asp-controller="VehicleTypes" asp-action="Delete" asp-route-id="@vehicleType.Id">Delete</a>
                 </td>
             </tr>
         }

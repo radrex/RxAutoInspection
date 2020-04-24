@@ -1,0 +1,30 @@
+﻿<div id="mySidebar" class="sidebar">
+    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
+    <a asp-area="Administration" asp-controller="Departments" asp-action="All">Departments</a>
+    <a asp-area="Administration" asp-controller="Documents" asp-action="All">Documents</a>
+    <a asp-area="Administration" asp-controller="Employees" asp-action="All">Employees</a>
+    <a asp-area="Administration" asp-controller="JobPositions" asp-action="All">JobPositions</a>
+    <a asp-area="Administration" asp-controller="OperatingLocations" asp-action="All">OperatingLocations</a>
+    <a asp-area="Administration" asp-controller="Phones" asp-action="All">Phones</a>
+    <a asp-area="Administration" asp-controller="Qualifications" asp-action="All">Qualifications</a>
+    <a asp-area="Administration" asp-controller="Reservations" asp-action="All">Reservations</a>
+    <a asp-area="Administration" asp-controller="Services" asp-action="All">Services</a>
+    <a asp-area="Administration" asp-controller="ServiceTypes" asp-action="All">ServiceTypes</a>
+    <a asp-area="Administration" asp-controller="VehicleTypes" asp-action="All">VehicleTypes</a>
+</div>
+
+<div id="main">
+    <button class="openbtn" onclick="openNav()">☰ Menu</button>
+</div>
+
+<script>
+    function openNav() {
+        document.getElementById("mySidebar").style.width = "250px";
+        document.getElementById("main").style.marginLeft = "250px";
+    }
+
+    function closeNav() {
+        document.getElementById("mySidebar").style.width = "0";
+        document.getElementById("main").style.marginLeft = "0";
+    }
+</script>

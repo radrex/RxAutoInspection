@@ -4,7 +4,7 @@
     var phoneNumbers = Model.PhoneNumbers.Select(x => new SelectListItem(x.PhoneNumber, x.Id.ToString()));
 }
 
-<form method="post" asp-controller="Departments" asp-action="Create">
+<form method="post" asp-area="Administration" asp-controller="Departments" asp-action="Create">
     <fieldset class="border p-3">
         <legend class="w-auto">Add Department</legend>
         <p class="form-group">

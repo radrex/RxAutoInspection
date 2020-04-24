@@ -6,7 +6,7 @@
     var documents = Model.Documents.Select(x => new SelectListItem(x.Name, x.Id.ToString()));
 }
 
-<form method="post" asp-controller="Services" asp-action="Create">
+<form method="post" asp-area="Administration" asp-controller="Services" asp-action="Create">
     <fieldset class="border p-3">
         <legend class="w-auto">Add New Service</legend>
         <div class="container">
@@ -43,8 +43,7 @@
                                 <option value="@operatingLocation.Id" data-subtext="@operatingLocation.Address">@operatingLocation.Town</option>
                             }
                         </select>
-                        <!-- TODO: Add link to button-->
-                        <button class="btn btn-info float-right">Add new Operating Location</button>
+                        <a class="btn btn-info float-right" asp-area="Administration" asp-controller="OperatingLocations" asp-action="Create">Add new Operating Location</a>
                     </p>
                     <p class="form-group">
                         <label asp-for="VehicleTypeId"></label><br />

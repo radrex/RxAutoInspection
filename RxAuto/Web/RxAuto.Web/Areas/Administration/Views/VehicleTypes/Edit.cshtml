@@ -8,7 +8,7 @@
     <h1 class="display-4">Vehicle Type Form</h1>
 </div>
 
-<form method="post" asp-controller="VehicleTypes" asp-action="Edit">
+<form method="post" asp-area="Administration" asp-controller="VehicleTypes" asp-action="Edit">
     <div class="container">
         <div class="row">
             <div class="col-12">
@@ -31,7 +31,7 @@
                         <span asp-validation-for="VehicleTypeDescription" class="text-danger"></span>
                     </p>
                     <button type="submit" class="btn btn-success">Save</button>
-                    <a class="btn btn-info" asp-controller="VehicleTypes" asp-action="All">Back to List</a>
+                    <a class="btn btn-info" asp-area="Administration" asp-controller="VehicleTypes" asp-action="All">Back to List</a>
                 </fieldset>
             </div>
         </div>
