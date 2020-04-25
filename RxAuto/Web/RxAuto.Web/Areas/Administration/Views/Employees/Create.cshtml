@@ -6,7 +6,7 @@
 }
 
 <div class="text-center">
-    <h1 class="display-4">Employees Form</h1>
+    <h1 class="display-4">Форма за добавяне на служител</h1>
 </div>
 
 <div class="container">
@@ -14,11 +14,11 @@
         <div class="col">
             <form method="post" asp-area="Administration" asp-controller="Employees" asp-action="Create">
                 <fieldset class="border p-3">
-                    <legend class="w-auto">Add Employee</legend>
+                    <legend class="w-auto">Добави нов служител</legend>
                     <p class="form-group">
                         <label asp-for="JobPositionId"></label>
                         <select asp-for="JobPositionId" asp-items="jobPositions" class="selectpicker show-tick" data-size="5"></select>
-                        <a class="btn btn-info" asp-area="Administration" asp-controller="JobPositions" asp-action="Create">Add new Job Position</a>
+                        <a class="btn btn-info" asp-area="Administration" asp-controller="JobPositions" asp-action="Create">Добави нова Работна Позиция</a>
                     </p>
                     <p class="form-group">
                         <label asp-for="OperatingLocationId"></label>
@@ -28,7 +28,7 @@
                                 <option value="@operatingLocation.Id" data-subtext="@operatingLocation.Address">@operatingLocation.Town</option>
                             }
                         </select>
-                        <a class="btn btn-info" asp-area="Administration" asp-controller="OperatingLocations" asp-action="Create">Add new Operating Location</a>
+                        <a class="btn btn-info" asp-area="Administration" asp-controller="OperatingLocations" asp-action="Create">Добави нова Работна Локация</a>
                     </p>
                     <div class="form-row">
                         <div class="form-group col-md-4">
@@ -78,7 +78,7 @@
                             <span asp-validation-for="ImageUrl" class="text-danger"></span>
                         </div>
                     </div>
-                    <button type="submit" class="btn btn-success">Submit</button>
+                    <button type="submit" class="btn btn-success">Добави</button>
                 </fieldset>
             </form>
         </div>

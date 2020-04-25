@@ -5,7 +5,7 @@
 }
 
 <div class="text-center">
-    <h1 class="display-4">Operating Location Form</h1>
+    <h1 class="display-4">Форма за добавяне на Работна Локация</h1>
 </div>
 
 <form method="post" asp-area="Administration" asp-controller="OperatingLocations" asp-action="Create">
@@ -13,7 +13,7 @@
         <div class="row">
             <div class="col-6">
                 <fieldset class="border p-3">
-                    <legend class="w-auto">Operating Location Information</legend>
+                    <legend class="w-auto">Добави нова работна локация</legend>
                     <p class="form-group">
                         <label asp-for="Town"></label>
                         <input asp-for="Town" class="form-control" />
@@ -38,8 +38,8 @@
             </div>
             <div class="col-6">
                 <fieldset class="border p-3">
-                    <legend class="w-auto">Choose Departments</legend>
-                    <select asp-for="DepartmentIds" class="selectpicker show-tick" multiple data-selected-text-format="count" data-show-subtext="true">
+                    <legend class="w-auto">Изберете Отдели</legend>
+                    <select asp-for="DepartmentIds" class="selectpicker show-tick" multiple data-selected-text-format="count" data-show-subtext="true" title="Няма нищо избрано">
                         @foreach (var department in Model.Departments)
                         {
                             <optgroup label="@department.Email" data-subtext="Department: @department.Name">
@@ -50,12 +50,12 @@
                             </optgroup>
                         }
                     </select>
-                    <a class="btn btn-info float-right" asp-area="Administration" asp-controller="Departments" asp-action="Create">Add new Department</a>
+                    <a class="btn btn-info float-right" asp-area="Administration" asp-controller="Departments" asp-action="Create">Добави нов Отдел</a>
                 </fieldset>
             </div>
             <row class="mx-auto mt-3">
                 <div class="col-12">
-                    <button type="submit" class="btn btn-success btn-lg">Submit</button>
+                    <button type="submit" class="btn btn-success btn-lg">Промени</button>
                 </div>
             </row>
         </div>

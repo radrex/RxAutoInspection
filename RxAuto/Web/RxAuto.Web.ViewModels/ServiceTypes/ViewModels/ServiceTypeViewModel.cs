@@ -9,9 +9,10 @@
     {
         public int Id { get; set; }
 
-        [Display(Name = "Job Position Name")]
+        [Display(Name = "Тип Услуга")]
         public string Name { get; set; }
 
+        [Display(Name = "Видимост в Главното Меню")]
         public string IsShownInMainMenu { get; set; }
     }
 }

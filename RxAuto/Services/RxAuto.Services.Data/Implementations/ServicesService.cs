@@ -96,7 +96,7 @@
             {
                 Id = x.Id,
                 Name = x.Name,
-                IsShownInSubMenu = x.IsShownInSubMenu == true ? "IsShownInSubMenu" : "NotShownInSubMenu",
+                IsShownInSubMenu = x.IsShownInSubMenu == true ? "Да" : "Не",
                 ServiceType = x.ServiceType.Name,
                 VehicleType = x.VehicleType.Name,
                 Price = x.Price,

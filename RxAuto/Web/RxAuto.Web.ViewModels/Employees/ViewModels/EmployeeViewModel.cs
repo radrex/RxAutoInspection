@@ -9,18 +9,19 @@
     {
         public string Id { get; set; }
 
-        [Display(Name = "Full Name")]
+        [Display(Name = "Име")]
         public string FullName { get; set; }
 
-        [Display(Name = "Phone Number")]
+        [Display(Name = "Телефон")]
         public string PhoneNumber { get; set; }
 
+        [Display(Name = "Имейл")]
         public string Email { get; set; }
 
-        [Display(Name = "Operating Location")]
+        [Display(Name = "Работна Локация")]
         public string OperatingLocation { get; set; }
 
-        [Display(Name = "Job Position")]
+        [Display(Name = "Работна Позиция")]
         public string JobPosition { get; set; }
     }
 }

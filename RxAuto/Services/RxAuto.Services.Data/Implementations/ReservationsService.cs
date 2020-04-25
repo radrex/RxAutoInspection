@@ -39,7 +39,7 @@
                 Service = x.Service.Name,
                 VehicleMake = x.VehicleMake,
                 VehicleModel = x.VehicleModel,
-                IsActive = x.IsActive ? "Active" : "Not Active",
+                IsActive = x.IsActive ? "Активна" : "Отменена",
                 LicenseNumber = x.LicenseNumber,
                 PhoneNumber = x.PhoneNumber,
                 ReservationDateTime = x.ReservationDateTime.ToString("dddd, dd MMMM yyyy HH:mm:ss"),

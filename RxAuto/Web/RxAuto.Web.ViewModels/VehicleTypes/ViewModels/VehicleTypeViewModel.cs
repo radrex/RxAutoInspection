@@ -9,9 +9,10 @@
     {
         public int Id { get; set; }
 
-        [Display(Name = "Vehicle Type Name")]
+        [Display(Name = "Име на Категория")]
         public string Name { get; set; }
 
+        [Display(Name = "Категория")]
         public string VehicleCategory { get; set; }
     }
 }

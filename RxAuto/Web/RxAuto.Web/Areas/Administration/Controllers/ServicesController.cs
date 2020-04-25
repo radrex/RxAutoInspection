@@ -287,7 +287,7 @@
             {
                 Id = service.Id,
                 Name = service.Name,
-                IsShownInSubMenu = service.IsShownInSubMenu == true ? "IsShownInSubMenu" : "IsNotShownInSubMenu",
+                IsShownInSubMenu = service.IsShownInSubMenu == true ? "Да" : "Не",
                 ServiceType = service.ServiceType,
                 VehicleType = service.VehicleType,
                 Description = service.Description,
@@ -421,7 +421,7 @@
                 Description = service.Description,
                 ServiceType = service.ServiceType,
                 VehicleType = service.VehicleType,
-                IsShownInSubMenu = (service.IsShownInSubMenu == true) ? "IsShownInSubMenu" : "NotShownInSubMenu",
+                IsShownInSubMenu = (service.IsShownInSubMenu == true) ? "Да" : "Не",
                 //TODO: add operating locations and documents tables
             };
 

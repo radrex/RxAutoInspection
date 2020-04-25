@@ -4,8 +4,12 @@
     ViewData["Title"] = "Document Edit Form";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Document Form</h1>
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <h1 class="d-flex justify-content-center">Промяна на информацията за документ</h1>
+        </div>
+    </div>
 </div>
 
 <form method="post" asp-area="Administration" asp-controller="Documents" asp-action="Edit">
@@ -13,7 +17,7 @@
         <div class="row">
             <div class="col-12">
                 <fieldset class="border p-3">
-                    <legend class="w-auto">Document information</legend>
+                    <legend class="w-auto">Информация за Документ</legend>
                     <p class="form-group">
                         <label asp-for="DocumentName"></label>
                         <input asp-for="DocumentName" class="form-control" />
@@ -24,8 +28,8 @@
                         <textarea asp-for="DocumentDescription" class="form-control"></textarea>
                         <span asp-validation-for="DocumentDescription" class="text-danger"></span>
                     </p>
-                    <button type="submit" class="btn btn-success">Save</button>
-                    <a class="btn btn-info" asp-area="Administration" asp-controller="Documents" asp-action="All">Back to List</a>
+                    <button type="submit" class="btn btn-success">Запази</button>
+                    <a class="btn btn-info" asp-area="Administration" asp-controller="Documents" asp-action="All">Върни се обратно</a>
                 </fieldset>
             </div>
         </div>

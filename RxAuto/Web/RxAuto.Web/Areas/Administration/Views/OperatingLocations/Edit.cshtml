@@ -4,8 +4,12 @@
     ViewData["Title"] = "Operating Locations Edit Form";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Operating Location Form</h1>
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <h1 class="d-flex justify-content-center">Промяна на информацията за Работна Позиция</h1>
+        </div>
+    </div>
 </div>
 
 <form method="post" asp-area="Administration" asp-controller="OperatingLocations" asp-action="Edit">
@@ -13,7 +17,7 @@
         <div class="row">
             <div class="col-6">
                 <fieldset class="border p-3">
-                    <legend class="w-auto">Operating Location Information</legend>
+                    <legend class="w-auto">Информация за Работна Позиция</legend>
                     <p class="form-group">
                         <label asp-for="Town"></label>
                         <input asp-for="Town" class="form-control" />
@@ -38,8 +42,8 @@
             </div>
             <div class="col-6">
                 <fieldset class="border p-3">
-                    <legend class="w-auto">Choose Departments</legend>
-                    <select asp-for="DepartmentIds" class="selectpicker show-tick" multiple data-selected-text-format="count" data-show-subtext="true">
+                    <legend class="w-auto">Изберете Отдели</legend>
+                    <select asp-for="DepartmentIds" class="selectpicker show-tick" multiple data-selected-text-format="count" data-show-subtext="true" title="Няма нищо избрано">
                         @foreach (var department in Model.Departments)
                         {
                             <optgroup label="@department.Email" data-subtext="Department: @department.Name">
@@ -50,13 +54,13 @@
                             </optgroup>
                         }
                     </select>
-                    <a class="btn btn-info float-right" asp-area="Administration" asp-controller="Departments" asp-action="Create">Add new Department</a>
+                    <a class="btn btn-info float-right" asp-area="Administration" asp-controller="Departments" asp-action="Create">Добави нов Отдел</a>
                 </fieldset>
             </div>
             <row class="mx-auto mt-3">
                 <div class="col-12">
-                    <button type="submit" class="btn btn-success">Save</button>
-                    <a class="btn btn-info" asp-area="Administration" asp-controller="OperatingLocations" asp-action="All">Back to List</a>
+                    <button type="submit" class="btn btn-success">Запази</button>
+                    <a class="btn btn-info" asp-area="Administration" asp-controller="OperatingLocations" asp-action="All">Върни се обратно</a>
                 </div>
             </row>
         </div>

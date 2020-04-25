@@ -2,12 +2,12 @@
 
 <form method="post" asp-area="Administration" asp-controller="Departments" asp-action="CreatePhone">
     <fieldset class="border p-3">
-        <legend class="w-auto">Add Phone Number</legend>
+        <legend class="w-auto">Добави нов телефон</legend>
         <p class="form-group">
             <label asp-for="PhoneNumber"></label>
             <input asp-for="PhoneNumber" class="form-control" />
             <span asp-validation-for="PhoneNumber" class="text-danger"></span>
         </p>
-        <button type="submit" class="btn btn-success float-right">Submit</button>
+        <button type="submit" class="btn btn-success float-right">Добави</button>
     </fieldset>
 </form>

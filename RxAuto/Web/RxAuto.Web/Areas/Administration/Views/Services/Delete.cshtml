@@ -4,52 +4,63 @@
     ViewData["Title"] = "Delete";
 }
 
-<h1>Delete</h1>
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <h1 class="d-flex justify-content-center">Изтриване на услуга</h1>
+            <hr />
+            <h3>Сигурни ли сте, че искате да изтриете тази услуга? Всеки тип услуга, категория, работна позиция и документ ще загубят тази услуга.</h3>
+        </div>
+    </div>
+</div>
 
-<h3>Are you sure you want to delete this service? Bear in mind that every ServiceType will loose this service from it's collection. Every VehicleType will loose this service from it's collection. Every OperatingLocation will loose this service from it's collection. Every Document will loose this service from it's collection</h3>
-<div>
-    <hr />
-    <dl class="row">
-        <dt class="col-sm-2">
-            <label asp-for="@Model.Name"></label>
-        </dt>
-        <dd class="col-sm-10">
-            <label asp-for="@Model.Name">@Model.Name</label>
-        </dd>
-        <dt class="col-sm-2">
-            <label asp-for="@Model.ServiceType"></label>
-        </dt>
-        <dd class="col-sm-10">
-            <label asp-for="@Model.ServiceType">@Model.ServiceType</label>
-        </dd>
-        <dt class="col-sm-2">
-            <label asp-for="@Model.VehicleType"></label>
-        </dt>
-        <dd class="col-sm-10">
-            <label asp-for="@Model.VehicleType">@Model.VehicleType</label>
-        </dd>
-        <dt class="col-sm-2">
-            <label asp-for="@Model.IsShownInSubMenu"></label>
-        </dt>
-        <dd class="col-sm-10">
-            <label asp-for="@Model.IsShownInSubMenu">@Model.IsShownInSubMenu</label>
-        </dd>
-        <dt class="col-sm-2">
-            <label asp-for="@Model.Price"></label>
-        </dt>
-        <dd class="col-sm-10">
-            <label asp-for="@Model.Price">@Model.Price</label>
-        </dd>
-        <dt class="col-sm-2">
-            <label asp-for="@Model.Description"></label>
-        </dt>
-        <dd class="col-sm-10">
-            <label asp-for="@Model.Description">@Model.Description</label>
-        </dd>
-    </dl>
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <hr />
+            <dl class="row">
+                <dt class="col-sm-2">
+                    <label asp-for="@Model.Name"></label>
+                </dt>
+                <dd class="col-sm-10">
+                    <label asp-for="@Model.Name">@Model.Name</label>
+                </dd>
+                <dt class="col-sm-2">
+                    <label asp-for="@Model.ServiceType"></label>
+                </dt>
+                <dd class="col-sm-10">
+                    <label asp-for="@Model.ServiceType">@Model.ServiceType</label>
+                </dd>
+                <dt class="col-sm-2">
+                    <label asp-for="@Model.VehicleType"></label>
+                </dt>
+                <dd class="col-sm-10">
+                    <label asp-for="@Model.VehicleType">@Model.VehicleType</label>
+                </dd>
+                <dt class="col-sm-2">
+                    <label asp-for="@Model.IsShownInSubMenu"></label>
+                </dt>
+                <dd class="col-sm-10">
+                    <label asp-for="@Model.IsShownInSubMenu">@Model.IsShownInSubMenu</label>
+                </dd>
+                <dt class="col-sm-2">
+                    <label asp-for="@Model.Price"></label>
+                </dt>
+                <dd class="col-sm-10">
+                    <label asp-for="@Model.Price">@Model.Price</label>
+                </dd>
+                <dt class="col-sm-2">
+                    <label asp-for="@Model.Description"></label>
+                </dt>
+                <dd class="col-sm-10">
+                    <label asp-for="@Model.Description">@Model.Description</label>
+                </dd>
+            </dl>
 
-    <form method="post" asp-area="Administration" asp-controller="Services" asp-action="Delete">
-        <input type="submit" value="Delete" class="btn btn-danger" />
-        <a class="btn btn-info" asp-area="Administration" asp-controller="Services" asp-action="All">Back to List</a>
-    </form>
+            <form method="post" asp-area="Administration" asp-controller="Services" asp-action="Delete">
+                <input type="submit" value="Изтрий" class="btn btn-danger" />
+                <a class="btn btn-info" asp-area="Administration" asp-controller="Services" asp-action="All">Върни се обратно</a>
+            </form>
+        </div>
+    </div>
 </div>

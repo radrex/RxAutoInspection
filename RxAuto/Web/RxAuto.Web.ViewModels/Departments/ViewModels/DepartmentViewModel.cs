@@ -9,9 +9,10 @@
     {
         public int Id { get; set; }
 
-        [Display(Name = "Department Name")]
+        [Display(Name = "Отдел")]
         public string Name { get; set; }
 
+        [Display(Name = "Имейл")]
         public string Email { get; set; }
     }
 }

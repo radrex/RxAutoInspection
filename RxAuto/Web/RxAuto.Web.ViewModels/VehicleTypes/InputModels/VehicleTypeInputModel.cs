@@ -11,16 +11,19 @@
     {
         public int Id { get; set; }
 
-        [Required]
-        [StringLength(50, ErrorMessage = "Name should be 5 to 50 characters long", MinimumLength = 5)]
+        [Required(ErrorMessage = "Полето е задължително")]
+        [StringLength(50, ErrorMessage = "Името на категорията трябва да е между 5 и 50 символа", MinimumLength = 5)]
+        [Display(Name = "Име на категория", Prompt = "Име на категория")]
         public string VehicleTypeName { get; set; }
 
         [MaxLength(4000)]
+        [Display(Name = "Описание", Prompt = "Описание")]
         public string VehicleTypeDescription { get; set; }
 
-        //TODO: Validation
-        public VehicleCategory VehicleCategory { get; set; }
+        [Display(Name = "Категория", Prompt = "Категория")]
+        [Range(1, int.MaxValue)]
         public int VehicleCategoryId { get; set; }
+        public VehicleCategory VehicleCategory { get; set; }
     }
 
     public enum VehicleCategory

@@ -4,8 +4,12 @@
     ViewData["Title"] = "Qualifications Edit Form";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Edit Employee Form</h1>
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <h1 class="d-flex justify-content-center">Промяна на информацията за квалификация</h1>
+        </div>
+    </div>
 </div>
 
 <div class="container">
@@ -13,7 +17,7 @@
         <div class="col">
             <form method="post" asp-area="Administration" asp-controller="Qualifications" asp-action="Edit">
                 <fieldset class="border p-3">
-                    <legend class="w-auto">Edit Employee</legend>
+                    <legend class="w-auto">Информация за квалификация</legend>
                     <div class="form-row">
                         <div class="form-group col-md-12">
                             <label asp-for="QualificationName"></label>
@@ -26,8 +30,8 @@
                             <span asp-validation-for="Description" class="text-danger"></span>
                         </div>
                     </div>
-                    <button type="submit" class="btn btn-success">Save</button>
-                    <a class="btn btn-info" asp-area="Administration" asp-controller="Qualifications" asp-action="All">Back to List</a>
+                    <button type="submit" class="btn btn-success">Запази</button>
+                    <a class="btn btn-info" asp-area="Administration" asp-controller="Qualifications" asp-action="All">Върни се обратно</a>
                 </fieldset>
             </form>
         </div>

@@ -4,8 +4,12 @@
     ViewData["Title"] = "VehicleType Edit Form";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Vehicle Type Form</h1>
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <h1 class="d-flex justify-content-center">Промяна на информацията за категория на превозно средство</h1>
+        </div>
+    </div>
 </div>
 
 <form method="post" asp-area="Administration" asp-controller="VehicleTypes" asp-action="Edit">
@@ -13,7 +17,7 @@
         <div class="row">
             <div class="col-12">
                 <fieldset class="border p-3">
-                    <legend class="w-auto">Vehicle type information</legend>
+                    <legend class="w-auto">Информация за превозно средство</legend>
                     <p>
                         <label asp-for="VehicleCategoryId"></label><br />
                         <select asp-for="VehicleCategoryId" asp-items="Html.GetEnumSelectList<VehicleCategory>()" class="selectpicker">
@@ -30,8 +34,8 @@
                         <textarea asp-for="VehicleTypeDescription" class="form-control"></textarea>
                         <span asp-validation-for="VehicleTypeDescription" class="text-danger"></span>
                     </p>
-                    <button type="submit" class="btn btn-success">Save</button>
-                    <a class="btn btn-info" asp-area="Administration" asp-controller="VehicleTypes" asp-action="All">Back to List</a>
+                    <button type="submit" class="btn btn-success">Запази</button>
+                    <a class="btn btn-info" asp-area="Administration" asp-controller="VehicleTypes" asp-action="All">Върни се обратно</a>
                 </fieldset>
             </div>
         </div>

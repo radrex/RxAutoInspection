@@ -14,23 +14,27 @@
     {
         public int Id { get; set; }
 
-        [Required(ErrorMessage = "Please enter Town name")]
-        [StringLength(30, ErrorMessage = "Name should be 3 to 30 characters long", MinimumLength = 3)]
+        [Required(ErrorMessage = "Моля въведете Град")]
+        [StringLength(30, ErrorMessage = "Града трябва да бъде между 3 и 30 символа", MinimumLength = 3)]
+        [Display(Name = "Град", Prompt = "Град")]
         public string Town { get; set; }
 
-        [Required(ErrorMessage = "Please enter Town name")]
-        [StringLength(50, ErrorMessage = "Name should be 10 to 50 characters long", MinimumLength = 10)]
+        [Required(ErrorMessage = "Моля въведете Адрес")]
+        [StringLength(50, ErrorMessage = "Адреса трябва да бъде между 10 и 50 символа", MinimumLength = 10)]
+        [Display(Name = "Адрес", Prompt = "Адрес")]
         public string Address { get; set; }
 
         [MaxLength(4000)]
+        [Display(Name = "Описание", Prompt = "Описание")]
         public string Description { get; set; }
 
         [MaxLength(2000)]
+        [Display(Name = "Линк към снимка", Prompt = "Линк към снимка")]
         public string ImageUrl { get; set; }
 
         //First element is <Department ID, second element is Phone ID
         //For multiple Id's passed from <select>
-        [Display(Name = "Departments")]
+        [Display(Name = "Изберете Отдели")]
         public string[] DepartmentIds { get; set; }
         public IEnumerable<DepartmentsDropdownViewModel> Departments { get; set; }
     }

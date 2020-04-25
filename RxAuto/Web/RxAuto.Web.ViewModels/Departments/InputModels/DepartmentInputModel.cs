@@ -13,20 +13,23 @@
     {
         public int Id { get; set; }
 
-        [Required(ErrorMessage = "Please enter Department name")]
-        [StringLength(150, ErrorMessage = "Name should be 5 to 150 characters long", MinimumLength = 5)]
+        [Required(ErrorMessage = "Моля въвдете Отдел")]
+        [StringLength(150, ErrorMessage = "Отдела трябва да е между 5 и 150 символа", MinimumLength = 5)]
+        [Display(Name = "Отдел", Prompt = "Отдел")]
         public string Name { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Моля въвдете Имейл")]
         [MaxLength(254)]
-        //TODO: Add regex email validation
+        [Display(Name = "Имейл", Prompt = "Имейл")]
+        [RegularExpression(@"^\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$", ErrorMessage = "Невалиден Имейл")]
         public string Email { get; set; }
 
         [MaxLength(4000)]
+        [Display(Name = "Описание", Prompt = "Описание")]
         public string Description { get; set; }
 
         //For multiple Id's passed from <select>
-        [Display(Name = "Phone Numbers")]
+        [Display(Name = "Избери телефони")]
         public int[] PhoneNumberIds { get; set; }
 
         public IEnumerable<PhonesDropdownViewModel> PhoneNumbers { get; set; }

@@ -109,7 +109,7 @@
             {
                 Id = x.Id,
                 PhoneNumber = x.PhoneNumber,
-                IsInternal = x.IsInternal == true ? "Internal" : "Public",
+                IsInternal = x.IsInternal == true ? "Фирмен" : "Публичен",
             })
             .Skip(skip);
 
@@ -134,7 +134,7 @@
                                         {
                                             Id = x.Id,
                                             PhoneNumber = x.PhoneNumber,
-                                            IsInternal = x.IsInternal.ToString(),
+                                            IsInternal = x.IsInternal == true ? "Фирмен" : "Публичен",
                                         }).FirstOrDefault();
         }
 

@@ -86,7 +86,7 @@
             {
                 Id = x.Id,
                 Name = x.Name,
-                IsShownInMainMenu = x.IsShownInMainMenu == true ? "IsShownInMainMenu" : "NotShownInMainMenu",
+                IsShownInMainMenu = x.IsShownInMainMenu == true ? "Да" : "Не",
             })
             .Skip(skip);
 

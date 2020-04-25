@@ -3,53 +3,63 @@
     ViewData["Title"] = "All";
 }
 
-<h1>Services</h1>
-<div class="d-flex justify-content-end">
-    <a class="btn btn-lg btn-success" asp-area="Administration" asp-controller="Services" asp-action="Create">Create new</a>
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <h1 class="d-flex justify-content-center">Услуги</h1>
+            <a class="btn btn-outline-success float-right mb-2" asp-area="Administration" asp-controller="Services" asp-action="Create">Създай нова услуга</a>
+        </div>
+    </div>
 </div>
 
-<table class="table table-hover table-responsive">
-    <thead>
-        <tr>
-            <th><label asp-for="@Model.Services.First().Name"></label></th>
-            <th><label asp-for="@Model.Services.First().ServiceType"></label></th>
-            <th><label asp-for="@Model.Services.First().IsShownInSubMenu"></label></th>
-            <th><label asp-for="@Model.Services.First().VehicleType"></label></th>
-            <th><label asp-for="@Model.Services.First().Price"></label></th>
-            <th colspan="3">Options</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var service in Model.Services)
-        {
-        <tr>
-            <td>@service.Name</td>
-            <td>@service.ServiceType</td>
-            <td>@service.IsShownInSubMenu</td>
-            <td>@service.VehicleType</td>
-            <td>@service.Price</td>
-            <td style="width: 20%">
-                <a class="btn btn-sm btn-success" asp-area="Administration" asp-controller="Services" asp-action="Edit" asp-route-id="@service.Id">Edit</a>
-                <a class="btn btn-sm btn-info" asp-area="Administration" asp-controller="Services" asp-action="Details" asp-route-id="@service.Id">Details</a>
-                <a class="btn btn-sm btn-danger" asp-area="Administration" asp-controller="Services" asp-action="Delete" asp-route-id="@service.Id">Delete</a>
-            </td>
-        </tr>
-        }
-    </tbody>
-</table>
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <table class="table table-sm table-hover">
+                <thead>
+                    <tr>
+                        <th><label asp-for="@Model.Services.First().Name"></label></th>
+                        <th><label asp-for="@Model.Services.First().ServiceType"></label></th>
+                        <th><label asp-for="@Model.Services.First().IsShownInSubMenu"></label></th>
+                        <th><label asp-for="@Model.Services.First().VehicleType"></label></th>
+                        <th><label asp-for="@Model.Services.First().Price"></label></th>
+                        <th colspan="3">Опции</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var service in Model.Services)
+                    {
+                        <tr>
+                            <td>@service.Name</td>
+                            <td>@service.ServiceType</td>
+                            <td>@service.IsShownInSubMenu</td>
+                            <td>@service.VehicleType</td>
+                            <td>@service.Price</td>
+                            <td style="width: 25%">
+                                <a class="btn btn-sm btn-success" asp-area="Administration" asp-controller="Services" asp-action="Edit" asp-route-id="@service.Id">Промени</a>
+                                <a class="btn btn-sm btn-info" asp-area="Administration" asp-controller="Services" asp-action="Details" asp-route-id="@service.Id">Детайли</a>
+                                <a class="btn btn-sm btn-danger" asp-area="Administration" asp-controller="Services" asp-action="Delete" asp-route-id="@service.Id">Изтрий</a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
 
 <nav>
     <ul class="pagination justify-content-center">
         @if (this.Model.CurrentPage == 1)
         {
             <li class="page-item disabled">
-                <a class="page-link" href="#" tabindex="-1">Previous</a>
+                <a class="page-link" href="#" tabindex="-1">Назад</a>
             </li>
         }
         else
         {
             <li class="page-item">
-                <a class="page-link" asp-route-page="@(this.Model.CurrentPage - 1)">Previous</a>
+                <a class="page-link" asp-route-page="@(this.Model.CurrentPage - 1)">Назад</a>
             </li>
         }
 
@@ -64,13 +74,13 @@
         @if (this.Model.CurrentPage == this.Model.PagesCount)
         {
             <li class="page-item disabled">
-                <a class="page-link" href="#" tabindex="-1">Next</a>
+                <a class="page-link" href="#" tabindex="-1">Напред</a>
             </li>
         }
         else
         {
             <li class="page-item">
-                <a class="page-link" asp-route-page="@(this.Model.CurrentPage + 1)">Next</a>
+                <a class="page-link" asp-route-page="@(this.Model.CurrentPage + 1)">Напред</a>
             </li>
         }
     </ul>

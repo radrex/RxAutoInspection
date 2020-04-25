@@ -85,7 +85,7 @@ body {
     background-color: #111;
     overflow-x: hidden;
     transition: 0.5s;
-    padding-top: 60px;
+    /*padding-top: 60px;*/
 }
 
     .sidebar a {
@@ -124,7 +124,7 @@ body {
 
 #main {
     transition: margin-left .5s;
-    padding: 16px;
+    /*padding: 16px;*/
 }
 
 /* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */

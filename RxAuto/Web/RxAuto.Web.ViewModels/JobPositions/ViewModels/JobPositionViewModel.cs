@@ -9,7 +9,7 @@
     {
         public int Id { get; set; }
 
-        [Display(Name = "Job Position Name")]
+        [Display(Name = "Работна Позиция")]
         public string Name { get; set; }
 
         // TODO: Add qualifications to view foreach jobPosition

@@ -6,7 +6,7 @@
 
 <form method="post" asp-area="Administration" asp-controller="Departments" asp-action="Create">
     <fieldset class="border p-3">
-        <legend class="w-auto">Add Department</legend>
+        <legend class="w-auto">Добави нов отдел</legend>
         <p class="form-group">
             <label asp-for="Name"></label>
             <input asp-for="Name" class="form-control" />
@@ -24,9 +24,9 @@
         </p>
         <p class="form-group">
             <label asp-for="PhoneNumberIds"></label>
-            <select asp-for="PhoneNumberIds" asp-items="phoneNumbers" class="selectpicker" data-live-search="true" data-size="5" multiple data-actions-box="true" data-selected-text-format="count > 3"></select>
+            <select asp-for="PhoneNumberIds" asp-items="phoneNumbers" class="selectpicker" data-live-search="true" data-size="5" multiple data-actions-box="true" data-selected-text-format="count > 3" title="Няма нищо избрано" ></select>
             <span asp-validation-for="PhoneNumberIds" class="text-danger"></span>
         </p>
-        <button type="submit" class="btn btn-success float-right">Submit</button>
+        <button type="submit" class="btn btn-success float-right">Добави</button>
     </fieldset>
 </form>

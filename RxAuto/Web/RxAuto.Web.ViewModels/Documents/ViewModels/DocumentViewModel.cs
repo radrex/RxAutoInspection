@@ -9,9 +9,10 @@
     {
         public int Id { get; set; }
 
-        [Display(Name = "Document Name")]
+        [Display(Name = "Документ")]
         public string Name { get; set; }
 
+        [Display(Name = "Описание")]
         public string Description { get; set; }
 
         // TODO: Add services to view foreach document

@@ -88,7 +88,7 @@
                 Id = serviceType.Id,
                 Name = serviceType.Name,
                 Description = serviceType.Description,
-                IsShownInMainMenu = serviceType.IsShownInMainMenu == true ? "IsShownInMainMenu" : "NotShownInMainMenu",
+                IsShownInMainMenu = serviceType.IsShownInMainMenu == true ? "Да" : "Не",
                 // TODO: Add Services table
             };
 
@@ -177,7 +177,7 @@
                 Id = serviceType.Id,
                 Name = serviceType.Name,
                 Description = serviceType.Description,
-                IsShownInMainMenu = serviceType.IsShownInMainMenu == true ? "IsShownInMainMenu" : "NotShownInMainMenu",
+                IsShownInMainMenu = serviceType.IsShownInMainMenu == true ? "Да" : "Не",
                 //TODO: Add services table on delete view
             };
 

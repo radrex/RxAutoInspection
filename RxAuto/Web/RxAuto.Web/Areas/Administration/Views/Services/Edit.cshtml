@@ -6,74 +6,85 @@
     var documents = Model.Documents.Select(x => new SelectListItem(x.Name, x.Id.ToString()));
 }
 
-<h1>Edit Service</h1>
-
-<form method="post" asp-area="Administration" asp-controller="Services" asp-action="Edit">
-    <fieldset class="border p-3">
-        <legend class="w-auto">Edit Service</legend>
-        <div class="container">
-            <div class="row">
-                <div class="col-6">
-                    <p class="form-group">
-                        <label asp-for="ServiceTypeId"></label><br />
-                        <select asp-for="ServiceTypeId" asp-items="serviceTypes" class="selectpicker" data-size="5"></select>
-                        <span asp-validation-for="ServiceTypeId" class="text-danger"></span>
-                        <a class="btn btn-info float-right" asp-controller="Services" asp-action="Create">Add new Service Type</a>
-                    </p>
-                    <p class="form-group">
-                        <label asp-for="ServiceName"></label>
-                        <input asp-for="ServiceName" class="form-control" />
-                        <span asp-validation-for="ServiceName" class="text-danger"></span>
-                    </p>
-                    <p class="form-group">
-                        <label asp-for="ServiceDescription"></label>
-                        <textarea asp-for="ServiceDescription" class="form-control"></textarea>
-                        <span asp-validation-for="ServiceDescription" class="text-danger"></span>
-                    </p>
-
-                    <p class="custom-control custom-checkbox my-1 mr-sm-2">
-                        <input type="checkbox" asp-for="IsShownInSubMenu" class="custom-control-input" id="serviceCheckboxId">
-                        <label class="custom-control-label" asp-for="IsShownInSubMenu" for="serviceCheckboxId">Show in <b>Sub Menu</b></label>
-                    </p>
-                </div>
-
-                <div class="col-6">
-                    <p class="form-group">
-                        <label asp-for="OperatingLocationIds"></label><br />
-                        <select asp-for="OperatingLocationIds" class="selectpicker show-tick" data-show-subtext="true" data-live-search="true" data-size="5">
-                            @foreach (var operatingLocation in Model.OperatingLocations)
-                            {
-                                <option value="@operatingLocation.Id" data-subtext="@operatingLocation.Address">@operatingLocation.Town</option>
-                            }
-                        </select>
-                        <a class="btn btn-info float-right" asp-controller="OperatingLocations" asp-action="Create">Add new OperatingLocation</a>
-                    </p>
-                    <p class="form-group">
-                        <label asp-for="VehicleTypeId"></label><br />
-                        <select asp-for="VehicleTypeId" class="selectpicker show-tick" data-show-subtext="true" data-live-search="true" data-size="5">
-                            @foreach (var vehicleType in Model.VehicleTypes)
-                            {
-                                <option value="@vehicleType.Id" data-subtext="@vehicleType.Name">@vehicleType.Category</option>
-                            }
-                        </select>
-                        <a class="btn btn-info float-right" asp-controller="Services" asp-action="Create">Add new Vehicle Type</a>
-                    </p>
-                    <p class="form-group">
-                        <label asp-for="DocumentIds"></label><br />
-                        <select asp-for="DocumentIds" asp-items="documents" class="selectpicker" data-size="5" multiple data-live-search="true" data-actions-box="true" data-selected-text-format="count"></select>
-                        <span asp-validation-for="DocumentIds" class="text-danger"></span>
-                        <a class="btn btn-info float-right" asp-controller="Services" asp-action="Create">Add new Document</a>
-                    </p>
-
-                    <p class="form-group">
-                        <label asp-for="Price"></label>
-                        <input asp-for="Price" class="form-control" />
-                        <span asp-validation-for="Price" class="text-danger"></span>
-                    </p>
-                </div>
-            </div>
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <h1 class="d-flex justify-content-center">Промяна на информацията за Услуга</h1>
         </div>
-        <button type="submit" class="btn btn-success">Save</button>
-        <a class="btn btn-info" asp-area="Administration" asp-controller="Services" asp-action="All">Back to List</a>
-    </fieldset>
-</form>
+    </div>
+</div>
+
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <form method="post" asp-area="Administration" asp-controller="Services" asp-action="Edit">
+                <fieldset class="border p-3">
+                    <legend class="w-auto">Информация за Услуга</legend>
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-6">
+                                <p class="form-group">
+                                    <label asp-for="ServiceTypeId"></label><br />
+                                    <select asp-for="ServiceTypeId" asp-items="serviceTypes" class="selectpicker" data-size="5"></select>
+                                    <span asp-validation-for="ServiceTypeId" class="text-danger"></span>
+                                    <a class="btn btn-info float-right" asp-controller="Services" asp-action="Create">Добави нов Тип Услуга</a>
+                                </p>
+                                <p class="form-group">
+                                    <label asp-for="ServiceName"></label>
+                                    <input asp-for="ServiceName" class="form-control" />
+                                    <span asp-validation-for="ServiceName" class="text-danger"></span>
+                                </p>
+                                <p class="form-group">
+                                    <label asp-for="ServiceDescription"></label>
+                                    <textarea asp-for="ServiceDescription" class="form-control"></textarea>
+                                    <span asp-validation-for="ServiceDescription" class="text-danger"></span>
+                                </p>
+                                <p class="custom-control custom-checkbox my-1 mr-sm-2">
+                                    <input type="checkbox" asp-for="IsShownInSubMenu" class="custom-control-input" id="serviceCheckboxId">
+                                    <label class="custom-control-label" asp-for="IsShownInSubMenu" for="serviceCheckboxId">Покажи в <b>Подменюто</b></label>
+                                </p>
+                            </div>
+
+                            <div class="col-6">
+                                <p class="form-group">
+                                    <label asp-for="OperatingLocationIds"></label><br />
+                                    <select asp-for="OperatingLocationIds" class="selectpicker show-tick" data-show-subtext="true" data-live-search="true" data-size="5" title="Няма нищо избрано">
+                                        @foreach (var operatingLocation in Model.OperatingLocations)
+                                        {
+                                            <option value="@operatingLocation.Id" data-subtext="@operatingLocation.Address">@operatingLocation.Town</option>
+                                        }
+                                    </select>
+                                    <a class="btn btn-info float-right" asp-controller="OperatingLocations" asp-action="Create">Добави нова Работна Локация</a>
+                                </p>
+                                <p class="form-group">
+                                    <label asp-for="VehicleTypeId"></label><br />
+                                    <select asp-for="VehicleTypeId" class="selectpicker show-tick" data-show-subtext="true" data-live-search="true" data-size="5">
+                                        @foreach (var vehicleType in Model.VehicleTypes)
+                                        {
+                                            <option value="@vehicleType.Id" data-subtext="@vehicleType.Name">@vehicleType.Category</option>
+                                        }
+                                    </select>
+                                    <a class="btn btn-info float-right" asp-controller="Services" asp-action="Create">Добави нова Категория</a>
+                                </p>
+                                <p class="form-group">
+                                    <label asp-for="DocumentIds"></label><br />
+                                    <select asp-for="DocumentIds" asp-items="documents" class="selectpicker" data-size="5" multiple data-live-search="true" data-actions-box="true" data-selected-text-format="count" title="Няма нищо избрано"></select>
+                                    <span asp-validation-for="DocumentIds" class="text-danger"></span>
+                                    <a class="btn btn-info float-right" asp-controller="Services" asp-action="Create">Добави нов Документ</a>
+                                </p>
+
+                                <p class="form-group">
+                                    <label asp-for="Price"></label>
+                                    <input asp-for="Price" class="form-control" />
+                                    <span asp-validation-for="Price" class="text-danger"></span>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-success">Запази</button>
+                    <a class="btn btn-info" asp-area="Administration" asp-controller="Services" asp-action="All">Върни се обратно</a>
+                </fieldset>
+            </form>
+        </div>
+    </div>
+</div>

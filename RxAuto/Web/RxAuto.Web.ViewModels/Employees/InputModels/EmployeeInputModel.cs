@@ -16,52 +16,59 @@
     {
         public string Id { get; set; }
 
-        [Display(Name = "Job Position")]
-        [Required]
+        [Display(Name = "Работна Позиция", Prompt = "Работна Позиция")]
+        [Required(ErrorMessage = "Моля въвдете Работна Позиция")]
         [Range(100, int.MaxValue)]
         public int JobPositionId { get; set; }
         public IEnumerable<JobPositionsDropdownViewModel> JobPositions { get; set; }
 
 
-        [Display(Name = "Operating Location")]
-        [Required]
+        [Display(Name = "Работна Локация", Prompt = "Работна Локация")]
+        [Required(ErrorMessage = "Моля въвдете Работна Локация")]
         [Range(10, int.MaxValue)]
         public int OperatingLocationId { get; set; }
         public IEnumerable<OperatingLocationsDropdownViewModel> OperatingLocations { get; set; }
 
 
-        [Display(Name = "First Name")]
-        [Required(ErrorMessage = "Please enter First Name")]
-        [StringLength(20, ErrorMessage = "Name should be 2 to 20 characters long", MinimumLength = 2)]
+        [Display(Name = "Име", Prompt = "Име")]
+        [Required(ErrorMessage = "Моля въведете Име")]
+        [StringLength(20, ErrorMessage = "Името трябва да бъде между 2 и 20 символа", MinimumLength = 2)]
         public string FirstName { get; set; }
 
-        [Display(Name = "Middle Name")]
-        [Required(ErrorMessage = "Please enter Middle Name")]
-        [StringLength(20, ErrorMessage = "Name should be 2 to 20 characters long", MinimumLength = 2)]
+        [Display(Name = "Презиме", Prompt = "Презиме")]
+        [Required(ErrorMessage = "Моля въведете Презиме")]
+        [StringLength(20, ErrorMessage = "Презимето трябва да бъде между 2 и 20 символа", MinimumLength = 2)]
         public string MiddleName { get; set; }
 
-        [Display(Name = "Last Name")]
-        [Required(ErrorMessage = "Please enter Last Name")]
-        [StringLength(20, ErrorMessage = "Name should be 2 to 20 characters long", MinimumLength = 2)]
+        [Display(Name = "Фамилия", Prompt = "Фамилия")]
+        [Required(ErrorMessage = "Моля въведете Фамилия")]
+        [StringLength(20, ErrorMessage = "Фамилията трябва да бъде между 2 и 20 символа", MinimumLength = 2)]
         public string LastName { get; set; }
 
-        [Display(Name = "Phone Number")]
-        [Required(ErrorMessage = "Please enter Phone number")]
-        //TODO: Add regex validation
+        [Display(Name = "Телефон", Prompt = "Телефон")]
+        [Required(ErrorMessage = "Моля въведете Телефон")]
+        [RegularExpression(@"^([+]?359)|0?(|-| )8[789]\d{1}(|-| )\d{3}(|-| )\d{3}$", ErrorMessage = "Невалиден Телефон")]
+        [MaxLength(15)]
         public string Phone { get; set; }
 
-        //TODO: Add regex validation
+        [Required(ErrorMessage = "Моля въведете Имейл")]
+        [MaxLength(254)]
+        [Display(Name = "Имейл", Prompt = "Имейл")]
+        [RegularExpression(@"^\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$", ErrorMessage = "Невалиден Имейл")]
         public string Email { get; set; }
 
-        [Required(ErrorMessage = "Please enter Home Town")]
-        [StringLength(30, ErrorMessage = "Name should be 3 to 30 characters long", MinimumLength = 3)]
+        [Required(ErrorMessage = "Моля въведете Град")]
+        [StringLength(30, ErrorMessage = "Града трябва да бъде между 3 и 30 символа", MinimumLength = 3)]
+        [Display(Name = "Град", Prompt = "Град")]
         public string Town { get; set; }
 
-        [Required(ErrorMessage = "Please enter Home Address")]
-        [StringLength(50, ErrorMessage = "Name should be 8 to 50 characters long", MinimumLength = 8)]
+        [Required(ErrorMessage = "Моля въведете Адрес")]
+        [StringLength(50, ErrorMessage = "Адреса трябва да бъде между 8 и 50 символа", MinimumLength = 8)]
+        [Display(Name = "Адрес", Prompt = "Адрес")]
         public string Address { get; set; }
 
         [MaxLength(2000)]
+        [Display(Name = "Линк към снимка", Prompt = "Линк към снимка")]
         public string ImageUrl { get; set; }
     }
 }

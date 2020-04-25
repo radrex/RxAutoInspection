@@ -2,7 +2,7 @@
 
 <form method="post" asp-area="Administration" asp-controller="Services" asp-action="CreateServiceType">
     <fieldset class="border p-3">
-        <legend class="w-auto">Add New Service Type</legend>
+        <legend class="w-auto">Добави нов Тип Услуга</legend>
         <p class="form-group">
             <label asp-for="ServiceTypeName"></label>
             <input asp-for="ServiceTypeName" class="form-control" />
@@ -16,8 +16,8 @@
 
         <p class="custom-control custom-checkbox my-1 mr-sm-2">
             <input type="checkbox" asp-for="IsShownInMainMenu" class="custom-control-input" id="serviceTypeCheckboxId">
-            <label class="custom-control-label" asp-for="IsShownInMainMenu" for="serviceTypeCheckboxId">Show in <b>Main Menu</b></label>
+            <label class="custom-control-label" asp-for="IsShownInMainMenu" for="serviceTypeCheckboxId">Покажи в <b>Главното Меню</b></label>
         </p>
-        <button type="submit" class="btn btn-success float-right">Submit</button>
+        <button type="submit" class="btn btn-success float-right">Добави</button>
     </fieldset>
 </form>

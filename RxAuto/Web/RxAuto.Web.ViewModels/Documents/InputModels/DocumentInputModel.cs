@@ -11,11 +11,13 @@
     {
         public int Id { get; set; }
 
-        [Required]
-        [StringLength(300, ErrorMessage = "Name should be 5 to 20 characters long", MinimumLength = 5)]
+        [Required(ErrorMessage = "Моля въвдете Документ")]
+        [StringLength(300, ErrorMessage = "Документа трябва да е между 5 и 20 символа", MinimumLength = 5)]
+        [Display(Name = "Документ", Prompt = "Документ")]
         public string DocumentName { get; set; }
 
         [MaxLength(4000)]
+        [Display(Name = "Описание", Prompt = "Описание")]
         public string DocumentDescription { get; set; }
     }
 }

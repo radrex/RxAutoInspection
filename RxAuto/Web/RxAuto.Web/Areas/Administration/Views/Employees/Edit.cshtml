@@ -5,8 +5,12 @@
     var jobPositions = Model.JobPositions.Select(x => new SelectListItem(x.JobPositionName, x.Id.ToString()));
 }
 
-<div class="text-center">
-    <h1 class="display-4">Edit Employee Form</h1>
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <h1 class="d-flex justify-content-center">Промяна на информацията за служител</h1>
+        </div>
+    </div>
 </div>
 
 <div class="container">
@@ -14,11 +18,11 @@
         <div class="col">
             <form method="post" asp-area="Administration" asp-controller="Employees" asp-action="Edit">
                 <fieldset class="border p-3">
-                    <legend class="w-auto">Edit Employee</legend>
+                    <legend class="w-auto">Информация за Служител</legend>
                     <p class="form-group">
                         <label asp-for="JobPositionId"></label>
                         <select asp-for="JobPositionId" asp-items="jobPositions" class="selectpicker show-tick" data-size="5"></select>
-                        <button class="btn btn-info">Add new Job Position</button>
+                        <a class="btn btn-info" asp-area="Administration" asp-controller="JobPositions" asp-action="Create">Добави нова Работна Позиция</a>
                     </p>
                     <p class="form-group">
                         <label asp-for="OperatingLocationId"></label>
@@ -28,7 +32,7 @@
                                 <option value="@operatingLocation.Id" data-subtext="@operatingLocation.Address">@operatingLocation.Town</option>
                             }
                         </select>
-                        <button class="btn btn-info">Add new Location</button>
+                        <a class="btn btn-info" asp-area="Administration" asp-controller="OperatingLocations" asp-action="Create">Добави нова Работна Локация</a>
                     </p>
                     <div class="form-row">
                         <div class="form-group col-md-4">
@@ -78,8 +82,8 @@
                             <span asp-validation-for="ImageUrl" class="text-danger"></span>
                         </div>
                     </div>
-                    <button type="submit" class="btn btn-success">Save</button>
-                    <a class="btn btn-info" asp-area="Administration" asp-controller="Employees" asp-action="All">Back to List</a>
+                    <button type="submit" class="btn btn-success">Запази</button>
+                    <a class="btn btn-info" asp-area="Administration" asp-controller="Employees" asp-action="All">Върни се обратно</a>
                 </fieldset>
             </form>
         </div>

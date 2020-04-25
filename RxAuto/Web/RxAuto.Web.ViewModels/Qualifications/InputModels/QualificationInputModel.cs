@@ -10,12 +10,13 @@
     {
         public int Id { get; set; }
 
-        [Display(Name = "Qualification")]
-        [Required(ErrorMessage = "Please enter Qualification name")]
-        [StringLength(300, ErrorMessage = "Name should be 5-300 characters long", MinimumLength = 5)]
+        [Display(Name = "Квалификация", Prompt = "Квалификация")]
+        [Required(ErrorMessage = "Моля въведете Квалификация")]
+        [StringLength(300, ErrorMessage = "Квалификацията трябва да бъде между 5 и 300 символа", MinimumLength = 5)]
         public string QualificationName { get; set; }
 
         [MaxLength(4000)]
+        [Display(Name = "Описание", Prompt = "Описание")]
         public string Description { get; set; }
     }
 }

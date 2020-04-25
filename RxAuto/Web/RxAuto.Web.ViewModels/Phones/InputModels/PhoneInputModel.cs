@@ -10,9 +10,9 @@
     {
         public int Id { get; set; }
 
-        [Display(Name = "Phone Number")]
-        [Required(ErrorMessage = "Please enter Phone Number")]
-        //TODO: Add phone regex validation
+        [Display(Name = "Телефон", Prompt = "Телефон")]
+        [Required(ErrorMessage = "Моля въведете Телефон")]
+        [RegularExpression(@"^([+]?359)|0?(|-| )8[789]\d{1}(|-| )\d{3}(|-| )\d{3}$", ErrorMessage = "Невалиден Телефон")]
         [MaxLength(15)]
         public string PhoneNumber { get; set; }
     }
