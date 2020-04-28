@@ -10,6 +10,8 @@ using RxAuto.Web.Models;
 using RxAuto.Web.ViewModels.Departments.ViewModels;
 using RxAuto.Web.ViewModels.OperatingLocations.ViewModels;
 using RxAuto.Web.ViewModels.Phones.ViewModels;
+using RxAuto.Web.ViewModels.Services.ViewModels;
+using RxAuto.Web.ViewModels.ServiceTypes.ViewModels;
 
 namespace RxAuto.Web.Controllers
 {
@@ -17,18 +19,33 @@ namespace RxAuto.Web.Controllers
     {
         private readonly ILogger<HomeController> _logger;
         private readonly IOperatingLocationsService operatingLocationsService;
+        private readonly IServiceTypesService serviceTypesService;
 
-        public HomeController(ILogger<HomeController> logger, IOperatingLocationsService operatingLocationsService)
+        public HomeController(ILogger<HomeController> logger, IOperatingLocationsService operatingLocationsService, IServiceTypesService serviceTypesService)
         {
             _logger = logger;
             this.operatingLocationsService = operatingLocationsService;
+            this.serviceTypesService = serviceTypesService;
         }
 
+        [HttpGet]
         public IActionResult Index()
         {
-            return this.View();
+            var viewModel = new ServicesViewModel
+            {
+                ServiceTypes = this.serviceTypesService.All().Select(x => new ServiceTypeInfoViewModel
+                {
+                    Id = x.Id,
+                    Name = x.Name,
+                    Description = x.Description,
+                    IsShownInMainMenu = x.IsShownInMainMenu == true ? "Видимо в Главното Меню" : "Скрито от Главното Меню",
+                }),
+            };
+
+            return this.View(viewModel);
         }
 
+        [HttpGet]
         public IActionResult Privacy()
         {
             return this.View();
@@ -69,6 +86,22 @@ namespace RxAuto.Web.Controllers
                         })
                     })
                 }).OrderBy(x => x.Town),
+            };
+
+            return this.View(viewModel);
+        }
+
+        [HttpGet]
+        public IActionResult Gallery()
+        {
+            var viewModel = new OperatingLocationsMediaViewModel
+            {
+                OperatingLocations = this.operatingLocationsService.GetMedia().Select(x => new OperatingLocationMediaViewModel 
+                {
+                    Town = x.Town,
+                    Address = x.Address,
+                    ImageUrl = x.ImageUrl,
+                })
             };
 
             return this.View(viewModel);

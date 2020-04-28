@@ -11,14 +11,16 @@
     </div>
 </div>
 
-<div class="container">
-    <div class="row">
+<div class="container-fluid">
+    <div class="row-fluid">
         <div class="col-12">
             <table class="table table-sm table-hover">
                 <thead>
                     <tr>
                         <th><label asp-for="@Model.Reservations.First().ServiceType"></label></th>
                         <th><label asp-for="@Model.Reservations.First().Service"></label></th>
+                        <th><label asp-for="@Model.Reservations.First().Town"></label></th>
+                        <th><label asp-for="@Model.Reservations.First().Address"></label></th>
                         <th><label asp-for="@Model.Reservations.First().IsActive"></label></th>
                         <th><label asp-for="@Model.Reservations.First().VehicleMake"></label></th>
                         <th><label asp-for="@Model.Reservations.First().VehicleModel"></label></th>
@@ -33,6 +35,8 @@
                         <tr>
                             <td>@reservation.ServiceType</td>
                             <td>@reservation.Service</td>
+                            <td>@reservation.Town</td>
+                            <td>@reservation.Address</td>
                             <td>@reservation.IsActive</td>
                             <td>@reservation.VehicleMake</td>
                             <td>@reservation.VehicleModel</td>

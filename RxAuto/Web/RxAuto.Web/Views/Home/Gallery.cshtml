@@ -1,0 +1,52 @@
+﻿@model RxAuto.Web.ViewModels.OperatingLocations.ViewModels.OperatingLocationsMediaViewModel
+
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <h1 style="text-align:center">Галерия</h1>
+            <p>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam venenatis, sem eu suscipit accumsan, ligula augue suscipit urna, eu auctor arcu neque id nulla. Vivamus accumsan erat id congue dignissim. Etiam viverra accumsan magna. Cras convallis eleifend lorem, at blandit risus sollicitudin eu. Nam mollis quam at eros ultricies, et pulvinar dolor finibus. Integer dictum nisl mauris, non mollis lacus tempus nec. Sed faucibus dignissim congue. Suspendisse sed convallis enim. Aliquam ullamcorper justo a tincidunt ultricies. Proin pharetra facilisis placerat. Curabitur vitae risus turpis. Aenean scelerisque eros et accumsan feugiat.
+            </p>
+        </div>
+    </div>
+
+    <div class="row d-flex justify-content-center">
+        <div class="col-10">
+            <div id="carouselExampleCaptions" class="carousel slide" data-ride="carousel">
+                <ol class="carousel-indicators">
+                    @for (int i = 0; i < Model.OperatingLocations.Count(); i++)
+                    {
+                        if (i == 0)
+                        {
+                            <li data-target="#carouselExampleCaptions" data-slide-to="@i" class="active"></li>
+                        }
+                        else
+                        {
+                            <li data-target="#carouselExampleCaptions" data-slide-to="@i"></li>
+                        }
+                    }
+                </ol>
+                <div class="carousel-inner">
+                    @foreach (var operatingLocation in Model.OperatingLocations)
+                    {
+                        <div class="carousel-item active">
+                            <img src="@operatingLocation.ImageUrl" class="d-block w-100" alt="@operatingLocation.Town  @operatingLocation.Address">
+                            <div class="carousel-caption d-none d-md-block">
+                                <p>@operatingLocation.Town  @operatingLocation.Address</p>
+                            </div>
+                        </div>
+                    }
+                </div>
+                <a class="carousel-control-prev" href="#carouselExampleCaptions" role="button" data-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Назад</span>
+                </a>
+                <a class="carousel-control-next" href="#carouselExampleCaptions" role="button" data-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Напред</span>
+                </a>
+            </div>
+
+        </div>
+    </div>
+</div>

@@ -300,5 +300,16 @@
             }
             return true;
         }
+
+        //TODO: Add docs
+        public IEnumerable<OperatingLocationMediaServiceModel> GetMedia()
+        {
+            return this.dbContext.OperatingLocations.Select(x => new OperatingLocationMediaServiceModel
+            {
+                Town = x.Town,
+                Address = x.Address,
+                ImageUrl = x.ImageUrl,
+            });
+        }
     }
 }

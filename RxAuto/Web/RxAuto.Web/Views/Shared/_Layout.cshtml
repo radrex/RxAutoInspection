@@ -27,25 +27,57 @@
             @RenderBody()
         </main>
     </div>
-
-    <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2020 - RxAuto.Web - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-        </div>
-    </footer>
-
-    @*<script src="~/lib/jquery-slim/dist/jquery.slim.min.js"></script>
-        <script src="~/lib/bootstrap/dist/js/bootstrap.min.js"></script>*@
+    <div class="container">
+        <footer class="pt-4 my-md-5 pt-md-5 border-top">
+            <div class="row">
+                <div class="col-12 col-md">
+                    <p>RxAuto <small class="d-block mb-3 text-muted">© 2020</small></p>
+                </div>
+                <div class="col-6 col-md">
+                    <h5><a asp-controller="Home" asp-action="Contacts">Контакти</a></h5>
+                    <ul class="list-unstyled text-small">
+                        <li><a class="text-muted" href="#">Resource</a></li>
+                        <li><a class="text-muted" href="#">Resource name</a></li>
+                        <li><a class="text-muted" href="#">Another resource</a></li>
+                        <li><a class="text-muted" href="#">Final resource</a></li>
+                    </ul>
+                </div>
+                <div class="col-6 col-md">
+                    <h5><a asp-controller="Home" asp-action="Privacy">Privacy</a></h5>
+                    <ul class="list-unstyled text-small">
+                        <li><a class="text-muted" href="#">Team</a></li>
+                        <li><a class="text-muted" href="#">Locations</a></li>
+                        <li><a class="text-muted" href="#">Privacy</a></li>
+                        <li><a class="text-muted" href="#">Terms</a></li>
+                    </ul>
+                </div>
+            </div>
+        </footer>
+    </div>
 
     <!-- Used for bootstrap-select dropdown -->
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap-select.min.js"></script>
 
+    @*<script src="~/lib/jquery-slim/dist/jquery.slim.min.js"></script>*@
     <script src="/jquery.js"></script>
     <script src="~/lib/popper/dist/umd/popper.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.min.js"></script>
     <script src="~/lib/jquery-datetimepicker/build/jquery.datetimepicker.full.min.js"></script>
+
+    <!-------------------------------------------------------------------------------------------------->
+    @*<script src="~/lib/jquery-slim/dist/jquery.slim.min.js"></script>
+        <script src="~/lib/popper/dist/umd/popper.min.js"></script>
+        <script src="~/lib/bootstrap/dist/js/bootstrap.min.js"></script>*@
+
+    <!-- Used for bootstrap-select dropdown -->
+    @*<script src="~/lib/jquery/dist/jquery.min.js"></script>
+        <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="~/lib/bootstrap/dist/js/bootstrap-select.min.js"></script>*@
+
+    @*<script src="/jquery.js"></script>
+        <script src="~/lib/jquery-datetimepicker/build/jquery.datetimepicker.full.min.js"></script>*@
 
     <script>
         $('#picker').datetimepicker({

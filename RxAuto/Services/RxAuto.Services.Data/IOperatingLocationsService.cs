@@ -79,5 +79,8 @@
         /// <param name="id">OperatingLocation ID</param>
         /// <returns>True - removed entity. False - no such entity found.</returns>
         Task<bool> RemoveAsync(int id);
+
+        //TODO: Add docs
+        IEnumerable<OperatingLocationMediaServiceModel> GetMedia();
     }
 }

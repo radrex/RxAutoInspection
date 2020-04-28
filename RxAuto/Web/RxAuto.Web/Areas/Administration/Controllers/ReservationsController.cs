@@ -53,7 +53,9 @@
                     VehicleModel = x.VehicleModel,
                     LicenseNumber = x.LicenseNumber,
                     PhoneNumber = x.PhoneNumber,
-                    ReservationDateTime = x.ReservationDateTime
+                    ReservationDateTime = x.ReservationDateTime,
+                    Town = x.Town,
+                    Address = x.Address,
                 }),
             };
 

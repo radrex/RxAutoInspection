@@ -33,5 +33,11 @@
 
         [Display(Name = "Дата и час")]
         public string ReservationDateTime { get; set; }
+
+        [Display(Name = "Град")]
+        public string Town { get; set; }
+
+        [Display(Name = "Адрес")]
+        public string Address { get; set; }
     }
 }

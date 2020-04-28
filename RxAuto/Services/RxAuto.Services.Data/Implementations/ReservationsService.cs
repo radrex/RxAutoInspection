@@ -44,6 +44,8 @@
                 LicenseNumber = x.LicenseNumber,
                 PhoneNumber = x.PhoneNumber,
                 ReservationDateTime = x.ReservationDateTime.ToString("dddd, dd MMMM yyyy HH:mm:ss"),
+                Town = x.Service.OperatingLocations.Select(x => x.OperatingLocation.Town).FirstOrDefault(),
+                Address = x.Service.OperatingLocations.Select(x => x.OperatingLocation.Address).FirstOrDefault(),
             })
             .Skip(skip);
 
@@ -79,6 +81,8 @@
                                                        LicenseNumber = x.LicenseNumber,
                                                        PhoneNumber = x.PhoneNumber,
                                                        ReservationDateTime = x.ReservationDateTime.ToString("dddd, dd MMMM yyyy HH:mm:ss"),
+                                                       Town = x.Service.OperatingLocations.Select(x => x.OperatingLocation.Town).FirstOrDefault(),
+                                                       Address = x.Service.OperatingLocations.Select(x => x.OperatingLocation.Address).FirstOrDefault(),
                                                    })
                                                    .Skip(skip);
 
