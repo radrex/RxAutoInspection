@@ -1,0 +1,66 @@
+﻿@model RxAuto.Web.ViewModels.ServiceTypes.ViewModels.ServiceTypeInfoViewModel
+@{
+    this.ViewData["Title"] = Model.Name;
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <h1 class="d-flex justify-content-center">@Model.Name</h1>
+            <p>@Model.Description</p>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <table class="table table-sm table-hover">
+                <thead>
+                    <tr>
+                        <th><label asp-for="@Model.Services.First().Name"></label></th>
+                        <th><label asp-for="@Model.Services.First().VehicleType"></label></th>
+                        <th><label>Необходими Документи</label></th>
+                        <th><label asp-for="@Model.Services.First().Price"></label></th>
+                        <th><label>Резервация</label></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var service in Model.Services)
+                    {
+                        <tr>
+                            <td>@service.Name</td>
+                            <td>@service.VehicleType</td>
+                            <td>
+                                @{ string key = service.Name.ToString(); }
+
+                                <a class="btn btn-primary" data-toggle="collapse" href="#key" role="button" aria-expanded="false" aria-controls="key">
+                                    Виж
+                                </a>
+                                <div class="collapse" id="key">
+                                    <div class="card card-body">
+                                        <ul>
+                                            @if (service.Documents.Count() == 0)
+                                            {
+                                                <li style="list-style-type:square;">Не са нужни документи</li>
+                                            }
+                                            @foreach (var document in service.Documents)
+                                            {
+                                                <li style="list-style-type:square;">@document.Name</li>
+                                            }
+                                        </ul>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>@service.Price лв.</td>
+                            <td>
+                                <!-- Pass service.ServiceId, userId... to reservationInputModel -->
+                                <partial name="_ReservationModalForm" model="Model.ReservationInputModel" />
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

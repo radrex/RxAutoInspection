@@ -37,6 +37,12 @@
         IEnumerable<OperatingLocationsListingServiceModel> All(int? take = null, int skip = 0);
 
         /// <summary>
+        /// Describes a method for getting all the <see cref="OperatingLocation"/>s, their <see cref="Department"/>s and Department's <see cref="Phone"/>s.
+        /// </summary>
+        /// <returns></returns>
+        IEnumerable<OperatingLocationInfoServiceModel> AllInfo();
+
+        /// <summary>
         /// Describes a method for getting the total number of <see cref="OperatingLocation"/>s from the database.
         /// <para>Should return the number of <see cref="OperatingLocation"/>s</para>
         /// </summary>

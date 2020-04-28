@@ -3,6 +3,8 @@
     using RxAuto.Data;
     using RxAuto.Data.Models;
 
+    using RxAuto.Services.Models.Services;
+    using RxAuto.Services.Models.Documents;
     using RxAuto.Services.Models.ServiceTypes;
 
     using System.Linq;
@@ -99,6 +101,21 @@
         }
 
         /// <summary>
+        /// Gets every <see cref="ServiceType"/>'s <c>Id</c>, <c>Name</c>, <c>Description</c> and <c>IsShownInMainMenu</c> and returns it a service model collection.
+        /// </summary>
+        /// <returns>Collection of ServiceTypes</returns>
+        public IEnumerable<ServiceTypeServiceModel> All()
+        {
+            return this.dbContext.ServiceTypes.Select(st => new ServiceTypeServiceModel
+            {
+                Id = st.Id,
+                Name = st.Name,
+                Description = st.Description,
+                IsShownInMainMenu = st.IsShownInMainMenu,
+            });
+        }
+
+        /// <summary>
         /// Gets and returns the total <c>ServiceTypes</c> count.
         /// </summary>
         /// <returns>ServiceTypes Count</returns>
@@ -123,6 +140,37 @@
                                                   Description = x.Description,
                                                   IsShownInMainMenu = x.IsShownInMainMenu,
                                               }).FirstOrDefault();
+        }
+
+        /// <summary>
+        /// Gets the first <see cref="ServiceType"/> by (string)<c>Name</c> from the database and returns it as a service model.
+        /// <para> If there is no such <see cref="ServiceType"/> in the database, returns the service model default value.</para>
+        /// </summary>
+        /// <param name="name">ServiceType Name</param>
+        /// <returns>A single ServiceType</returns>
+        public ServiceTypeInfoServiceModel GetByNamePreview(string name)
+        {
+            var serviceType = this.dbContext.ServiceTypes.Where(x => x.Name.Replace(" ", "-") == name.Replace(" ", "-"))
+                                                         .Select(x => new ServiceTypeInfoServiceModel
+                                                         {
+                                                             Id = x.Id,
+                                                             Name = x.Name,
+                                                             Description = x.Description,
+                                                             IsShownInMainMenu = x.IsShownInMainMenu,
+                                                             Services = x.Services.Select(x => new ServiceInfoServiceModel 
+                                                             {
+                                                                Id = x.Id,
+                                                                Name = x.Name,
+                                                                VehicleType = $"{x.VehicleType.VehicleCategory} - {x.VehicleType.Name}",
+                                                                Price = x.Price,
+                                                                Documents = x.Documents.Select(x => new DocumentInfoServiceModel 
+                                                                {
+                                                                    Id = x.DocumentId,
+                                                                    Name = x.Document.Name,
+                                                                }),
+                                                             }),
+                                                         }).FirstOrDefault();
+            return serviceType;
         }
 
         /// <summary>

@@ -1,0 +1,49 @@
+﻿@model RxAuto.Web.ViewModels.Reservations.InputModels.ReservationInputModel
+
+<button type="button" class="btn btn-success" data-toggle="modal" data-target="#exampleModal">Запази час и избери локация</button>
+
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Резервация</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+
+            <div class="modal-body">
+                <form method="post" asp-controller="Reservations" asp-action="Create">
+                    <div class="form-group">
+                        <label asp-for="VehicleMake"></label>
+                        <input asp-for="VehicleMake" class="form-control" />
+                        <span asp-validation-for="VehicleMake" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="VehicleModel"></label>
+                        <input asp-for="VehicleModel" class="form-control" />
+                        <span asp-validation-for="VehicleModel" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="LicenseNumber"></label>
+                        <input asp-for="LicenseNumber" class="form-control" />
+                        <span asp-validation-for="LicenseNumber" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="PhoneNumber"></label>
+                        <input asp-for="PhoneNumber" class="form-control" />
+                        <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="ReservationDateTime"></label>
+                        <input asp-for="ReservationDateTime" id="picker" class="form-control" />
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-dismiss="modal">Затвори</button>
+                <button type="button" class="btn btn-success">Запази</button>
+            </div>
+        </div>
+    </div>
+</div>

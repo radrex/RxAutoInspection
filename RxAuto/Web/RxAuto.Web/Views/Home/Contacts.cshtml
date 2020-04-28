@@ -1,0 +1,37 @@
+﻿@model RxAuto.Web.ViewModels.OperatingLocations.ViewModels.OperatingLocationsViewModel
+
+@{
+    ViewData["Title"] = "Services";
+}
+
+<div class="container">
+    @foreach (var operatingLocation in Model.OperatingLocations)
+    {
+        <div class="row">
+            <div class="col-12 d-flex justify-content-center">
+                <h3>@operatingLocation.Town</h3>
+            </div>
+            <div class="col-12 d-flex justify-content-center">
+                <h5>@operatingLocation.Address</h5>
+            </div>
+            <h5>Отдели</h5>
+            @foreach (var department in operatingLocation.Departments)
+            {
+                <div class="col-12">
+                    <ul style="list-style:square">
+                        <li style="margin-left: 1rem">
+                            @department.Name - @department.Email
+                            <ul style="list-style:circle">
+                                @foreach (var phone in department.Phones)
+                                {
+                                    <li style="margin-left: 3rem">@phone.PhoneNumber</li>
+                                }
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            }
+        </div>
+        <hr />
+    }
+</div>

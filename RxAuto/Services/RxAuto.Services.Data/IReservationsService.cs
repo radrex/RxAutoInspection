@@ -28,6 +28,12 @@
         /// <returns>Reservations Count</returns>
         int Count();
 
+        //TODO: Add docs
+        IEnumerable<ReservationsListingServiceModel> AllForUser(string username, int? take = null, int skip = 0);
+
+        //TODO: Add docs
+        int CountForUser(string username);
+
         /// <summary>
         /// Describes an asynchronous method for removing a <see cref="Reservation"/> with given <c>Id</c> from the database.
         /// </summary>

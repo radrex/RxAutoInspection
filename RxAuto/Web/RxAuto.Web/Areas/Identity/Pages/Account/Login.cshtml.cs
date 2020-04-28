@@ -44,14 +44,16 @@ namespace RxAuto.Web.Areas.Identity.Pages.Account
 
         public class InputModel
         {
-            [Required]
+            [Required(ErrorMessage = "Потребителско име е задължително")]
+            [Display(Name = "Потребителско име")]
             public string Username { get; set; }
 
-            [Required]
+            [Required(ErrorMessage = "Паролата е задължителна")]
             [DataType(DataType.Password)]
+            [Display(Name = "Парола")]
             public string Password { get; set; }
 
-            [Display(Name = "Remember me?")]
+            [Display(Name = "Запомни ме?")]
             public bool RememberMe { get; set; }
         }
 
@@ -83,13 +85,13 @@ namespace RxAuto.Web.Areas.Identity.Pages.Account
                 var result = await _signInManager.PasswordSignInAsync(Input.Username, Input.Password, Input.RememberMe, lockoutOnFailure: false);
                 if (result.Succeeded)
                 {
-                    ApplicationUser user = await this._userManager.FindByNameAsync(Input.Username);
-                    var roles = await _userManager.GetRolesAsync(user);
+                    //ApplicationUser user = await this._userManager.FindByNameAsync(Input.Username);
+                    //var roles = await _userManager.GetRolesAsync(user);
 
-                    if (roles.Any(x => x.Equals("Administrator")))
-                    {
-                        return RedirectToAction("Index", "Home", new { area = "Administration" });
-                    }
+                    //if (roles.Any(x => x.Equals("Administrator")))
+                    //{
+                    //    return RedirectToAction("Index", "Home", new { area = "Administration" });
+                    //}
 
                     _logger.LogInformation("User logged in.");
                     return LocalRedirect(returnUrl);

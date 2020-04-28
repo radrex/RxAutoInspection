@@ -1,0 +1,47 @@
+﻿@model RxAuto.Web.ViewModels.Services.ViewModels.ServicesViewModel
+
+<nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+    <div class="container">
+        <a class="navbar-brand" asp-controller="Home" asp-action="Index">RxAuto</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
+            <partial name="_LoginPartial" />
+            <ul class="navbar-nav flex-grow-1">
+                <li class="nav-item">
+                    <a class="nav-link text-dark" asp-controller="Home" asp-action="Index">Начало</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-dark" asp-controller="Home" asp-action="About">За нас</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link" asp-controller="Services" asp-action="Preview" id="navbarDropdownMenuLink" aria-haspopup="true" aria-expanded="false">
+                        Услуги
+                    </a>
+
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                        @foreach (var serviceType in Model.ServiceTypes)
+                        {
+                            <a class="dropdown-item" href="@serviceType.Url">@serviceType.Name</a>
+                            <!-- TODO: Add submenu -->
+                        }
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-dark" asp-controller="Home" asp-action="Contacts">Контакти</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-dark" asp-controller="Home" asp-action="Index">Галерия</a>
+                </li>
+                @if (this.User.IsInRole("User"))
+                {
+                    <li class="nav-item">
+                        <a class="nav-link text-dark" asp-controller="Reservations" asp-action="MyReservations">Моите Резервации</a>
+                    </li>
+                }
+            </ul>
+        </div>
+    </div>
+</nav>

@@ -7,6 +7,8 @@
     using System.Linq;
     using System.Threading.Tasks;
     using System.Collections.Generic;
+    using RxAuto.Services.Models.Departments;
+    using RxAuto.Services.Models.Phones;
 
     /// <summary>
     /// Contains method implementations for <see cref="OperatingLocation"/> entity and it's database relations.
@@ -115,6 +117,34 @@
             }
 
             return query.ToList();
+        }
+
+        /// <summary>
+        /// Gets information for listing <see cref="OperatingLocation"/>s, their <see cref="Department"/>s and Department's <see cref="Phone"/>s.
+        /// </summary>
+        /// <returns></returns>
+        public IEnumerable<OperatingLocationInfoServiceModel> AllInfo()
+        {
+            return this.dbContext.OperatingLocations.Select(x => new OperatingLocationInfoServiceModel
+            {
+                Id = x.Id,
+                Town = x.Town,
+                Address = x.Address,
+                Departments = x.Departments.Select(x => new DepartmentInfoServiceModel
+                {
+                    Id = x.Id,
+                    Name = x.Name,
+                    Email = x.Email,
+                    Phones = x.Phones
+                    .Where(x => x.Phone.IsInternal == false)
+                    .Select(x => new PhoneServiceModel
+                    {
+                        Id = x.PhoneId,
+                        PhoneNumber = x.Phone.PhoneNumber,
+                        IsInternal = x.Phone.IsInternal ? "Публичен" : "Фирмен",
+                    })
+                })
+            });
         }
 
         /// <summary>

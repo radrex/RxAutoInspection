@@ -8,6 +8,7 @@
     using System.Linq;
     using System.Threading.Tasks;
     using System.Collections.Generic;
+    using System.Security.Claims;
 
     /// <summary>
     /// Contains method implementations for <see cref="Reservation"/> entity and it's database relations.
@@ -61,6 +62,39 @@
         public int Count()
         {
             return this.dbContext.Reservations.Count();
+        }
+
+        //TODO: Add docs
+        public IEnumerable<ReservationsListingServiceModel> AllForUser(string username, int? take = null, int skip = 0)
+        {
+            var query = this.dbContext.Reservations.Where(x => x.User.UserName == username)
+                                                   .Select(x => new ReservationsListingServiceModel
+                                                   {
+                                                       Id = x.Id,
+                                                       ServiceType = x.Service.ServiceType.Name,
+                                                       Service = x.Service.Name,
+                                                       VehicleMake = x.VehicleMake,
+                                                       VehicleModel = x.VehicleModel,
+                                                       IsActive = x.IsActive ? "Активна" : "Отменена",
+                                                       LicenseNumber = x.LicenseNumber,
+                                                       PhoneNumber = x.PhoneNumber,
+                                                       ReservationDateTime = x.ReservationDateTime.ToString("dddd, dd MMMM yyyy HH:mm:ss"),
+                                                   })
+                                                   .Skip(skip);
+
+            if (take.HasValue)
+            {
+                query = query.Take(take.Value);
+            }
+
+            return query.ToList();
+        }
+
+        //TODO:Add docs
+        public int CountForUser(string username)
+        {
+            var user = this.dbContext.Users.FirstOrDefault(x => x.UserName == username);
+            return user.Reservations.Count();
         }
 
         /// <summary>

@@ -12,7 +12,7 @@
 
         }
 
-        public async Task<IViewComponentResult> InvokeAsync()
+        public IViewComponentResult Invoke()
         {
             return this.View();
         }

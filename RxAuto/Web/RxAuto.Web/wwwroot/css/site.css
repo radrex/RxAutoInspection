@@ -137,3 +137,8 @@ body {
             font-size: 18px;
         }
 }
+
+/*-- HOVER DROPDOWN MENU --*/
+.dropdown:hover > .dropdown-menu {
+    display: block;
+}

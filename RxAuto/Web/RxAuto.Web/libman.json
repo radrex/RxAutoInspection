@@ -41,6 +41,22 @@
       ]
     },
     {
+      "library": "jquery-datetimepicker@2.5.21",
+      "destination": "wwwroot/lib/jquery-datetimepicker/",
+      "files": [
+        "build/jquery.datetimepicker.full.js",
+        "build/jquery.datetimepicker.full.min.js",
+        "jquery.js",
+        "jquery.min.js",
+        "build/jquery.datetimepicker.min.css",
+        "build/jquery.datetimepicker.min.js",
+        "jquery.datetimepicker.js",
+        "jquery.datetimepicker.min.js",
+        "jquery.datetimepicker.css",
+        "jquery.datetimepicker.min.css"
+      ]
+    },
+    {
       "library": "jquery@3.4.1",
       "destination": "wwwroot/lib/jquery/",
       "files": [

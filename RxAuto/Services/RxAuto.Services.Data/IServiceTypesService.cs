@@ -37,6 +37,12 @@
         IEnumerable<ServiceTypesListingServiceModel> All(int? take = null, int skip = 0);
 
         /// <summary>
+        /// Describes a method for getting all the <see cref="ServiceType"/>s from the database.
+        /// </summary>
+        /// <returns>Service Model with Id, Name, Description and IsShownInMainMenu</returns>
+        IEnumerable<ServiceTypeServiceModel> All();
+
+        /// <summary>
         /// Describes a method for getting the total number of <see cref="ServiceType"/>s from the database.
         /// <para>Should return the number of <see cref="ServiceType"/>s</para>
         /// </summary>
@@ -51,6 +57,15 @@
         /// <param name="id">ServiceType ID</param>
         /// <returns>A single ServiceType</returns>
         ServiceTypeServiceModel GetById(int id);
+
+        /// <summary>
+        /// Describes a method which gets a <see cref="ServiceType"/> from the database using the given (string) name.
+        /// <para>Should return <see cref="ServiceTypeServiceModel"/>.</para>
+        /// <para>Each service model has <see cref="ServiceType"/>'s <c>Id</c>, <c>Name</c>, <c>Description</c> and <c>IsShownInMainMenu</c>.</para>
+        /// </summary>
+        /// <param name="name">ServiceType Name</param>
+        /// <returns>A single ServiceType</returns>
+        ServiceTypeInfoServiceModel GetByNamePreview(string name);
 
         /// <summary>
         /// Describes a method for searching a <see cref="ServiceType"/> with given <c>Id</c>.
