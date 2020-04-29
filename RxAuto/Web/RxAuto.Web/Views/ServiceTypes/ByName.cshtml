@@ -58,8 +58,10 @@
                             </td>
                             <td>@service.Price лв.</td>
                             <td>
-                                @{  //PARTIAL VIEW TAKES ONLY THE FIRST SENT MODEL, DESPITE THE FACT THAT HERE WE SEND DIFFERENT ONES
-                                    Model.ReservationInputModel.ServiceId = service.Id;
+                                @{ //PARTIAL VIEW TAKES ONLY THE FIRST SENT MODEL, DESPITE THE FACT THAT HERE WE SEND DIFFERENT ONES
+
+                                    var testModel = new RxAuto.Web.ViewModels.Reservations.InputModels.ReservationInputModel();
+                                    testModel.ServiceId = service.Id;
 
                                     var currentService = servicesService.GetById(service.Id);
                                     var currentOpLocs = currentService.OperatingLocationIds.OrderBy(x => x).ToList();
@@ -77,10 +79,10 @@
                                         });
                                     }
 
-                                    Model.ReservationInputModel.OperatingLocations = modalOperatingLocations;
+                                    testModel.OperatingLocations = modalOperatingLocations;
                                 }
 
-                                <partial name="_ReservationModalForm" model="Model.ReservationInputModel" />
+                                <partial name="_ReservationModalForm" model="testModel" />
                             </td>
                         </tr>
                     }

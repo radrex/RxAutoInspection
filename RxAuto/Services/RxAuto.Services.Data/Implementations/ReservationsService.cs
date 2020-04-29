@@ -148,6 +148,13 @@
                                              .Select(x => x.Id)
                                              .FirstOrDefault();
 
+            //If no such user, assign userId to GUEST USER (people that want to do reservations without having an account)
+            if (userId == null)
+            {
+                var test = this.dbContext.Users.FirstOrDefault(x => x.UserName == "GuestUser").Id;
+                userId = test;
+            }
+
             Reservation reservation = new Reservation
             {
                 IsActive = true,
@@ -160,8 +167,7 @@
                 ServiceId = model.ServiceId,
                 OperatingLocationId = model.OperatingLocationId,
 
-                //If no such user, assign userId to GUEST USER (people that want to do reservations without having an account)
-                UserId = (userId == null) ? "72d3da73-551f-4020-bd40-004b513cf7b8" : userId, 
+                UserId = userId, 
             };
 
             //reservation.Service.OperatingLocations.Add

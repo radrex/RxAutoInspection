@@ -24,6 +24,8 @@
 
         public IEnumerable<ServiceInfoViewModel> Services { get; set; }
 
-        public ReservationInputModel ReservationInputModel { get; set; }
+        //public ReservationInputModel ReservationInputModel { get; set; }
+
+        //public IEnumerable<ReservationInputModel> ReservationInputModels { get; set; }
     }
 }

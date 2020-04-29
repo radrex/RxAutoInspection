@@ -11,6 +11,7 @@
     using RxAuto.Web.ViewModels.Services.ViewModels;
     using RxAuto.Web.ViewModels.ServiceTypes.ViewModels;
     using System;
+    using System.Collections.Generic;
     using System.Globalization;
     using System.Linq;
     using System.Threading.Tasks;
@@ -62,7 +63,8 @@
                         Name = x.Name,
                     })
                 }),
-                ReservationInputModel = new ReservationInputModel {}
+                //ReservationInputModel = new ReservationInputModel {}
+                //ReservationInputModels = new List<ReservationInputModel>(),
             };
 
             return this.View(model);
