@@ -1,6 +1,8 @@
 ﻿namespace RxAuto.Web.ViewModels.Reservations.InputModels
 {
+    using RxAuto.Web.ViewModels.OperatingLocations.ViewModels;
     using System;
+    using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
 
     //TODO: Add docs
@@ -31,5 +33,11 @@
         public string PhoneNumber { get; set; }
 
         public int ServiceId { get; set; }
+
+        [Display(Name = "Работна Локация", Prompt = "Работна Локация")]
+        [Required(ErrorMessage = "Моля въвдете Работна Локация")]
+        [Range(10, int.MaxValue)]
+        public int OperatingLocationId { get; set; }
+        public IEnumerable<OperatingLocationsDropdownViewModel> OperatingLocations { get; set; }
     }
 }

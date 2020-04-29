@@ -31,6 +31,9 @@
         //------------ Department [FK] -----------
         public virtual ICollection<Department> Departments { get; set; } = new HashSet<Department>();
 
+        //------------ Reservations [FK] -----------
+        public virtual ICollection<Reservation> Reservations { get; set; } = new HashSet<Reservation>();
+
         //------------ ServiceOperatingLocation [FK] MAPPING TABLE -----------
         public virtual ICollection<ServiceOperatingLocation> Services { get; set; } = new HashSet<ServiceOperatingLocation>();
     }

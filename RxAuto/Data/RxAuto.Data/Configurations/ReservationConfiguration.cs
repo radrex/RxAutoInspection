@@ -9,6 +9,7 @@
     /// Applies configuration for <see cref="Reservation"/> entity.
     /// <para>Each <see cref="Reservation"/> has one <see cref="ApplicationUser"/>.</para>
     /// <para>Each <see cref="Reservation"/> has one <see cref="Service"/>.</para>
+    /// <para>Each <see cref="Reservation"/> has one <see cref="OperatingLocation"/>.</para>
     /// </summary>
     public class ReservationConfiguration : IEntityTypeConfiguration<Reservation>
     {
@@ -22,6 +23,11 @@
             res.HasOne(r => r.Service)
                .WithMany(s => s.Reservations)
                .HasForeignKey(r => r.ServiceId)
+               .OnDelete(DeleteBehavior.Restrict);
+
+            res.HasOne(r => r.OperatingLocation)
+               .WithMany(ol => ol.Reservations)
+               .HasForeignKey(r => r.OperatingLocationId)
                .OnDelete(DeleteBehavior.Restrict);
         }
     }

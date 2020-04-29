@@ -11,6 +11,7 @@ namespace RxAuto.Services.Models.Reservations
         public DateTime ReservationDateTime { get; set; }
         public string PhoneNumber { get; set; }
         public int ServiceId { get; set; }
+        public int OperatingLocationId { get; set; }
         public string Username { get; set; }
     }
 }

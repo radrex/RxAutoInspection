@@ -6,6 +6,7 @@
     using RxAuto.Services.Models.Reservations;
     using RxAuto.Services.Models.ServiceTypes;
     using RxAuto.Web.ViewModels.Documents.ViewModels;
+    using RxAuto.Web.ViewModels.OperatingLocations.ViewModels;
     using RxAuto.Web.ViewModels.Reservations.InputModels;
     using RxAuto.Web.ViewModels.Services.ViewModels;
     using RxAuto.Web.ViewModels.ServiceTypes.ViewModels;
@@ -19,12 +20,14 @@
         //---------------- FIELDS -----------------
         private readonly IServiceTypesService serviceTypesService;
         private readonly IReservationsService reservationsService;
+        private readonly IOperatingLocationsService operatingLocationsService;
 
         //------------- CONSTRUCTORS --------------
-        public ServiceTypesController(IServiceTypesService serviceTypesService, IReservationsService reservationsService)
+        public ServiceTypesController(IServiceTypesService serviceTypesService, IReservationsService reservationsService, IOperatingLocationsService operatingLocationsService)
         {
             this.serviceTypesService = serviceTypesService;
             this.reservationsService = reservationsService;
+            this.operatingLocationsService = operatingLocationsService;
         }
 
         //-----------------------------------------------------------------------------------------------------//
@@ -47,7 +50,7 @@
                 Name = serviceType.Name,
                 Description = serviceType.Description,
                 IsShownInMainMenu = serviceType.IsShownInMainMenu == true ? "Видимо в Главното Меню" : "Скрито от Главното Меню",
-                Services = serviceType.Services.Select(x => new ServiceInfoViewModel 
+                Services = serviceType.Services.Select(x => new ServiceInfoViewModel
                 {
                     Id = x.Id,
                     Name = x.Name,
@@ -59,8 +62,7 @@
                         Name = x.Name,
                     })
                 }),
-
-                //ReservationInputModel = serviceType. // za vseki input model trqbva da imam id na service-a ?
+                ReservationInputModel = new ReservationInputModel {}
             };
 
             return this.View(model);
@@ -71,8 +73,6 @@
         public async Task<IActionResult> ByName(ReservationInputModel model)
         {
             string username = this.User.Identity.Name;
-            var serviceId = this.ViewData["ServiceId"]; // figure out how to pass the service from the view to the controller
-            ;
 
             if (!this.ModelState.IsValid)
             {
@@ -87,11 +87,12 @@
                 ReservationDateTime = DateTime.ParseExact(model.ReservationDateTime, "dd-MM-yyyy HH:mm", CultureInfo.InvariantCulture),
                 PhoneNumber = model.PhoneNumber,
                 ServiceId = model.ServiceId,
+                OperatingLocationId = model.OperatingLocationId,
                 Username = username,
             };
 
             await this.reservationsService.CreateAsync(reservation);
-            return this.RedirectToAction("Create");
+            return this.RedirectToAction("ByName");
         }
     }
 }

@@ -10,6 +10,7 @@
     /// <para>Each <see cref="OperatingLocation"/> has many <see cref="Contact"/>s.</para>
     /// <para>Each <see cref="OperatingLocation"/> has many <see cref="Employee"/>s.</para>
     /// <para>Each <see cref="OperatingLocation"/> has many <see cref="Service"/>s.</para>
+    /// <para>Each <see cref="OperatingLocation"/> has many <see cref="Reservation"/>s.</para>
     /// </summary>
     public class OperatingLocationConfiguration : IEntityTypeConfiguration<OperatingLocation>
     {
@@ -26,6 +27,11 @@
             opLocation.HasMany(ol => ol.Services)
                       .WithOne(s => s.OperatingLocation)
                       .HasForeignKey(s => s.OperatingLocationId)
+                      .OnDelete(DeleteBehavior.Restrict);
+
+            opLocation.HasMany(ol => ol.Reservations)
+                      .WithOne(r => r.OperatingLocation)
+                      .HasForeignKey(r => r.OperatingLocationId)
                       .OnDelete(DeleteBehavior.Restrict);
         }
     }

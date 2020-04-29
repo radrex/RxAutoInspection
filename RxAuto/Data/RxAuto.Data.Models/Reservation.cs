@@ -37,5 +37,9 @@
         [Required]
         public string UserId { get; set; }
         public virtual ApplicationUser User { get; set; }
+
+        //------------ OperatingLocation [FK] -----------
+        public int OperatingLocationId { get; set; }
+        public virtual OperatingLocation OperatingLocation { get; set; }
     }
 }

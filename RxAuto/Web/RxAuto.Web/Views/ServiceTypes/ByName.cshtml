@@ -1,4 +1,8 @@
 ﻿@model RxAuto.Web.ViewModels.ServiceTypes.ViewModels.ServiceTypeInfoViewModel
+
+@inject RxAuto.Services.Data.IServicesService servicesService
+@inject RxAuto.Services.Data.IOperatingLocationsService operatingLocationsService
+
 @{
     this.ViewData["Title"] = Model.Name;
 }
@@ -54,9 +58,29 @@
                             </td>
                             <td>@service.Price лв.</td>
                             <td>
-                                @{ ViewData["ServiceId"] = service.Id; }
-                                <!-- Pass service.ServiceId, userId... to reservationInputModel -->
-                                <partial name="_ReservationModalForm" model="Model.ReservationInputModel" view-data="ViewData"/>
+                                @{  //PARTIAL VIEW TAKES ONLY THE FIRST SENT MODEL, DESPITE THE FACT THAT HERE WE SEND DIFFERENT ONES
+                                    Model.ReservationInputModel.ServiceId = service.Id;
+
+                                    var currentService = servicesService.GetById(service.Id);
+                                    var currentOpLocs = currentService.OperatingLocationIds.OrderBy(x => x).ToList();
+
+                                    var modalOperatingLocations = new List<RxAuto.Web.ViewModels.OperatingLocations.ViewModels.OperatingLocationsDropdownViewModel>();
+
+                                    @foreach (var opLocId in currentOpLocs)
+                                    {
+                                        var x = operatingLocationsService.GetById(opLocId);
+                                        modalOperatingLocations.Add(new RxAuto.Web.ViewModels.OperatingLocations.ViewModels.OperatingLocationsDropdownViewModel
+                                        {
+                                            Id = x.Id,
+                                            Town = x.Town,
+                                            Address = x.Address,
+                                        });
+                                    }
+
+                                    Model.ReservationInputModel.OperatingLocations = modalOperatingLocations;
+                                }
+
+                                <partial name="_ReservationModalForm" model="Model.ReservationInputModel" />
                             </td>
                         </tr>
                     }

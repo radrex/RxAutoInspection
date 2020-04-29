@@ -1,4 +1,5 @@
 ﻿@model RxAuto.Web.ViewModels.Reservations.InputModels.ReservationInputModel
+<!-- TAKES ONLY THE FIRST INPUT MODEL -->
 
 <button type="button" class="btn btn-success" data-toggle="modal" data-target="#exampleModal">Запази час и избери локация</button>
 
@@ -15,9 +16,17 @@
             <div class="modal-body">
                 <form method="post" id="reservation-form" asp-controller="ServiceTypes" asp-action="ByName">
                     <div class="form-group">
-                        @{ var serviceId = ViewData["ServiceId"]; }
-                        <input value="@serviceId" type="hidden" asp-for="ServiceId" class="form-control" readonly />
+                        <input value="@Model.ServiceId" asp-for="ServiceId" class="form-control" type="hidden" />
                     </div>
+                    <p class="form-group">
+                        <label asp-for="OperatingLocationId">Избери локация</label>
+                        <select asp-for="OperatingLocationId" class="selectpicker show-tick" data-show-subtext="true" data-live-search="true" data-size="5">
+                            @foreach (var operatingLocation in Model.OperatingLocations)
+                            {
+                                <option value="@operatingLocation.Id" data-subtext="@operatingLocation.Address">@operatingLocation.Town</option>
+                            }
+                        </select>
+                    </p>
                     <div class="form-group">
                         <label asp-for="VehicleMake"></label>
                         <input asp-for="VehicleMake" class="form-control" />
