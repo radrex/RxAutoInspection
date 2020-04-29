@@ -13,7 +13,11 @@
             </div>
 
             <div class="modal-body">
-                <form method="post" asp-controller="Reservations" asp-action="Create">
+                <form method="post" id="reservation-form" asp-controller="ServiceTypes" asp-action="ByName">
+                    <div class="form-group">
+                        @{ var serviceId = ViewData["ServiceId"]; }
+                        <input value="@serviceId" type="hidden" asp-for="ServiceId" class="form-control" readonly />
+                    </div>
                     <div class="form-group">
                         <label asp-for="VehicleMake"></label>
                         <input asp-for="VehicleMake" class="form-control" />
@@ -42,7 +46,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-primary" data-dismiss="modal">Затвори</button>
-                <button type="button" class="btn btn-success">Запази</button>
+                <button type="submit" form="reservation-form" class="btn btn-success">Запази</button>
             </div>
         </div>
     </div>

@@ -54,8 +54,9 @@
                             </td>
                             <td>@service.Price лв.</td>
                             <td>
+                                @{ ViewData["ServiceId"] = service.Id; }
                                 <!-- Pass service.ServiceId, userId... to reservationInputModel -->
-                                <partial name="_ReservationModalForm" model="Model.ReservationInputModel" />
+                                <partial name="_ReservationModalForm" model="Model.ReservationInputModel" view-data="ViewData"/>
                             </td>
                         </tr>
                     }

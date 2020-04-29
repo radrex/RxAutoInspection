@@ -56,7 +56,7 @@
                         <div class="form-group col-md-4">
                             <label asp-for="Email"></label>
                             <input asp-for="Email" class="form-control" />
-                            <!-- TODO: Add regex validation for email-->
+                            <span asp-validation-for="Email" class="text-danger"></span>
                         </div>
                     </div>
                     <div class="form-row">

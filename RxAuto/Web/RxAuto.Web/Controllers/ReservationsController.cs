@@ -3,9 +3,12 @@
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
     using RxAuto.Services.Data;
+    using RxAuto.Services.Models.Reservations;
+    using RxAuto.Web.ViewModels.Reservations.InputModels;
     using RxAuto.Web.ViewModels.Reservations.ViewModels;
     using System;
     using System.Linq;
+    using System.Threading.Tasks;
 
     [Authorize(Roles = "User")]
     public class ReservationsController : Controller
@@ -63,9 +66,22 @@
             return this.View(viewModel);
         }
 
+        //TODO: Add docs
+        [HttpPost]
+        public async Task<IActionResult> Cancel(string reservationId)
+        {
+            if (!this.reservationsService.Exists(reservationId))
+            {
+                return this.BadRequest();
+            }
 
+            if (!ModelState.IsValid)
+            {
+                return this.RedirectToAction("Error", "Home");
+            }
 
-
-
+            await this.reservationsService.EditAsync(reservationId);
+            return this.RedirectToAction("MyReservations", "Reservations");
+        }
     }
 }

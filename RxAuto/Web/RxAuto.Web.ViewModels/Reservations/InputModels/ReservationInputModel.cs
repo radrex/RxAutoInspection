@@ -6,22 +6,23 @@
     //TODO: Add docs
     public class ReservationInputModel
     {
-        public int Id { get; set; }
-
         [Display(Name = "Марка автомобил", Prompt = "Марка автомобил")]
+        [MaxLength(30)]
         public string VehicleMake { get; set; }
 
         [Display(Name = "Модел на автомобил", Prompt = "Модел на автомобил")]
+        [MaxLength(30)]
         public string VehicleModel { get; set; }
 
         [Required]
         //TODO: Add regex validation
         [Display(Name = "Регистрационен номер", Prompt = "Регистрационен номер")]
+        [MaxLength(10)]
         public string LicenseNumber { get; set; }
 
-        [Required]
         //TODO: Validate DateTime
-        public DateTime ReservationDateTime { get; set; }
+        [Display(Name = "Дата и час")]
+        public string ReservationDateTime { get; set; }
 
         [Display(Name = "Телефон", Prompt = "Телефон")]
         [Required(ErrorMessage = "Моля въведете Телефон")]
@@ -29,6 +30,6 @@
         [MaxLength(15)]
         public string PhoneNumber { get; set; }
 
-        public int UserId { get; set; }
+        public int ServiceId { get; set; }
     }
 }

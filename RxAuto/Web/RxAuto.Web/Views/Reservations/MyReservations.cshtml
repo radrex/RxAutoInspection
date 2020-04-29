@@ -21,12 +21,13 @@
                         <th><label asp-for="@Model.Reservations.First().Service"></label></th>
                         <th><label asp-for="@Model.Reservations.First().Town"></label></th>
                         <th><label asp-for="@Model.Reservations.First().Address"></label></th>
-                        <th><label asp-for="@Model.Reservations.First().IsActive"></label></th>
                         <th><label asp-for="@Model.Reservations.First().VehicleMake"></label></th>
                         <th><label asp-for="@Model.Reservations.First().VehicleModel"></label></th>
                         <th><label asp-for="@Model.Reservations.First().LicenseNumber"></label></th>
                         <th><label asp-for="@Model.Reservations.First().PhoneNumber"></label></th>
                         <th><label asp-for="@Model.Reservations.First().ReservationDateTime"></label></th>
+                        <th><label asp-for="@Model.Reservations.First().IsActive"></label></th>
+                        <th><label>Отмени</label></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -37,12 +38,44 @@
                             <td>@reservation.Service</td>
                             <td>@reservation.Town</td>
                             <td>@reservation.Address</td>
-                            <td>@reservation.IsActive</td>
                             <td>@reservation.VehicleMake</td>
                             <td>@reservation.VehicleModel</td>
                             <td>@reservation.LicenseNumber</td>
                             <td>@reservation.PhoneNumber</td>
                             <td>@reservation.ReservationDateTime</td>
+                            <td>@reservation.IsActive</td>
+                            <td>
+                                @if (reservation.IsActive == "Активна")
+                                {
+                                    <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal">Отмени</button>
+
+                                    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="exampleModalLabel">Отмяна на резервация</h5>
+                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                </div>
+                                                @{ var reservationId = reservation.Id; }
+                                                <div class="modal-body">
+                                                    <form method="post" id="cancel-form" asp-controller="Reservations" asp-action="Cancel">
+                                                        <div class="form-group">
+                                                            <label asp-for="@reservationId">Сигурни ли сте, че искате да отмените тази резервация?</label>
+                                                            <input asp-for="@reservationId" type="hidden"/>
+                                                        </div>
+                                                    </form>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button form="cancel-form" type="submit" class="btn btn-danger">Отмени</button>
+                                                    <button type="button" class="btn btn-primary" data-dismiss="modal">Затвори</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                }
+                            </td>
                         </tr>
                     }
                 </tbody>

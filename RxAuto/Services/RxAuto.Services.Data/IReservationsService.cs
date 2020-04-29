@@ -40,5 +40,14 @@
         /// <param name="id">Reservation ID</param>
         /// <returns>True - removed entity. False - no such entity found.</returns>
         Task<bool> RemoveAsync(string id);
+
+        //TODO:Add docs
+        bool Exists(string reservationId);
+
+        //TODO:Add docs
+        Task<int> EditAsync(string reservationId);
+
+        //TODO: Add docs
+        Task<string> CreateAsync(CreateReservationServiceModel model);
     }
 }

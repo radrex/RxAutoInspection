@@ -124,5 +124,49 @@
             }
             return true;
         }
+
+        //TODO:Add docs
+        public bool Exists(string reservationId)
+        {
+            return this.dbContext.Reservations.Any(x => x.Id == reservationId); // TODO: Use AnyAsync ?
+        }
+
+        //TODO: Add docs
+        public async Task<int> EditAsync(string reservationId)
+        {
+            Reservation reservation = this.dbContext.Reservations.Find(reservationId);
+            reservation.IsActive = false;
+
+            int modifiedEntities = await this.dbContext.SaveChangesAsync();
+            return modifiedEntities;
+        }
+
+        //TODO: Add docs
+        public async Task<string> CreateAsync(CreateReservationServiceModel model)
+        {
+            string userId = this.dbContext.Users.Where(x => x.UserName == model.Username)
+                                             .Select(x => x.Id)
+                                             .FirstOrDefault();
+
+            Reservation reservation = new Reservation
+            {
+                IsActive = true,
+                VehicleMake = model.VehicleMake,
+                VehicleModel = model.VehicleModel,
+                LicenseNumber = model.LicenseNumber,
+                PhoneNumber = model.PhoneNumber,
+                ReservationDateTime = model.ReservationDateTime,
+
+                ServiceId = model.ServiceId,
+
+                //If no such user, assign userId to GUEST USER (people that want to do reservations without having an account)
+                UserId = (userId == null) ? "72d3da73-551f-4020-bd40-004b513cf7b8" : userId, 
+            };
+
+            await this.dbContext.Reservations.AddAsync(reservation);
+            await this.dbContext.SaveChangesAsync();
+
+            return reservation.Id;
+        }
     }
 }
