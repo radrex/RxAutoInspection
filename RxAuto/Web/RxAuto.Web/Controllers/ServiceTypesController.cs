@@ -94,6 +94,12 @@
             };
 
             await this.reservationsService.CreateAsync(reservation);
+
+            if (this.User.IsInRole("User"))
+            {
+                return this.RedirectToAction("MyReservations", "Reservations");
+            }
+
             return this.RedirectToAction("ByName");
         }
     }
