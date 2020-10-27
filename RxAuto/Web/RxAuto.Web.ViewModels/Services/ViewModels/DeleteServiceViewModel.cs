@@ -2,9 +2,6 @@
 {
     using System.ComponentModel.DataAnnotations;
 
-    /// <summary>
-    /// View model for Service delete confirmation data such as <c>Id</c>, <c>Name</c>, <c>Price</c>, <c>Description</c>, <c>ServiceType</c>, <c>VehicleType</c> and <c>IsShownInSubMenu</c>.
-    /// </summary>
     public class DeleteServiceViewModel
     {
         public int Id { get; set; }

@@ -1,6 +1,5 @@
 ﻿namespace RxAuto.Services.Models.OperatingLocations
 {
-    //TODO: Add docs
     public class OperatingLocationMediaServiceModel
     {
         public string Town { get; set; }

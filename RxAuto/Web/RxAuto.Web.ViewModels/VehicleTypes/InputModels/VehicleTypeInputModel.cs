@@ -2,11 +2,6 @@
 {
     using System.ComponentModel.DataAnnotations;
 
-    /// <summary>
-    /// Input model for entering VehicleType information from the user. 
-    /// It includes <c>VehicleTypeName</c>, <c>VehicleTypeDescription</c>, <c>VehicleCategoryId</c>.
-    /// Validation on User-Side is also included via attributes.
-    /// </summary>
     public class VehicleTypeInputModel
     {
         public int Id { get; set; }

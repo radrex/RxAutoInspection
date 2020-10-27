@@ -2,9 +2,6 @@
 {
     using System.ComponentModel.DataAnnotations;
 
-    /// <summary>
-    /// View model for Document information with <c>Id</c>, <c>Name</c> and <c>Description</c>.
-    /// </summary>
     public class DocumentDetailsViewModel
     {
         public int Id { get; set; }

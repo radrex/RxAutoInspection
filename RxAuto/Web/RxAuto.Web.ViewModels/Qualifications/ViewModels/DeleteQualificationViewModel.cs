@@ -2,9 +2,6 @@
 {
     using System.ComponentModel.DataAnnotations;
 
-    /// <summary>
-    /// View model for Qualification delete confirmation data such as <c>Id</c>, <c>Name</c> and <c>Description</c>.
-    /// </summary>
     public class DeleteQualificationViewModel
     {
         public int Id { get; set; }

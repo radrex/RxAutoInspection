@@ -6,9 +6,6 @@
     using System.Collections.Generic;
     using System.Threading.Tasks;
 
-    /// <summary>
-    /// Describes functionality methods concering <see cref="JobPosition"/> entity.
-    /// </summary>
     public interface IJobPositionsService
     {
         /// <summary>

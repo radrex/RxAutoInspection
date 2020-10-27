@@ -2,9 +2,6 @@
 {
     using System.ComponentModel.DataAnnotations;
 
-    /// <summary>
-    /// View model for listing a Qualification's information such as <c>Id</c>, <c>Name</c> and <c>Description</c>.
-    /// </summary>
     public class QualificationViewModel
     {
         public int Id { get; set; }

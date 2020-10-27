@@ -2,9 +2,6 @@
 {
     using System.ComponentModel.DataAnnotations;
 
-    /// <summary>
-    /// View model for OperatingLocation delete confirmation data such as <c>Id</c>, <c>Town</c> and <c>Address</c>.
-    /// </summary>
     public class DeleteOperatingLocationViewModel
     {
         public int Id { get; set; }

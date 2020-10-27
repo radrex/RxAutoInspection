@@ -2,9 +2,6 @@
 {
     using System.ComponentModel.DataAnnotations;
 
-    /// <summary>
-    /// View model for Service information with <c>Id</c>, <c>Name</c>, <c>IsShownInSubMenu</c>, <c>ServiceType</c>, <c>VehicleType</c>, <c>Description</c> and <c>Price</c>.
-    /// </summary>
     public class ServiceDetailsViewModel
     {
         public int Id { get; set; }

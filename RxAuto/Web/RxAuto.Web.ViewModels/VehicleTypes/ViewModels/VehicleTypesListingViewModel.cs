@@ -2,9 +2,6 @@
 {
     using System.Collections.Generic;
 
-    /// <summary>
-    /// View model for listing VehicleType information, <c>CurrentPage</c> and <c>PagesCount</c>.
-    /// </summary>
     public class VehicleTypesListingViewModel
     {
         public IEnumerable<VehicleTypeViewModel> VehicleTypes { get; set; }

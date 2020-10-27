@@ -9,19 +9,12 @@
     using System.Collections.Generic;
     using Microsoft.EntityFrameworkCore;
 
-    /// <summary>
-    /// Contains method implementations for <see cref="Employee"/> entity and it's database relations.
-    /// </summary>
     public class EmployeesService : IEmployeesService
     {
         //---------------- FIELDS -----------------
         private readonly ApplicationDbContext dbContext;
 
         //------------- CONSTRUCTORS --------------
-        /// <summary>
-        /// Initializes a new <see cref="EmployeesService"/>.
-        /// </summary>
-        /// <param name="dbContext">Database context</param>
         public EmployeesService(ApplicationDbContext dbContext)
         {
             this.dbContext = dbContext;

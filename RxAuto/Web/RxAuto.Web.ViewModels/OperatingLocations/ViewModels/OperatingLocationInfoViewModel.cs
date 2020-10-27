@@ -4,9 +4,6 @@
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
 
-    /// <summary>
-    /// View model for listing a OperatingLocation's information such as <c>Id</c>, <c>Town</c>, <c>Address</c> and a collection of <c>Departments</c>.
-    /// </summary>
     public class OperatingLocationInfoViewModel
     {
         public int Id { get; set; }

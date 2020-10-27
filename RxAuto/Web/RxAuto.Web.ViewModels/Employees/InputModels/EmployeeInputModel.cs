@@ -6,12 +6,6 @@
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
 
-    /// <summary>
-    /// Input model for entering Employee information from the user. 
-    /// It includes <c>JobPositionId</c>, a collection of <c>JobPositions</c>, <c>OperatingLocationId</c>, a collection of <c>OperatingLocations</c>, 
-    /// <c>FirstName</c>, <c>FirstName</c>, <c>MiddleName</c>, <c>LastName</c>, <c>Phone</c>, <c>Email</c>, <c>Town</c>, <c>Address</c> and <c>ImageUrl</c>.
-    /// Validation on User-Side is also included via attributes.
-    /// </summary>
     public class EmployeeInputModel
     {
         public string Id { get; set; }

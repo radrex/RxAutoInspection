@@ -7,9 +7,6 @@
     using System.Threading.Tasks;
     using System.Collections.Generic;
 
-    /// <summary>
-    /// Seeds <c>phones</c> to <see cref="Phone"/> entity in database using <see cref="ApplicationDbContext"/>.
-    /// </summary>
     public class PhonesSeeder : ISeeder
     {
         public async Task SeedAsync(ApplicationDbContext dbContext, IServiceProvider serviceProvider)

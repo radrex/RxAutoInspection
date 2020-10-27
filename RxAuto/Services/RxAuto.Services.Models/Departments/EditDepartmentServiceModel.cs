@@ -1,8 +1,5 @@
 ﻿namespace RxAuto.Services.Models.Departments
 {
-    /// <summary>
-    /// Service model for Department edit information with <c>Id</c>, <c>Name</c>, <c>Email</c>, <c>Description</c> and a collection of <c>PhoneNumberIds</c>.
-    /// </summary>
     public class EditDepartmentServiceModel
     {
         public int Id { get; set; }

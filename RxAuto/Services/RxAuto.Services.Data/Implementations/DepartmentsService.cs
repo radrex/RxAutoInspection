@@ -10,9 +10,6 @@
     using System.Collections.Generic;
     using RxAuto.Services.Models.OperatingLocations;
 
-    /// <summary>
-    /// Contains method implementations for <see cref="Department"/> entity and it's database relations.
-    /// </summary>
     public class DepartmentsService : IDepartmentsService
     {
         //---------------- FIELDS -----------------
@@ -20,10 +17,6 @@
         private readonly IPhonesService phonesService;
 
         //------------- CONSTRUCTORS --------------
-        /// <summary>
-        /// Initializes a new <see cref="DepartmentsService"/>.
-        /// </summary>
-        /// <param name="dbContext">Database context</param>
         public DepartmentsService(ApplicationDbContext dbContext, IPhonesService phonesService)
         {
             this.dbContext = dbContext;

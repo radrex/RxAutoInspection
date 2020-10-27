@@ -9,9 +9,6 @@
     using System.Threading.Tasks;
     using Microsoft.Extensions.DependencyInjection;
 
-    /// <summary>
-    /// Seeds <c>users</c> to <see cref="IdentityUser"/> entity in database using <see cref="ApplicationDbContext"/>.
-    /// </summary>
     public class UsersSeeder : ISeeder
     {
         private UserManager<ApplicationUser> userManager;

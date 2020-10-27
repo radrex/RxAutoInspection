@@ -2,9 +2,6 @@
 
 namespace RxAuto.Web.ViewModels.OperatingLocations.ViewModels
 {
-    /// <summary>
-    /// View model for listing a OperatingLocation's information such as <c>Id</c> and <c>Name</c>.
-    /// </summary>
     public class OperatingLocationViewModel
     {
         public int Id { get; set; }

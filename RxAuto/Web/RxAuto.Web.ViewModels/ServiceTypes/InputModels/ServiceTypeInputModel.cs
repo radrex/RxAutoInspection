@@ -2,11 +2,6 @@
 {
     using System.ComponentModel.DataAnnotations;
 
-    /// <summary>
-    /// Input model for entering ServiceType information from the user. 
-    /// It includes <c>ServiceTypeName</c>, <c>ServiceTypeDescription</c> and <c>IsShownInMainMenu</c>.
-    /// Validation on User-Side is also included via attributes.
-    /// </summary>
     public class ServiceTypeInputModel
     {
         public int Id { get; set; }

@@ -7,9 +7,6 @@
     using System.Threading.Tasks;
     using System.Collections.Generic;
 
-    /// <summary>
-    /// Seeds <c>job positions</c> to <see cref="JobPosition"/> entity in database using <see cref="ApplicationDbContext"/>.
-    /// </summary>
     public class JobPositionsSeeder : ISeeder
     {
         public async Task SeedAsync(ApplicationDbContext dbContext, IServiceProvider serviceProvider)

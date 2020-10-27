@@ -10,9 +10,6 @@
     using System.Collections.Generic;
     using System.Security.Claims;
 
-    /// <summary>
-    /// Contains method implementations for <see cref="Reservation"/> entity and it's database relations.
-    /// </summary>
     public class ReservationsService : IReservationsService
     {
         //---------------- FIELDS -----------------

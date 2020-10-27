@@ -2,9 +2,6 @@
 {
     using System.Collections.Generic;
 
-    /// <summary>
-    /// View model for listing Employees information, <c>CurrentPage</c> and <c>PagesCount</c>.
-    /// </summary>
     public class EmployeesListingViewModel
     {
         public IEnumerable<EmployeeViewModel> Employees { get; set; }

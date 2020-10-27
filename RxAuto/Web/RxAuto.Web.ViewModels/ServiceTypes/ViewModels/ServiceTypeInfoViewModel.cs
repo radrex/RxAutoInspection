@@ -5,9 +5,6 @@
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
 
-    /// <summary>
-    /// View model for listing a ServiceType's information such as <c>Id</c>, <c>Name</c>, <c>Description</c> and <c>IsShownInMainMenu</c>.
-    /// </summary>
     public class ServiceTypeInfoViewModel
     {
         public int Id { get; set; }

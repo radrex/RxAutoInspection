@@ -7,20 +7,12 @@
     using System.Linq;
     using System.Threading.Tasks;
     using System.Collections.Generic;
-
-    /// <summary>
-    /// Contains method implementations for <see cref="Phone"/> entity and it's database relations.
-    /// </summary>
     public class PhonesService : IPhonesService
     {
         //---------------- FIELDS -----------------
         private readonly ApplicationDbContext dbContext;
 
         //------------- CONSTRUCTORS --------------
-        /// <summary>
-        /// Initializes a new <see cref="PhonesService"/>.
-        /// </summary>
-        /// <param name="dbContext">Database context</param>
         public PhonesService(ApplicationDbContext dbContext)
         {
             this.dbContext = dbContext;

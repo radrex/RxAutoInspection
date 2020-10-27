@@ -5,7 +5,6 @@
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
 
-    //TODO: Add docs
     public class ReservationInputModel
     {
         [Display(Name = "Марка автомобил", Prompt = "Марка автомобил")]

@@ -2,7 +2,6 @@
 
 namespace RxAuto.Services.Models.Reservations
 {
-    //TODO: Add docs
     public class CreateReservationServiceModel
     {
         public string VehicleMake { get; set; }

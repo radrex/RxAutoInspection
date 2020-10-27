@@ -4,9 +4,6 @@
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
 
-    /// <summary>
-    /// View model for listing a Department's information such as <c>Id</c>, <c>Name</c>, <c>Email</c> and a collection of <c>Phones</c>.
-    /// </summary>
     public class DepartmentInfoViewModel
     {
         public int Id { get; set; }

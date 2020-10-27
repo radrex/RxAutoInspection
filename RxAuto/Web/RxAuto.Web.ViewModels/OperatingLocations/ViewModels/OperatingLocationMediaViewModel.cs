@@ -1,6 +1,5 @@
 ﻿namespace RxAuto.Web.ViewModels.OperatingLocations.ViewModels
 {
-    //TODO: Add docs
     public class OperatingLocationMediaViewModel
     {
         public string Town { get; set; }

@@ -8,10 +8,6 @@
     using System.Linq;
     using System.Threading.Tasks;
     using System.Collections.Generic;
-
-    /// <summary>
-    /// Contains method implementations for <see cref="Service"/> entity and it's database relations.
-    /// </summary>
     public class ServicesService : IServicesService
     {
         //---------------- FIELDS -----------------
@@ -19,10 +15,6 @@
         private readonly IReservationsService reservationsService;
 
         //------------- CONSTRUCTORS --------------
-        /// <summary>
-        /// Initializes a new <see cref="ServicesService"/>.
-        /// </summary>
-        /// <param name="dbContext">Database context</param>
         public ServicesService(ApplicationDbContext dbContext, IReservationsService reservationsService)
         {
             this.dbContext = dbContext;

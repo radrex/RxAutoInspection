@@ -1,8 +1,5 @@
 ﻿namespace RxAuto.Services.Models.Employees
 {
-    /// <summary>
-    /// Service model for Employee edit information with <c>Id</c>, <c>JobPositionId</c>, <c>OperatingLocationId</c>, <c>FirstName</c>, <c>MiddleName</c>, <c>LastName</c>, <c>Phone</c>, <c>Email</c>, <c>Town</c>, <c>Address</c> and <c>ImageUrl</c>.
-    /// </summary>
     public class EditEmployeeServiceModel
     {
         public string Id { get; set; }

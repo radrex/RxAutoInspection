@@ -6,9 +6,6 @@
     using System.Collections.Generic;
     using System.Threading.Tasks;
 
-    /// <summary>
-    /// Describes functionality methods concering <see cref="OperatingLocation"/> entity.
-    /// </summary>
     public interface IOperatingLocationsService
     {
         /// <summary>

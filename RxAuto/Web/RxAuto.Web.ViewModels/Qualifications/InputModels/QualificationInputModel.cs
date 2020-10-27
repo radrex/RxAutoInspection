@@ -2,10 +2,6 @@
 {
     using System.ComponentModel.DataAnnotations;
 
-    /// <summary>
-    /// Input model for entering Qualification information from the user. It includes <c>QualificationName</c> and <c>Description</c>.
-    /// Validation on User-Side is also included via attributes.
-    /// </summary>
     public class QualificationInputModel
     {
         public int Id { get; set; }

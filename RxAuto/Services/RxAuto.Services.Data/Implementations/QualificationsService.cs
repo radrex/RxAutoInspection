@@ -10,19 +10,12 @@
     using System.Threading.Tasks;
     using System.Collections.Generic;
 
-    /// <summary>
-    /// Contains method implementations for <see cref="Qualification"/> entity and it's database relations.
-    /// </summary>
     public class QualificationsService : IQualificationsService
     {
         //---------------- FIELDS -----------------
         private readonly ApplicationDbContext dbContext;
 
         //------------- CONSTRUCTORS --------------
-        /// <summary>
-        /// Initializes a new <see cref="QualificationsService"/>.
-        /// </summary>
-        /// <param name="dbContext">Database context</param>
         public QualificationsService(ApplicationDbContext dbContext)
         {
             this.dbContext = dbContext;

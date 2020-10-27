@@ -1,8 +1,5 @@
 ﻿namespace RxAuto.Services.Models.Employees
 {
-    /// <summary>
-    /// Service model for listing an Employee's <c>Id</c>, <c>FirstName</c>, <c>MiddleName</c>, <c>LastName</c>, <c>PhoneNumber</c>, <c>Email</c>, <c>OperatingLocationTown</c>, <c>OperatingLocationAddress</c> and <c>JobPosition</c>.
-    /// </summary>
     public class EmployeesListingServiceModel
     {
         public string Id { get; set; }

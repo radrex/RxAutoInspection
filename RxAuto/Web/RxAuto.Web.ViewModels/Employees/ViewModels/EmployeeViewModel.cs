@@ -2,9 +2,6 @@
 {
     using System.ComponentModel.DataAnnotations;
 
-    /// <summary>
-    /// View model for listing an Employee's information such as <c>Id</c>, <c>FullName</c>, <c>PhoneNumber</c>, <c>Email</c>, <c>OperatingLocation</c> and <c>JobPosition</c>.
-    /// </summary>
     public class EmployeeViewModel
     {
         public string Id { get; set; }

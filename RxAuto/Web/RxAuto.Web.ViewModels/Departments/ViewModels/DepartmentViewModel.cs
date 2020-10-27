@@ -2,9 +2,6 @@
 {
     using System.ComponentModel.DataAnnotations;
 
-    /// <summary>
-    /// View model for listing a Departments's information such as <c>Id</c>, <c>Name</c> and <c>Email</c>.
-    /// </summary>
     public class DepartmentViewModel
     {
         public int Id { get; set; }

@@ -3,7 +3,6 @@
     using RxAuto.Services.Models.Documents;
     using System.Collections.Generic;
 
-    //TODO:Add docs
     public class ServiceInfoServiceModel
     {
         public int Id { get; set; }

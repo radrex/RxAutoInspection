@@ -2,9 +2,6 @@
 {
     using Microsoft.AspNetCore.Identity;
 
-    /// <summary>
-    /// Provides static methods for configuring the entity system.
-    /// </summary>
     public static class IdentityOptionsProvider
     {
         public static void GetIdentityOptions(IdentityOptions options)

@@ -2,7 +2,6 @@
 {
     using System.Collections.Generic;
 
-    //TODO: Add docs
     public class ReservationsViewModel
     {
         public IEnumerable<ReservationViewModel> Reservations { get; set; }

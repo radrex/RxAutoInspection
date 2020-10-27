@@ -6,10 +6,6 @@
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
 
-    /// <summary>
-    /// Input model for entering OperatingLocation information from the user. It includes <c>Town</c>, <c>Address</c>, <c>Description</c>, <c>ImageUrl</c>, array of <c>DepartmentIds</c> and a collection of <c>Departments</c>.
-    /// Validation on User-Side is also included via attributes.
-    /// </summary>
     public class OperatingLocationInputModel
     {
         public int Id { get; set; }

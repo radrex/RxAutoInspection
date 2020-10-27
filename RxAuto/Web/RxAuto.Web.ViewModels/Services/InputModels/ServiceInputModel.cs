@@ -9,11 +9,6 @@
     using System.ComponentModel.DataAnnotations;
     using System.Globalization;
 
-    /// <summary>
-    /// Input model for entering Service information from the user. 
-    /// It includes <c>ServiceTypeId</c>, <c>ServiceName</c>, <c>ServiceDescription</c>, <c>IsShownInSubMenu</c>, <c>Price</c>, <c>OperatingLocationIds</c>, <c>VehicleTypeId</c> and <c>DocumentIds</c>.
-    /// Validation on User-Side is also included via attributes.
-    /// </summary>
     public class ServiceInputModel
     {
         public int Id { get; set; }

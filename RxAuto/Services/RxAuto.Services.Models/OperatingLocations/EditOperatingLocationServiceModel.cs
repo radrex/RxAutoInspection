@@ -1,8 +1,5 @@
 ﻿namespace RxAuto.Services.Models.OperatingLocations
 {
-    /// <summary>
-    /// Service model for JobPosition edit information with <c>Id</c>, <c>Town</c>, <c>Address</c>, <c>Description</c>, <c>ImageUrl</c> and a collection of <c>DepartmentIds</c>  with associated <c>PhoneIds</c>.
-    /// </summary>
     public class EditOperatingLocationServiceModel
     {
         public int Id { get; set; }

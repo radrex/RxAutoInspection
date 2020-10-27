@@ -6,9 +6,6 @@
     using System.Threading.Tasks;
     using System.Collections.Generic;
 
-    /// <summary>
-    /// Describes functionality methods concering <see cref="Employee"/> entity.
-    /// </summary>
     public interface IEmployeesService
     {
         /// <summary>

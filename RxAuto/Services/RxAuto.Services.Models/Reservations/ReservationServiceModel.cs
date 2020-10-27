@@ -1,8 +1,5 @@
 ﻿namespace RxAuto.Services.Models.Reservations
 {
-    /// <summary>
-    /// Service model for listing a Service's information such as <c>Id</c>, <c>Service</c>, <c>VehicleMake</c>, <c>VehicleModel</c>, <c>LicenseNumber</c>, <c>PhoneNumber</c> and <c>ReservationDateTime</c>.
-    /// </summary>
     public class ReservationServiceModel
     {
         public string Id { get; set; }

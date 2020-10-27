@@ -10,9 +10,6 @@
     using RxAuto.Services.Models.Departments;
     using RxAuto.Services.Models.Phones;
 
-    /// <summary>
-    /// Contains method implementations for <see cref="OperatingLocation"/> entity and it's database relations.
-    /// </summary>
     public class OperatingLocationsService : IOperatingLocationsService
     {
         //---------------- FIELDS -----------------

@@ -5,9 +5,6 @@
 
     using System.Collections.Generic;
 
-    /// <summary>
-    /// Service model for Creating a Service with <c>ServiceTypeId</c>, <c>VehicleTypeId</c>, <c>Name</c>, <c>Description</c>, <c>IsShownInSubMenu</c>, <c>Price</c> and collections of <c>OperatingLocations</c> and <c>Documents</c>.
-    /// </summary>
     public class CreateServiceServiceModel
     {
         public int ServiceTypeId { get; set; }

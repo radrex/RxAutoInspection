@@ -2,9 +2,6 @@
 {
     using System.Collections.Generic;
 
-    /// <summary>
-    /// View model for listing Phone information, <c>CurrentPage</c> and <c>PagesCount</c>.
-    /// </summary>
     public class PhonesListingViewModel
     {
         public IEnumerable<PhoneViewModel> Phones { get; set; }

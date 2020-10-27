@@ -8,9 +8,6 @@
     using System.Threading.Tasks;
     using System.Collections.Generic;
 
-    /// <summary>
-    /// Contains method implementations for <see cref="JobPosition"/> entity and it's database relations.
-    /// </summary>
     public class JobPositionsService : IJobPositionsService
     {
         //---------------- FIELDS -----------------
@@ -18,10 +15,6 @@
         private readonly IEmployeesService employeesService;
 
         //------------- CONSTRUCTORS --------------
-        /// <summary>
-        /// Initializes a new <see cref="JobPositionsService"/>.
-        /// </summary>
-        /// <param name="dbContext">Database context</param>
         public JobPositionsService(ApplicationDbContext dbContext, IEmployeesService employeesService)
         {
             this.dbContext = dbContext;

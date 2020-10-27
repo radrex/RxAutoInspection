@@ -1,8 +1,5 @@
 ﻿namespace RxAuto.Services.Models.Services
 {
-    /// <summary>
-    /// Service model for Service information with <c>Id</c>, <c>Name</c>, <c>IsShownInSubMenu</c>, <c>ServiceType</c>, <c>VehicleType</c>, <c>Description</c>, <c>Price</c> and collections of <c>OperatingLocationIds</c> and <c>DocumentIds</c>.
-    /// </summary>
     public class ServiceServiceModel
     {
         public int Id { get; set; }

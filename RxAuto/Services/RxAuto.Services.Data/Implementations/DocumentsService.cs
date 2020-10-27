@@ -9,9 +9,6 @@
     using System.Threading.Tasks;
     using System.Collections.Generic;
 
-    /// <summary>
-    /// Contains method implementations for <see cref="Document"/> entity and it's database relations.
-    /// </summary>
     public class DocumentsService : IDocumentsService
     {
         //---------------- FIELDS -----------------
@@ -19,10 +16,6 @@
         private readonly IServicesService servicesService;
 
         //------------- CONSTRUCTORS --------------
-        /// <summary>
-        /// Initializes a new <see cref="DocumentsService"/>.
-        /// </summary>
-        /// <param name="dbContext">Database context</param>
         public DocumentsService(ApplicationDbContext dbContext, IServicesService servicesService)
         {
             this.dbContext = dbContext;

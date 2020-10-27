@@ -1,21 +1,13 @@
 ﻿namespace RxAuto.Data.Models.DataValidation
 {
-    /// <summary>
-    /// Contains classes with validation constants. 
-    /// </summary>
     public static class DataValidation
     {
-        /// <summary>
-        /// Validation constants for Personal information.
-        /// </summary>
+
         public static class PersonInfo
         {
             public const int PersonNameMaxLength = 20;
         }
 
-        /// <summary>
-        /// Validation constants for Media information - image, document, description, etc.
-        /// </summary>
         public static class MediaInfo
         {
             public const int DescriptionMaxLength = 4000;
@@ -23,9 +15,6 @@
             public const int DocumentNameMaxLength = 300;
         }
 
-        /// <summary>
-        /// Validation constants for Vehicle information - make, model, licenseNumber, etc.
-        /// </summary>
         public static class VehicleInfo
         {
             public const int VehicleTypeName = 50;
@@ -34,9 +23,6 @@
             public const int LicenseNumberMaxLength = 10;
         }
 
-        /// <summary>
-        /// Validation constants for Contact information - email, address, phone, etc.
-        /// </summary>
         public static class ContactInfo
         {
             public const int TownMaxLength = 30;

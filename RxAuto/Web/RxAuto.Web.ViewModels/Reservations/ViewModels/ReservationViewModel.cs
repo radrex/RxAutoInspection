@@ -3,9 +3,6 @@
     using System;
     using System.ComponentModel.DataAnnotations;
 
-    /// <summary>
-    /// View model for listing a Service's information such as <c>Id</c>, <c>Service</c>, <c>VehicleMake</c>, <c>VehicleModel</c>, <c>LicenseNumber</c>, <c>PhoneNumber</c> and <c>ReservationDateTime</c>.
-    /// </summary>
     public class ReservationViewModel
     {
         public string Id { get; set; }

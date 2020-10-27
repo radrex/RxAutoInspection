@@ -2,9 +2,6 @@
 {
     using System.ComponentModel.DataAnnotations;
 
-    /// <summary>
-    /// View model for Employee delete confirmation data such as <c>Id</c>, <c>FullName</c>, <c>OperatingLocation</c> and <c>JobPosition</c>.
-    /// </summary>
     public class DeleteEmployeeViewModel
     {
         public string Id { get; set; }

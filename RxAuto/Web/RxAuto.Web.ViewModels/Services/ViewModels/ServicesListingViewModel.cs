@@ -2,9 +2,6 @@
 {
     using System.Collections.Generic;
 
-    /// <summary>
-    /// View model for listing Service information, <c>CurrentPage</c> and <c>PagesCount</c>.
-    /// </summary>
     public class ServicesListingViewModel
     {
         public IEnumerable<ServiceViewModel> Services { get; set; }

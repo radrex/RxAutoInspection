@@ -2,9 +2,6 @@
 {
     using RxAuto.Data.Models.Enums;
 
-    /// <summary>
-    /// Service model for VehicleType information with <c>Id</c>, <c>Name</c>, <c>VehicleCategory</c> and <c>Description</c>.
-    /// </summary>
     public class VehicleTypeServiceModel
     {
         public int Id { get; set; }

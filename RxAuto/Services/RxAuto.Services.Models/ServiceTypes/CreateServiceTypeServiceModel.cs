@@ -1,8 +1,5 @@
 ﻿namespace RxAuto.Services.Models.ServiceTypes
 {
-    /// <summary>
-    /// Service model for Creating a ServiceType with <c>Name</c> and <c>Description</c>.
-    /// </summary>
     public class CreateServiceTypeServiceModel
     {
         public string Name { get; set; }

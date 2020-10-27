@@ -6,9 +6,6 @@
     using System.Threading.Tasks;
     using System.Collections.Generic;
 
-    /// <summary>
-    /// Describes functionality methods concering <see cref="Service"/> entity.
-    /// </summary>
     public interface IServicesService
     {
         /// <summary>

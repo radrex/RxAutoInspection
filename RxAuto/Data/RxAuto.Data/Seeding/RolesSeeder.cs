@@ -9,9 +9,6 @@
     using System.Linq;
     using System.Threading.Tasks;
 
-    /// <summary>
-    /// Seeds <c>roles</c> to <see cref="IdentityRole"/> entity in database using <see cref="ApplicationDbContext"/>.
-    /// </summary>
     public class RolesSeeder : ISeeder
     {
         private RoleManager<ApplicationRole> roleManager;

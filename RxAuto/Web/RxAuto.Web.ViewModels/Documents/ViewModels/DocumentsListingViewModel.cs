@@ -2,9 +2,6 @@
 {
     using System.Collections.Generic;
 
-    /// <summary>
-    /// View model for listing Document information, <c>CurrentPage</c> and <c>PagesCount</c>.
-    /// </summary>
     public class DocumentsListingViewModel
     {
         public IEnumerable<DocumentViewModel> Documents { get; set; }

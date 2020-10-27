@@ -9,9 +9,6 @@
     using Microsoft.AspNetCore.Identity;
     using Microsoft.Extensions.DependencyInjection;
 
-    /// <summary>
-    /// Seeds <c>reservations</c> to <see cref="Reservation"/> entity in database using <see cref="ApplicationDbContext"/>.
-    /// </summary>
     public class ReservationsSeeder : ISeeder
     {
         public async Task SeedAsync(ApplicationDbContext dbContext, IServiceProvider serviceProvider)

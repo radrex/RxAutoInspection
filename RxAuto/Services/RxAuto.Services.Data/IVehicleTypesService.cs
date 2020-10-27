@@ -6,9 +6,6 @@
     using System.Threading.Tasks;
     using System.Collections.Generic;
 
-    /// <summary>
-    /// Describes functionality methods concering <see cref="VehicleType"/> entity.
-    /// </summary>
     public interface IVehicleTypesService
     {
         /// <summary>
