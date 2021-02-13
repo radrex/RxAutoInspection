@@ -90,7 +90,7 @@
                 Name = x.Name,
                 IsShownInSubMenu = x.IsShownInSubMenu == true ? "Да" : "Не",
                 ServiceType = x.ServiceType.Name,
-                VehicleType = x.VehicleType.Name,
+                VehicleType = $"{x.VehicleType.VehicleCategory} - {x.VehicleType.Name}",
                 Price = x.Price,
             })
             .Skip(skip);
@@ -132,7 +132,7 @@
                                               ServiceType = x.ServiceType.Name,
                                               ServiceTypeId = x.ServiceTypeId,
 
-                                              VehicleType = x.VehicleType.Name,
+                                              VehicleType = $"{x.VehicleType.VehicleCategory} - {x.VehicleType.Name}",
                                               VehicleTypeId = x.VehicleTypeId,
 
                                               OperatingLocationIds = x.OperatingLocations.Select(x => x.OperatingLocationId).ToArray(),

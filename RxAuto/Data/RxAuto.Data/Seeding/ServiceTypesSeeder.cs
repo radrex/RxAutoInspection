@@ -1,6 +1,7 @@
 ﻿namespace RxAuto.Data.Seeding
 {
     using RxAuto.Data.Models;
+    using RxAuto.Data.Seeding.JSONSeed;
 
     using System;
     using System.Linq;
@@ -9,6 +10,16 @@
 
     public class ServiceTypesSeeder : ISeeder
     {
+        //---------------- FIELDS -----------------
+        private readonly List<JServiceType> serviceTypes;
+
+        //------------- CONSTRUCTORS --------------
+        public ServiceTypesSeeder(List<JServiceType> serviceTypes)
+        {
+            this.serviceTypes = serviceTypes;
+        }
+
+        //--------------- METHODS -----------------
         public async Task SeedAsync(ApplicationDbContext dbContext, IServiceProvider serviceProvider)
         {
             if (dbContext.ServiceTypes.Any())
@@ -16,20 +27,15 @@
                 return;
             }
 
-            var serviceTypes = new List<(string Name, string Description, bool IsInDevelopment)>
-            {
-                ("ГТП", "Периодичен преглед за проверка на техническата изправност на ППС регистрирани в Република България.", false),
-                ("Автомивка", "Почистването с гореща пара дезинфекцира, достига до труднодостъпните места и ниши на автомобила, убива микроби, плесени и паразите, премахва миризми и др.", true),
-            };
-
-            foreach (var serviceType in serviceTypes)
+            foreach (JServiceType serviceType in this.serviceTypes)
             {
                 await dbContext.ServiceTypes.AddAsync(new ServiceType
                 {
                     Name = serviceType.Name,
                     Description = serviceType.Description,
-                    IsShownInMainMenu = serviceType.IsInDevelopment,
+                    IsShownInMainMenu = serviceType.IsShownInMainMenu,
                 });
+                await dbContext.SaveChangesAsync(); // Do it on each step to preserve insertion order. :(
             }
         }
     }

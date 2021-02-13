@@ -1,6 +1,7 @@
 ﻿namespace RxAuto.Data.Seeding
 {
     using RxAuto.Data.Models;
+    using RxAuto.Data.Seeding.JSONSeed;
 
     using System;
     using System.Linq;
@@ -9,6 +10,16 @@
 
     public class QualificationsSeeder : ISeeder
     {
+        //---------------- FIELDS -----------------
+        private readonly List<JQualification> qualifications;
+
+        //------------- CONSTRUCTORS --------------
+        public QualificationsSeeder(List<JQualification> qualifications)
+        {
+            this.qualifications = qualifications;
+        }
+
+        //--------------- METHODS -----------------
         public async Task SeedAsync(ApplicationDbContext dbContext, IServiceProvider serviceProvider)
         {
             if (dbContext.Qualifications.Any())
@@ -16,21 +27,13 @@
                 return;
             }
 
-            List<string> qualifications = new List<string>
-            {
-                "Правоспособни водачи на МПС, най-малко категория B, L",
-                "Висше образование",
-                "Удостоверение за преминато допълнително обучение",
-                "Компютърна грамотност",
-                "Над 3 години трудов стаж по специалността",
-            };
-
-            foreach (string qualification in qualifications)
+            foreach (JQualification qualification in this.qualifications)
             {
                 await dbContext.Qualifications.AddAsync(new Qualification
                 {
-                    Name = qualification,
+                    Name = qualification.Name,
                 });
+                await dbContext.SaveChangesAsync(); // Do it on each step to preserve insertion order. :(
             }
         }
     }

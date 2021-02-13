@@ -1,6 +1,7 @@
 ﻿namespace RxAuto.Data.Seeding
 {
     using RxAuto.Data.Models;
+    using RxAuto.Data.Seeding.JSONSeed;
 
     using System;
     using System.Linq;
@@ -9,6 +10,16 @@
 
     public class JobPositionsSeeder : ISeeder
     {
+        //---------------- FIELDS -----------------
+        private readonly List<JJobPosition> jobPositions;
+
+        //------------- CONSTRUCTORS --------------
+        public JobPositionsSeeder(List<JJobPosition> jobPositions)
+        {
+            this.jobPositions = jobPositions;
+        }
+
+        //--------------- METHODS -----------------
         public async Task SeedAsync(ApplicationDbContext dbContext, IServiceProvider serviceProvider)
         {
             if (dbContext.JobPositions.Any())
@@ -16,45 +27,23 @@
                 return;
             }
 
-            Dictionary<string, List<Qualification>> jobPositions = new Dictionary<string, List<Qualification>>
+            foreach (JJobPosition jobPosition in this.jobPositions)
             {
-                { "Председател на комисия", new List<Qualification>(dbContext.Qualifications
-                                                                             .Where(q => q.Name == "Правоспособни водачи на МПС, най-малко категория B, L" || 
-                                                                                         q.Name == "Висше образование" ||
-                                                                                         q.Name == "Удостоверение за преминато допълнително обучение" ||
-                                                                                         q.Name == "Компютърна грамотност" ||
-                                                                                         q.Name == "Над 3 години трудов стаж по специалността")
-                                                                             .ToList()) 
-                },
-                { "Технически специалист", new List<Qualification>(dbContext.Qualifications
-                                                                            .Where(q => q.Name == "Правоспособни водачи на МПС, най-малко категория B, L" ||
-                                                                                        q.Name == "Удостоверение за преминато допълнително обучение" ||
-                                                                                        q.Name == "Компютърна грамотност" ||
-                                                                                        q.Name == "Над 3 години трудов стаж по специалността")
-                                                                            .ToList()) 
-                },
-                { "Ръководител КТП", new List<Qualification>(dbContext.Qualifications
-                                                                      .Where(q => q.Name == "Правоспособни водачи на МПС, най-малко категория B, L" ||
-                                                                                  q.Name == "Висше образование" ||
-                                                                                  q.Name == "Удостоверение за преминато допълнително обучение" ||
-                                                                                  q.Name == "Компютърна грамотност" ||
-                                                                                  q.Name == "Над 3 години трудов стаж по специалността")
-                                                                      .ToList())
-                },
-            };
+                await dbContext.JobPositions.AddAsync(new JobPosition
+                {
+                    Name = jobPosition.Name,
+                });
+                await dbContext.SaveChangesAsync();  // Do it on each step to preserve insertion order. :(
 
-            foreach (var jobPosition in jobPositions)
-            {
-                JobPosition jobPositionEntity = new JobPosition { Name = jobPosition.Key };
-
-                foreach (var qualification in jobPosition.Value)
+                foreach (int qualificationId in jobPosition.QualificationIds)
                 {
                     await dbContext.JobPositionQualifications.AddAsync(new JobPositionQualification
                     {
-                        JobPosition = jobPositionEntity,
-                        Qualification = qualification,
+                        JobPositionId = jobPosition.Id,
+                        QualificationId = qualificationId,
                     });
                 }
+                await dbContext.SaveChangesAsync();
             }
         }
     }

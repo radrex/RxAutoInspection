@@ -1,6 +1,7 @@
 ﻿namespace RxAuto.Data.Seeding
 {
     using RxAuto.Data.Models;
+    using RxAuto.Data.Seeding.JSONSeed;
 
     using System;
     using System.Linq;
@@ -9,6 +10,16 @@
 
     public class PhonesSeeder : ISeeder
     {
+        //---------------- FIELDS -----------------
+        private readonly List<JPhone> phones;
+
+        //------------- CONSTRUCTORS --------------
+        public PhonesSeeder(List<JPhone> phones)
+        {
+            this.phones = phones;
+        }
+
+        //--------------- METHODS -----------------
         public async Task SeedAsync(ApplicationDbContext dbContext, IServiceProvider serviceProvider)
         {
             if (dbContext.Phones.Any())
@@ -16,22 +27,14 @@
                 return;
             }
 
-            List<string> phones = new List<string>
-            {
-                "0897571823", 
-                "0898391232", 
-                "0897931421",
-                "0897391431",
-                "0898391953",
-                "0897572942",
-            };
-
-            foreach (string phone in phones)
+            foreach (JPhone phone in this.phones)
             {
                 await dbContext.Phones.AddAsync(new Phone
                 {
-                    PhoneNumber = phone,
+                    PhoneNumber = phone.PhoneNumber,
+                    IsInternal = phone.IsInternal,
                 });
+                await dbContext.SaveChangesAsync(); // Do it on each step to preserve insertion order. :(
             }
         }
     }

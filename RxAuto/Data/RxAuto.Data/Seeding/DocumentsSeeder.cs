@@ -1,6 +1,7 @@
 ﻿namespace RxAuto.Data.Seeding
 {
     using RxAuto.Data.Models;
+    using RxAuto.Data.Seeding.JSONSeed;
 
     using System;
     using System.Linq;
@@ -9,6 +10,16 @@
 
     public class DocumentsSeeder : ISeeder
     {
+        //---------------- FIELDS -----------------
+        private readonly List<JDocument> documents;
+
+        //------------- CONSTRUCTORS --------------
+        public DocumentsSeeder(List<JDocument> documents)
+        {
+            this.documents = documents;
+        }
+
+        //--------------- METHODS -----------------
         public async Task SeedAsync(ApplicationDbContext dbContext, IServiceProvider serviceProvider)
         {
             if (dbContext.Documents.Any())
@@ -16,20 +27,13 @@
                 return;
             }
 
-            List<string> documents = new List<string>()
-            {
-                "Свидетелство за регистрация на ППС част I (Може да бъде представено копие)",
-                "Свидетелство за регистрация на ППС част II (Оригинал)",
-                "Документ от съответния контролен орган за техническа изправност на монтирано съоръжение",
-                "Документ за самоличност на лицето представило ППС на преглед",
-            };
-
-            foreach (string document in documents)
+            foreach (JDocument document in this.documents)
             {
                 await dbContext.Documents.AddAsync(new Document
                 {
-                    Name = document,
+                    Name = document.Name,
                 });
+                await dbContext.SaveChangesAsync(); // Do it on each step to preserve insertion order. :(
             }
         }
     }

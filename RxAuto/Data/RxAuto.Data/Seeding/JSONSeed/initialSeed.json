@@ -1,0 +1,326 @@
+﻿{
+  "qualifications": [
+    {
+      "id": 10,
+      "name": "Правоспособни водачи на МПС, най-малко категория B, L",
+      "description": ""
+    },
+    {
+      "id": 11,
+      "name": "Висше образование",
+      "description": ""
+    },
+    {
+      "id": 12,
+      "name": "Удостоверение за преминато допълнително обучение",
+      "description": ""
+    },
+    {
+      "id": 13,
+      "name": "Компютърна грамотност",
+      "description": ""
+    },
+    {
+      "id": 14,
+      "name": "Над 3 години трудов стаж по специалността",
+      "description": ""
+    }
+  ],
+
+  "jobPositions": [
+    {
+      "id": 101,
+      "name": "Председател на комисия",
+      "qualificationIds": [ 10, 11, 12, 13, 14 ]
+    },
+    {
+      "id": 102,
+      "name": "Технически специалист",
+      "qualificationIds": [ 10, 12, 13, 14 ]
+    },
+    {
+      "id": 103,
+      "name": "Ръководител КТП",
+      "qualificationIds": [ 10, 11, 12, 13, 14 ]
+    }
+  ],
+
+  "operatingLocations": [
+    {
+      "id": 10,
+      "town": "София",
+      "address": "ул. Васил Левски 10",
+      "description": "",
+      "imageUrl": "https://files.porsche.com/filestore/image/multimedia/none/porscheservice-psp-l-02/normal/63c63e76-2d1e-11e8-bbc5-0019999cd470/porsche-normal.jpg"
+    },
+    {
+      "id": 11,
+      "town": "Благоевград",
+      "address": "ул. Патриарх Евтимий 23",
+      "description": "",
+      "imageUrl": "https://lh3.googleusercontent.com/proxy/mGuXrhajAcu_z2BeWHg0648LotYnGxmkSMpunrlF0iSxFggYNSl9UE7n4aabPRR9_cezZ7KyGM8c-xRbgmuIXfoub6wkOm3yHEu8LuQaKeWh8vVebhCEuLZDrk-jGXN3452468Tev2gTn-98HAXBM28s"
+    }
+  ],
+
+  "employees": [
+    {
+      "firstName": "Иван",
+      "middleName": "Петров",
+      "lastName": "Иванов",
+      "phoneNumber": "0987384017",
+      "email": "ivan_petrov@gmail.com",
+      "town": "Благоевград",
+      "address": "ул. Джеймс Баучер 12",
+      "imageUrl": "https://i.dlpng.com/static/png/6402200_preview.png",
+      "jobPositionId": 103,
+      "OperatingLocationId": 11
+    },
+    {
+      "firstName": "Георги",
+      "middleName": "Петров",
+      "lastName": "Георгиев",
+      "phoneNumber": "0987382088",
+      "email": "george5@gmail.com",
+      "town": "Благоевград",
+      "address": "ул. Христо Ботев 3",
+      "imageUrl": "https://i.dlpng.com/static/png/6402200_preview.png",
+      "jobPositionId": 102,
+      "OperatingLocationId": 11
+    },
+    {
+      "firstName": "Стоян",
+      "middleName": "Георгиев",
+      "lastName": "Стоянов",
+      "phoneNumber": "0987122038",
+      "email": "stoyanov@gmail.com",
+      "town": "Перник",
+      "address": "ул. Васил Левски 9",
+      "imageUrl": "https://i.dlpng.com/static/png/6402200_preview.png",
+      "jobPositionId": 102,
+      "OperatingLocationId": 10
+    }
+  ],
+
+  "phones": [
+    {
+      "id": 1,
+      "phoneNumber": "0897571823",
+      "isInternal": true
+    },
+    {
+      "id": 2,
+      "phoneNumber": "0898391232",
+      "isInternal": true
+    },
+    {
+      "id": 3,
+      "phoneNumber": "0897931421",
+      "isInternal": true
+    },
+    {
+      "id": 4,
+      "phoneNumber": "0897391431",
+      "isInternal": true
+    },
+    {
+      "id": 5,
+      "phoneNumber": "0898391953",
+      "isInternal": true
+    },
+    {
+      "id": 6,
+      "phoneNumber": "0897572942",
+      "isInternal": true
+    }
+  ],
+
+  "departments": [
+    {
+      "id":  1,
+      "name": "Support",
+      "email": "blg_support@gmail.com",
+      "operatingLocationId": 11,
+      "phoneIds": [ 1, 2, 3 ]
+    },
+    {
+      "id": 2,
+      "name": "Information",
+      "email": "blg_info@gmail.com",
+      "operatingLocationId": 11,
+      "phoneIds": [ 4 ]
+    },
+    {
+      "id": 3,
+      "name": "Information",
+      "email": "sofia_info@gmail.com",
+      "operatingLocationId": 10,
+      "phoneIds": [ 5, 6 ]
+    }
+  ],
+
+  "documents": [
+    {
+      "id": 10,
+      "name": "Свидетелство за регистрация на ППС част I (Може да бъде представено копие)",
+      "description": ""
+    },
+    {
+      "id": 11,
+      "name": "Свидетелство за регистрация на ППС част II (Оригинал)",
+      "description": ""
+    },
+    {
+      "id": 12,
+      "name": "Документ от съответния контролен орган за техническа изправност на монтирано съоръжение",
+      "description": ""
+    },
+    {
+      "id": 13,
+      "name": "Документ за самоличност на лицето представило ППС на преглед",
+      "description": ""
+    }
+  ],
+
+  "vehicleTypes": [
+    {
+      "id": 1,
+      "name": "Лек автомобил",
+      "vehicleCategory": "M1",
+      "description": "Превозни средства от категория M с не повече от 8 места за сядане, без място за сядане на водача; в превозните средства от категория M1 няма място за стоящи пътници; броят на местата за сядане може да бъде ограничен до едно (мястото за сядане на водача);"
+    },
+    {
+      "id": 2,
+      "name": "Автобус",
+      "vehicleCategory": "M2",
+      "description": "Превозни средства от категория M с повече от 8 места за сядане, без мястото за сядане на водача, с технически допустима максимална маса не повече от 5 t; в превозните средства от категория M2, освен местата за сядане, може да има място за стоящи пътници;"
+    },
+    {
+      "id": 3,
+      "name": "Автобус",
+      "vehicleCategory": "M3",
+      "description": "Превозни средства от категория M с повече от 8 места за сядане, без мястото за сядане на водача, с технически допустима максимална маса над 5 t; в превозните средства от категория M3 може да има място за стоящи пътници;"
+    },
+    {
+      "id": 4,
+      "name": "Товарен автомобил",
+      "vehicleCategory": "N1",
+      "description": "Превозни средства от категория N с технически допустима максимална маса не повече от 3,5 t;"
+    },
+    {
+      "id": 5,
+      "name": "Товарен автомобил",
+      "vehicleCategory": "N2",
+      "description": "Превозни средства от категория N с технически допустима максимална маса над 3,5 t, но не повече от 12 t;"
+    }
+  ],
+
+  "serviceTypes": [
+    {
+      "id": 10,
+      "name": "ГТП",
+      "description": "Периодичен преглед за проверка на техническата изправност на ППС регистрирани в Република България.",
+      "isShownInMainMenu": true
+    },
+    {
+      "id": 20,
+      "name": "Автомивка",
+      "description": "Почистването с гореща пара дезинфекцира, достига до труднодостъпните места и ниши на автомобила, убива микроби, плесени и паразите, премахва миризми и др.",
+      "isShownInMainMenu": false
+    }
+  ],
+
+  "services": [
+    {
+      "id": 1,
+      "name": "Преглед на лек автомобил",
+      "price": 35.0,
+      "serviceTypeId": 10,
+      "operatingLocationIds": [ 10, 11 ],
+      "documentIds": [ 13, 12, 11, 10 ],
+      "description": "",
+      "vehicleTypeId": 1,
+      "isShownInSubMenu": true
+    },
+    {
+      "id": 2,
+      "name": "Преглед на автобус",
+      "price": 60.0,
+      "serviceTypeId": 10,
+      "operatingLocationIds": [ 10, 11 ],
+      "documentIds": [ 13, 12, 11, 10 ],
+      "description": "",
+      "vehicleTypeId": 2,
+      "isShownInSubMenu": true
+    },
+    {
+      "id": 3,
+      "name": "Преглед на автобус",
+      "price": 60.0,
+      "serviceTypeId": 10,
+      "operatingLocationIds": [ 10, 11 ],
+      "documentIds": [ 13, 10 ],
+      "description": "",
+      "vehicleTypeId": 3,
+      "isShownInSubMenu": true
+    },
+    {
+      "id": 4,
+      "name": "Преглед на товарен автомобил",
+      "price": 40.0,
+      "serviceTypeId": 10,
+      "operatingLocationIds": [ 11 ],
+      "documentIds": [ 13, 12, 11, 10 ],
+      "description": "",
+      "vehicleTypeId": 4,
+      "isShownInSubMenu": true
+    },
+    {
+      "id": 5,
+      "name": "Преглед на товарен автомобил",
+      "price": 55.0,
+      "serviceTypeId": 10,
+      "operatingLocationIds": [ 11 ],
+      "documentIds": [ 13, 12, 11, 10 ],
+      "description": "",
+      "vehicleTypeId": 5,
+      "isShownInSubMenu": true
+    }
+  ],
+
+  "reservations": [
+    {
+      "isActive": true,
+      "vehicleMake": "BMW",
+      "vehicleModel": "M3",
+      "licenseNumber": "СА 1234 КР",
+      "phoneNumber": "0897842017",
+      "reservationDateTime": "2020-06-12T12:30:00Z",
+      "serviceId": 1,
+      "username": "GuestUser",
+      "operatingLocationId": 10
+    },
+    {
+      "isActive": true,
+      "vehicleMake": "BMW",
+      "vehicleModel": "Е36",
+      "licenseNumber": "СА 5678 ВР",
+      "phoneNumber": "0897860812",
+      "reservationDateTime": "2020-06-12T13:00:00Z",
+      "serviceId": 1,
+      "username": "NormalUser",
+      "operatingLocationId": 10
+    },
+    {
+      "isActive": false,
+      "vehicleMake": "Toyota",
+      "vehicleModel": "Supra",
+      "licenseNumber": "Е 7391 КР",
+      "phoneNumber": "0897860812",
+      "reservationDateTime": "2020-07-11T09:30:00Z",
+      "serviceId": 1,
+      "username": "NormalUser",
+      "operatingLocationId": 11
+    }
+  ]
+
+}
