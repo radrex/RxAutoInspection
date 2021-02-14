@@ -36,12 +36,12 @@
                             <td>@service.Name</td>
                             <td>@service.VehicleType</td>
                             <td>
-                                @{ string key = service.Name.ToString(); }
+                                @{ string key = service.VehicleType.ToString().Split(" - ")[0]; }
 
-                                <a class="btn btn-primary" data-toggle="collapse" href="#key" role="button" aria-expanded="false" aria-controls="key">
+                                <a class="btn btn-primary" data-toggle="collapse" href="#@key" role="button" aria-expanded="false" aria-controls="@key">
                                     Виж
                                 </a>
-                                <div class="collapse" id="key">
+                                <div class="collapse" id="@key">
                                     <div class="card card-body">
                                         <ul>
                                             @if (service.Documents.Count() == 0)
@@ -82,7 +82,7 @@
                                     testModel.OperatingLocations = modalOperatingLocations;
                                 }
 
-                                <partial name="_ReservationModalForm" model="testModel" />
+                                <partial name="_ReservationModalForm" model="testModel"  />
                             </td>
                         </tr>
                     }
